@@ -1,0 +1,895 @@
+<!-- Template for docs/index.html. Do not edit docs/index.html by hand: run `python site/build_site.py`. -->
+<title>DLBCL Prognostic Score</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Interactive summary of a pre-registered-style, fully reproducible gene-expression prognostic score study in diffuse large B-cell lymphoma, built on public GEO data. Research only; not a clinical tool.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column (~62rem) with a sticky section bar; each section = short claim, one chart, the numbers behind it. */
+:root {
+  --paper: #f5f7f8;
+  --card: #ffffff;
+  --ink: #14202b;
+  --ink-2: #46535f;
+  --muted: #6c7884;
+  --rule: #d8dfe5;
+  --grid: #e7ecf0;
+  --accent: #1d5c86;
+  --accent-soft: #e2edf5;
+  --low: #2a78d6;      /* low-risk group, risk-decreasing genes */
+  --high: #eb6834;     /* high-risk group, risk-increasing genes */
+  --mid: #8b95a0;      /* middle tertile, neutral */
+  --band-low: rgba(42,120,214,.14);
+  --band-high: rgba(235,104,52,.14);
+  --ok: #0f7a3a;
+  --partial: #9a6200;
+  --okbg: #e3f3e8;
+  --partialbg: #fbf0d9;
+  --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --body: "Public Sans", "Segoe UI", Roboto, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12171c; --card: #1a2128; --ink: #e8edf1; --ink-2: #b6c0c9; --muted: #8995a1;
+    --rule: #2e3943; --grid: #242d35; --accent: #7db4dc; --accent-soft: #1d3142;
+    --low: #3987e5; --high: #d95926; --mid: #7d8893;
+    --band-low: rgba(57,135,229,.20); --band-high: rgba(217,89,38,.20);
+    --ok: #5fd08c; --partial: #e8b14c; --okbg: #183424; --partialbg: #3a2d12;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12171c; --card: #1a2128; --ink: #e8edf1; --ink-2: #b6c0c9; --muted: #8995a1;
+  --rule: #2e3943; --grid: #242d35; --accent: #7db4dc; --accent-soft: #1d3142;
+  --low: #3987e5; --high: #d95926; --mid: #7d8893;
+  --band-low: rgba(57,135,229,.20); --band-high: rgba(217,89,38,.20);
+  --ok: #5fd08c; --partial: #e8b14c; --okbg: #183424; --partialbg: #3a2d12;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--body);
+  margin: 0; font-size: 16px; line-height: 1.55; -webkit-text-size-adjust: 100%;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.wrap {
+  max-width: 62rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, th[tabindex]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.005em; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; }
+h2 { font-size: clamp(1.5rem, 3.2vw, 1.95rem); line-height: 1.15; }
+h3 { font-family: var(--body); font-size: 0.95rem; font-weight: 600; }
+p { margin: 0; max-width: 66ch; }
+.eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.mono, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.lede { font-size: 1.08rem; color: var(--ink-2); }
+.small { font-size: 0.85rem; color: var(--ink-2); }
+
+/* header */
+header.top { padding-block: 40px 28px; border-bottom: 1px solid var(--rule); }
+header.top .row { display: flex; flex-direction: column; gap: 14px; }
+.notice {
+  display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border: 1px solid var(--rule);
+  border-left: 3px solid var(--partial); background: var(--card); border-radius: 4px; font-size: 0.9rem; max-width: 66ch;
+}
+.notice b { white-space: nowrap; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.92rem; }
+
+/* section bar */
+nav.sections {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+nav.sections .wrap { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-block: 8px; }
+nav.sections .wrap::-webkit-scrollbar { display: none; }
+nav.sections a {
+  flex: none; font-size: 0.85rem; text-decoration: none; color: var(--ink-2); padding: 5px 10px; border-radius: 999px;
+}
+nav.sections a:hover { background: var(--accent-soft); color: var(--ink); }
+nav.sections a.on { background: var(--ink); color: var(--paper); }
+
+section.block { padding-block: 44px 8px; display: flex; flex-direction: column; gap: 16px; }
+.claim { display: flex; flex-direction: column; gap: 8px; }
+
+/* verdict table */
+.verdicts { display: grid; gap: 0; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); overflow: hidden; }
+.verdict { display: grid; grid-template-columns: 8.5rem 1fr; gap: 6px 16px; padding: 14px 16px; border-top: 1px solid var(--rule); }
+.verdict:first-child { border-top: 0; }
+.verdict .q { font-weight: 600; }
+.verdict .d { color: var(--ink-2); font-size: 0.92rem; min-width: 0; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; width: fit-content; height: fit-content; }
+.pill.ok { color: var(--ok); background: var(--okbg); }
+.pill.partial { color: var(--partial); background: var(--partialbg); }
+.pill svg { width: 12px; height: 12px; }
+@media (max-width: 560px) { .verdict { grid-template-columns: 1fr; } }
+
+/* figure card */
+.fig { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.fig-head { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; }
+.fig-title { font-weight: 600; font-size: 0.95rem; }
+.fig-note { font-size: 0.82rem; color: var(--muted); }
+.chart { width: 100%; min-width: 0; position: relative; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.82rem; color: var(--ink-2); }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend i.dot { width: 9px; height: 9px; border-radius: 50%; }
+
+/* controls */
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; flex-wrap: wrap; }
+.seg button {
+  font: inherit; font-size: 0.82rem; border: 0; background: transparent; color: var(--ink-2); padding: 6px 11px; cursor: pointer;
+  border-left: 1px solid var(--rule);
+}
+.seg button:first-child { border-left: 0; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+label.tog { display: inline-flex; gap: 6px; align-items: center; font-size: 0.85rem; color: var(--ink-2); cursor: pointer; }
+
+/* svg text */
+.ax text, text.ax { fill: var(--muted); font-family: var(--mono); font-size: 11px; }
+text.lab { fill: var(--ink); font-family: var(--body); font-size: 12.5px; }
+text.sub { fill: var(--muted); font-family: var(--body); font-size: 11px; }
+text.val { fill: var(--ink-2); font-family: var(--mono); font-size: 11px; }
+.gridline { stroke: var(--grid); stroke-width: 1; }
+.refline { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.baseline { stroke: var(--ink-2); stroke-width: 1; }
+
+/* tables */
+.tablewrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); }
+table { border-collapse: collapse; width: 100%; font-size: 0.86rem; }
+th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { font-weight: 600; color: var(--ink-2); font-size: 0.78rem; background: var(--card); white-space: nowrap; }
+td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+th[tabindex] { cursor: pointer; }
+th[aria-sort="ascending"]::after { content: " ▲"; font-size: 0.65rem; }
+th[aria-sort="descending"]::after { content: " ▼"; font-size: 0.65rem; }
+details { font-size: 0.88rem; }
+details summary { cursor: pointer; color: var(--accent); width: fit-content; }
+details[open] summary { margin-bottom: 10px; }
+
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; color: var(--ink-2); font-size: 0.95rem; max-width: 66ch; }
+.callout b { color: var(--ink); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+.flowimg { background: #fff; border-radius: 4px; padding: 8px; }
+.flowimg img { display: block; width: 100%; height: auto; }
+.kmimg { background: #fff; border-radius: 4px; padding: 6px; }
+.kmimg img { display: block; width: 100%; height: auto; }
+ul.lim { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; max-width: 70ch; font-size: 0.95rem; color: var(--ink-2); }
+ul.lim b { color: var(--ink); }
+.bar { display: inline-block; height: 8px; border-radius: 2px; vertical-align: middle; }
+.cellbar { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.cellbar .track { position: relative; width: 70px; height: 8px; }
+.cellbar .track .mid { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--rule); }
+footer { padding-block: 36px 48px; margin-top: 40px; border-top: 1px solid var(--rule); font-size: 0.82rem; color: var(--muted); display: grid; gap: 8px; }
+footer .hash { word-break: break-all; }
+
+#tip {
+  position: absolute; z-index: 20; pointer-events: none; background: var(--ink); color: var(--paper);
+  font-size: 0.8rem; line-height: 1.4; padding: 7px 10px; border-radius: 4px; max-width: 260px; box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+#tip b { font-weight: 600; }
+#tip .m { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+</style>
+
+<!--BODY-->
+<div id="tip" hidden></div>
+
+<header class="top">
+  <div class="wrap row">
+    <span class="eyebrow">Diffuse large B-cell lymphoma · public GEO data · R-CHOP-treated cohorts</span>
+    <h1>DLBCL Prognostic Score</h1>
+    <p class="lede">A 44-gene elastic-net Cox score for overall survival, trained on one cohort and tested under an analysis plan that was written and hash-locked before any test data were opened. This page shows the validation, the controls, the comparison with IPI and cell of origin, and the biology the score picks up.</p>
+    <div class="notice" role="note"><b>Research only.</b><span>This is not a diagnostic or treatment tool. The score is standardised within each cohort, so it cannot be applied to an individual new patient, and no result here supports a clinical decision.</span></div>
+    <div class="links">
+      <a id="lnk-repo" href="#">Code &amp; results (GitHub)</a>
+      <a id="lnk-report" href="#">Full report</a>
+      <a id="lnk-plan" href="#">Locked analysis plan</a>
+    </div>
+  </div>
+</header>
+
+<nav class="sections" aria-label="Sections">
+  <div class="wrap">
+    <a href="#summary">Summary</a>
+    <a href="#design">Design</a>
+    <a href="#validation">Validation</a>
+    <a href="#survival">Survival curves</a>
+    <a href="#controls">Controls</a>
+    <a href="#clinical">IPI &amp; COO</a>
+    <a href="#biology">Biology</a>
+    <a href="#genes">Genes</a>
+    <a href="#limits">Limitations</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="block" id="summary">
+  <div class="claim">
+    <span class="eyebrow">Pre-specified conclusions</span>
+    <h2>What held up, and how strongly</h2>
+    <p class="small">The three conclusion sentences were fixed in the analysis plan before the test set was opened. Each row gives the evidence behind the label, including where it is weaker than the label suggests.</p>
+  </div>
+  <div class="verdicts" id="verdicts"></div>
+</section>
+
+<section class="block" id="design">
+  <div class="claim">
+    <span class="eyebrow">Study design</span>
+    <h2>One cohort to build, three to test</h2>
+    <p>GSE181063 (Illumina DASL, FFPE) was split 70/30 before any analysis. All modelling choices were made on the training part. The test part and two Affymetrix cohorts, GSE10846 and GSE87371, were opened once, in that order, after the plan was locked.</p>
+  </div>
+  <div class="fig">
+    <div class="fig-head"><span class="fig-title">Patient flow</span><span class="fig-note">Figure 1 of the report</span></div>
+    <div class="flowimg"><img id="flowimg" alt="Flow diagram: GSE181063 split into 373 training and 162 test patients after QC; GSE10846 229 and GSE87371 116 patients for external validation." loading="lazy"></div>
+  </div>
+  <details>
+    <summary>Cohort characteristics (Table S1)</summary>
+    <div class="tablewrap"><table id="tbl-s1"></table></div>
+  </details>
+</section>
+
+<section class="block" id="validation">
+  <div class="claim">
+    <span class="eyebrow">Steps 5–6 · internal and external validation</span>
+    <h2>The score ranks survival in every held-out cohort</h2>
+    <p>Hazard ratio per standard deviation of the score, with 95% confidence intervals. The frozen genes and coefficients were applied unchanged; only the scale was re-estimated within each external cohort.</p>
+  </div>
+  <div class="fig">
+    <div class="fig-head">
+      <span class="fig-title">Hazard ratio per SD of the score</span>
+      <label class="tog"><input type="checkbox" id="sens-toggle"> Show sensitivity analyses</label>
+    </div>
+    <div class="chart" id="ch-forest"></div>
+    <div class="legend"><span><i class="dot" style="background:var(--ink)"></i>Primary analysis</span><span><i class="dot" style="background:var(--mid)"></i>Sensitivity analysis</span><span class="fig-note">Log scale. Dashed line: HR = 1 (no association).</span></div>
+  </div>
+  <div class="fig">
+    <div class="fig-head"><span class="fig-title">Discrimination: Harrell's C (95% bootstrap CI)</span></div>
+    <div class="chart" id="ch-cidx"></div>
+    <div class="legend"><span class="fig-note">Grey band: training nested cross-validation estimate (mean ± SD over 25 folds). 0.5 = random ordering.</span></div>
+  </div>
+  <details>
+    <summary>Numbers behind these charts</summary>
+    <div class="tablewrap"><table id="tbl-valid"></table></div>
+  </details>
+  <p class="callout">All three validation C-indices sit a little above the training estimate (+0.02 to +0.05). Every interval contains 0.61, so chance in sets of 41–74 deaths is the simplest explanation. Read the intervals, not the point values.</p>
+</section>
+
+<section class="block" id="survival">
+  <div class="claim">
+    <span class="eyebrow">Kaplan–Meier</span>
+    <h2>Overall survival by risk group</h2>
+    <p>Test set: split at the training median of the score. External cohorts: split at each cohort's own median. Tertiles are descriptive only.</p>
+  </div>
+  <div class="fig">
+    <div class="fig-head">
+      <div class="controls">
+        <div class="seg" id="km-cohort" role="group" aria-label="Cohort"></div>
+        <div class="seg" id="km-group" role="group" aria-label="Grouping"></div>
+      </div>
+    </div>
+    <div class="chart" id="ch-km"></div>
+    <div class="legend" id="km-legend"></div>
+    <p class="fig-note" id="km-note"></p>
+  </div>
+  <div class="tablewrap"><table id="tbl-km"></table></div>
+</section>
+
+<section class="block" id="controls">
+  <div class="claim">
+    <span class="eyebrow">Step 5 · negative control and leakage check</span>
+    <h2>Shuffled survival labels give nothing</h2>
+    <p>The whole pipeline, including cross-validated penalty selection, was re-run 100 times on training data with survival times and events shuffled together. Each permutation model was then scored on the real test labels.</p>
+  </div>
+  <div class="fig">
+    <div class="fig-head"><span class="fig-title">Test-set C of 100 permutation models vs the real model</span></div>
+    <div class="chart" id="ch-null"></div>
+    <div class="legend"><span><i class="dot" style="background:var(--mid)"></i>Permutation models (count per 0.01 bin)</span><span><i style="background:var(--high)"></i>Real model</span></div>
+  </div>
+  <p class="small" id="null-text"></p>
+</section>
+
+<section class="block" id="clinical">
+  <div class="claim">
+    <span class="eyebrow">Step 7 · comparison with clinical risk measures</span>
+    <h2>Extra information beyond IPI and COO is small</h2>
+    <p>Cox models with the International Prognostic Index (IPI, 0–5) and cell of origin (COO: GCB, ABC, other), with and without the score. Complete cases only, so the patient numbers are smaller than above.</p>
+  </div>
+  <div class="controls"><div class="seg" id="cl-cohort" role="group" aria-label="Cohort"></div></div>
+  <div class="two">
+    <div class="fig">
+      <div class="fig-head"><span class="fig-title">Harrell's C by model</span><span class="fig-note">apparent, not optimism-corrected</span></div>
+      <div class="chart" id="ch-models"></div>
+    </div>
+    <div class="fig">
+      <div class="fig-head"><span class="fig-title">HR per SD of the score, as adjustment is added</span></div>
+      <div class="chart" id="ch-adj"></div>
+    </div>
+  </div>
+  <div class="fig">
+    <div class="fig-head"><span class="fig-title">ΔC from adding the score to IPI + COO</span><span class="fig-note" id="dc-note"></span></div>
+    <div class="chart" id="ch-dc"></div>
+    <div class="legend"><span><i class="dot" style="background:var(--mid)"></i>1,000 bootstrap resamples</span><span><i style="background:var(--accent)"></i>Observed ΔC</span><span class="fig-note">Shaded: 95% percentile interval.</span></div>
+  </div>
+  <div class="tablewrap"><table id="tbl-lrt"></table></div>
+  <p class="callout" id="cl-callout"></p>
+</section>
+
+<section class="block" id="biology">
+  <div class="claim">
+    <span class="eyebrow">Step 8 · exploratory, training set only</span>
+    <h2>The score mostly rediscovers known DLBCL biology</h2>
+    <p>Higher scores go with proliferation, MYC targets and the ABC/IRF4 program; lower scores with extracellular-matrix, stromal and T-cell genes. This matches Rosenwald 2002 and Lenz 2008. No hypothesis was tested here, and p-values are descriptive.</p>
+  </div>
+  <div class="fig">
+    <div class="fig-head">
+      <span class="fig-title">Hallmark gene sets vs the score</span>
+      <label class="tog"><input type="checkbox" id="hm-all"> Show all 50 sets</label>
+    </div>
+    <div class="chart" id="ch-hallmark"></div>
+    <div class="legend"><span><i class="dot" style="background:var(--high)"></i>Higher with higher score</span><span><i class="dot" style="background:var(--low)"></i>Higher with lower score</span><span><i class="dot" style="background:var(--grid);outline:1px solid var(--rule)"></i>Not robust</span><span class="fig-note">Gene-sampling z. "Robust" = FDR &lt; 0.05 in both the permutation and the gene-sampling test. Model genes removed from the universe.</span></div>
+  </div>
+  <div class="fig">
+    <div class="fig-head">
+      <span class="fig-title">Known signatures vs the score (Spearman ρ, 95% CI)</span>
+      <div class="seg" id="sig-set" role="group" aria-label="Signature set"></div>
+    </div>
+    <div class="chart" id="ch-sig"></div>
+    <div class="legend"><span class="fig-note">Signature score = mean gene z-score. Stromal entries are Hallmark proxies, not the Lenz 2008 lists.</span></div>
+  </div>
+  <p class="callout"><b>A contradiction we cannot resolve:</b> Lenz 2008 linked the stromal-2 (angiogenesis) signature to poor outcome, but our angiogenesis proxy goes with the low-risk side. The proxy overlaps with matrix genes, so stromal-1 and stromal-2 cannot be separated here. Together, six signatures explain about 35% of the score's variance; the rest is not explained by them.</p>
+</section>
+
+<section class="block" id="genes">
+  <div class="claim">
+    <span class="eyebrow">Frozen model · 44 genes</span>
+    <h2>Individual genes are unstable; the score as a whole is what was validated</h2>
+    <p>Only 4 of the 44 genes were selected in at least half of 100 bootstrap refits. Treat the list as one possible sparse solution, not as 44 findings.</p>
+  </div>
+  <div class="controls"><div class="seg" id="gene-filter" role="group" aria-label="Direction"></div></div>
+  <div class="tablewrap"><table id="tbl-genes"></table></div>
+  <p class="fig-note">Coefficient: log hazard ratio per training SD of expression. Symbols: current GPL570 annotation; matching was done by Entrez ID.</p>
+</section>
+
+<section class="block" id="limits">
+  <div class="claim">
+    <span class="eyebrow">Read before citing</span>
+    <h2>Limitations</h2>
+  </div>
+  <ul class="lim">
+    <li><b>No clinical use.</b> Within-cohort z-scoring means absolute risk and cut-offs do not transfer; there is no external calibration and no decision-curve analysis.</li>
+    <li><b>The "adds information" label rests on a weak external condition.</b> It required only a point estimate above 1 in the external cohorts; both intervals include 1 and both likelihood-ratio tests are non-significant.</li>
+    <li><b>The internal test set shares cohort, platform, laboratory and COO classifier with training.</b> H3 was met only there.</li>
+    <li><b>Missing IPI.</b> Complete-case analysis drops 36 test and 75 GSE10846 patients; in the test set, patients with missing IPI died more often (55.6% vs 42.9%, log-rank p = 0.074).</li>
+    <li><b>Small external cohorts.</b> GSE87371 has 41 deaths; excluding 13 R-mini-CHOP21 patients moves its HR to 1.39 (0.98–1.96). GSE10846 has a median follow-up of 34 months.</li>
+    <li><b>Processed GEO values were used</b>, not re-processed CEL files; pre-processing differs between cohorts.</li>
+    <li><b>Pre-registration is internal.</b> The plan was hash-locked on Google Drive before the test set was opened, but not deposited with an external registry or timestamping service, so the order of events is documented, not independently provable.</li>
+    <li><b>Modest novelty.</b> The contribution is a transparent, fully logged workflow, not new biology. No head-to-head comparison with published DLBCL signatures was done.</li>
+  </ul>
+</section>
+</main>
+
+<footer>
+  <div class="wrap" style="display:grid;gap:8px">
+    <div>Data: GEO series GSE181063 (Lacy et al. 2020; Painter et al. 2019), GSE10846 and GSE87371 (Dubois et al. 2017). Public, de-identified data. This page is built only from summary results in the repository. It contains no patient-level records; the survival curves are aggregate Kaplan–Meier step functions.</div>
+    <div id="prov"></div>
+    <div>Text, figures and summary results: CC BY 4.0. Code: MIT.</div>
+  </div>
+</footer>
+
+<script>
+const D = /*__SITE_DATA__*/null;
+(function () {
+'use strict';
+const $ = (s, r = document) => r.querySelector(s);
+const NS = 'http://www.w3.org/2000/svg';
+function S(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) if (attrs[k] !== undefined && attrs[k] !== null) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function H(tag, attrs, html) {
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+const f = (x, d = 2) => (x === null || x === undefined || Number.isNaN(x)) ? '—' : Number(x).toFixed(d);
+const sgn = (x, d = 3) => (x >= 0 ? '+' : '−') + Math.abs(x).toFixed(d);
+const SUP = {'-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'};
+function pf(p) {
+  if (p === null || p === undefined) return '—';
+  if (p >= 0.001) return p.toFixed(3);
+  const e = Math.floor(Math.log10(p)), m = p / Math.pow(10, e);
+  return m.toFixed(1) + ' × 10' + String(e).split('').map(c => SUP[c]).join('');
+}
+const pct = (x, d = 1) => x === null || x === undefined ? '—' : (100 * x).toFixed(d) + '%';
+function widthOf(el) { return Math.max(300, Math.floor(el.getBoundingClientRect().width)); }
+const narrow = w => w < 520;
+
+/* ---------- tooltip ---------- */
+const tip = $('#tip');
+function showTip(evt, html) {
+  tip.innerHTML = html; tip.hidden = false;
+  const pad = 12, r = tip.getBoundingClientRect();
+  let x = evt.pageX + pad, y = evt.pageY + pad;
+  const maxX = window.scrollX + document.documentElement.clientWidth - r.width - 8;
+  if (x > maxX) x = Math.max(window.scrollX + 8, evt.pageX - r.width - pad);
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+function hideTip() { tip.hidden = true; }
+function hover(el, htmlFn) {
+  el.style.cursor = 'default';
+  el.addEventListener('pointerenter', e => showTip(e, htmlFn()));
+  el.addEventListener('pointermove', e => showTip(e, htmlFn()));
+  el.addEventListener('pointerleave', hideTip);
+}
+document.addEventListener('scroll', hideTip, {passive: true});
+
+/* ---------- segmented controls ---------- */
+function seg(container, options, initial, onChange) {
+  container.innerHTML = '';
+  let cur = initial;
+  options.forEach(o => {
+    const b = H('button', {type: 'button', 'aria-pressed': String(o.value === cur)}, esc(o.label));
+    b.addEventListener('click', () => {
+      cur = o.value;
+      container.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+      b.setAttribute('aria-pressed', 'true');
+      onChange(cur);
+    });
+    container.appendChild(b);
+  });
+}
+
+/* ---------- scales and axes ---------- */
+const lin = (d0, d1, r0, r1) => v => r0 + (v - d0) / (d1 - d0) * (r1 - r0);
+const logS = (d0, d1, r0, r1) => v => r0 + (Math.log(v) - Math.log(d0)) / (Math.log(d1) - Math.log(d0)) * (r1 - r0);
+function xAxis(svg, x, ticks, y0, y1, fmt) {
+  const g = S('g', {class: 'ax'}, svg);
+  ticks.forEach(t => {
+    S('line', {class: 'gridline', x1: x(t), x2: x(t), y1: y0, y2: y1}, g);
+    S('text', {x: x(t), y: y1 + 16, 'text-anchor': 'middle'}, g).textContent = fmt ? fmt(t) : t;
+  });
+  return g;
+}
+function hitRect(svg, x, y, w, h) { return S('rect', {x, y, width: w, height: h, fill: 'transparent'}, svg); }
+
+/* ---------- header links, provenance ---------- */
+const repo = D.meta.repo_url;
+$('#lnk-repo').href = repo;
+$('#lnk-report').href = repo + '/blob/main/REPORT.md';
+$('#lnk-plan').href = repo + '/blob/main/results/04/analysis_plan_04.md';
+$('#flowimg').src = D.flow_png;
+$('#prov').innerHTML = 'Built from repository results at commit <span class="mono">' + esc((D.meta.source_commit || 'unknown').slice(0, 12)) +
+  '</span> · site ' + esc(D.meta.site_version) + ' · ' + D.checks.passed + '/' + D.checks.n +
+  ' numbers checked against the step records at build time.<br><span class="hash">Plan lock SHA-256 <span class="mono">' +
+  esc(D.meta.plan_lock_sha256) + '</span><br>Frozen model SHA-256 <span class="mono">' + esc(D.meta.model_sha256) + '</span></span>';
+
+/* ---------- verdicts ---------- */
+const V = {}; D.validation.forEach(v => { if (v.primary) V[v.cohort] = v; });
+const CL = {}; D.clinical.cohorts.forEach(c => CL[c.key] = c);
+const ICON_OK = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.3l2.6 2.5L10 3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ICON_PART = '<svg viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6 1.8a4.2 4.2 0 0 1 0 8.4z" fill="currentColor"/></svg>';
+const ci = (a, b, d = 2) => f(a, d) + '–' + f(b, d);
+const tst = V['GSE181063 test'], g1 = V['GSE10846'], g2 = V['GSE87371'];
+const adj = k => CL[k].hr['IPI + COO + LP'];
+const lrtK = k => CL[k].lrt['IPI + COO vs IPI + COO + LP'];
+const verdicts = [
+  {q: 'Internally validated', s: 'ok', label: 'Met (H1)',
+   d: `Test set, ${tst.n} patients, ${tst.deaths} deaths: HR per SD ${f(tst.hr)} (${ci(tst.lo, tst.hi)}), p = ${pf(tst.p)}; C = ${f(tst.c, 3)}. None of 100 permutation models reached this C.`},
+  {q: 'Externally validated', s: 'ok', label: 'Met (H2)',
+   d: `GSE10846: HR ${f(g1.hr)} (${ci(g1.lo, g1.hi)}), C = ${f(g1.c, 3)}. GSE87371: HR ${f(g2.hr)} (${ci(g2.lo, g2.hi)}), C = ${f(g2.c, 3)}. Different platform, tissue type and centres.`},
+  {q: 'Adds information beyond IPI and COO', s: 'partial', label: 'Met, weak',
+   d: `Test set: LRT p = ${f(lrtK('GSE181063_test').p, 3)}, adjusted HR ${f(adj('GSE181063_test').hr)} (${ci(adj('GSE181063_test').lo, adj('GSE181063_test').hi)}). External cohorts: adjusted HR ${f(adj('GSE10846').hr)} and ${f(adj('GSE87371').hr)}, both intervals include 1, LRT not significant. ΔC ranges from ${sgn(Math.min(...D.clinical.cohorts.map(c => c.delta_c)))} to ${sgn(Math.max(...D.clinical.cohorts.map(c => c.delta_c)))}, and every interval includes 0.`},
+];
+const vbox = $('#verdicts');
+verdicts.forEach(v => {
+  const row = H('div', {class: 'verdict'});
+  row.innerHTML = `<div style="display:grid;gap:6px;align-content:start"><span class="q">${esc(v.q)}</span><span class="pill ${v.s}">${v.s === 'ok' ? ICON_OK : ICON_PART}${esc(v.label)}</span></div><div class="d">${esc(v.d)}</div>`;
+  vbox.appendChild(row);
+});
+
+/* ---------- Table S1 ---------- */
+(function () {
+  const t = $('#tbl-s1');
+  t.innerHTML = '<thead><tr>' + D.cohorts.columns.map((c, i) => `<th${i ? ' class="num"' : ''}>${esc(c)}</th>`).join('') + '</tr></thead><tbody>' +
+    D.cohorts.rows.map(r => '<tr>' + r.map((c, i) => `<td${i ? ' class="num"' : ''}>${esc(c)}</td>`).join('') + '</tr>').join('') + '</tbody>';
+})();
+
+/* ---------- validation forest ---------- */
+const COHORT_ORDER = ['GSE181063 test', 'GSE10846', 'GSE87371'];
+const ROLE = {'GSE181063 test': 'internal test', 'GSE10846': 'external', 'GSE87371': 'supporting external'};
+function analysisLabel(v) {
+  if (v.primary) return 'Primary · ' + ROLE[v.cohort];
+  const a = v.analysis.toLowerCase();
+  if (a.includes('within the test')) return 'z-score within test set';
+  if (a.includes('mini')) return 'without R-mini-CHOP21';
+  if (a.includes('outlier')) return 'correlation outliers excluded';
+  return v.analysis;
+}
+function drawForest() {
+  const el = $('#ch-forest'); el.innerHTML = '';
+  const showSens = $('#sens-toggle').checked;
+  const rows = [];
+  COHORT_ORDER.forEach(c => D.validation.filter(v => v.cohort === c && (v.primary || showSens))
+    .sort((a, b) => b.primary - a.primary).forEach(v => rows.push(v)));
+  const W = widthOf(el), nw = narrow(W);
+  const L = nw ? 0 : 230, R = nw ? 100 : 112, rowH = nw ? 50 : 34, top = 6;
+  const H_ = top + rows.length * rowH + 30;
+  const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': 'Forest plot of hazard ratio per SD of the score by cohort'}, el);
+  const x = logS(0.8, 3.2, L + 14, W - R);
+  xAxis(svg, x, [1, 1.5, 2, 3], top, top + rows.length * rowH, t => t);
+  S('line', {class: 'refline', x1: x(1), x2: x(1), y1: top, y2: top + rows.length * rowH}, svg);
+  rows.forEach((v, i) => {
+    const yTop = top + i * rowH, yc = nw ? yTop + 35 : yTop + rowH / 2;
+    const col = v.primary ? 'var(--ink)' : 'var(--mid)';
+    if (nw) {
+      const t = S('text', {class: 'lab', x: 0, y: yTop + 15}, svg);
+      const a = S('tspan', {'font-weight': v.primary ? 600 : 400}, t); a.textContent = v.cohort;
+      const b = S('tspan', {class: 'sub', fill: 'var(--muted)', 'font-size': 11}, t); b.textContent = '  ' + (v.primary ? ROLE[v.cohort] : analysisLabel(v));
+    } else {
+      const t1 = S('text', {class: 'lab', x: 0, y: yc - 2}, svg);
+      t1.textContent = v.cohort; if (v.primary) t1.setAttribute('font-weight', '600');
+      S('text', {class: 'sub', x: 0, y: yc + 12}, svg).textContent = analysisLabel(v) + ` · n ${v.n}, ${v.deaths} deaths`;
+    }
+    S('line', {x1: x(v.lo), x2: x(v.hi), y1: yc, y2: yc, stroke: col, 'stroke-width': 2, 'stroke-linecap': 'round'}, svg);
+    S('circle', {cx: x(v.hr), cy: yc, r: v.primary ? 5.5 : 4.5, fill: col, stroke: 'var(--card)', 'stroke-width': 2}, svg);
+    S('text', {class: 'val', x: W, y: yc + 4, 'text-anchor': 'end'}, svg).textContent = `${f(v.hr)} (${f(v.lo)}–${f(v.hi)})`;
+    if (i > 0 && rows[i - 1].cohort !== v.cohort) S('line', {x1: 0, x2: W, y1: yTop, y2: yTop, stroke: 'var(--rule)'}, svg);
+    hover(hitRect(svg, 0, yTop, W, rowH), () => `<b>${esc(v.cohort)}</b> · ${esc(analysisLabel(v))}<br>n ${v.n}, ${v.deaths} deaths<br><span class="m">HR/SD ${f(v.hr)} (${f(v.lo)}–${f(v.hi)})<br>p ${pf(v.p)} · C ${f(v.c, 3)}</span>`);
+  });
+  S('text', {class: 'ax', x: (x(0.8) + x(3.2)) / 2, y: H_ - 1, 'text-anchor': 'middle'}, svg).textContent = 'hazard ratio per SD (log scale)';
+}
+function drawCidx() {
+  const el = $('#ch-cidx'); el.innerHTML = '';
+  const rows = COHORT_ORDER.map(c => V[c]);
+  const W = widthOf(el), nw = narrow(W);
+  const L = nw ? 0 : 230, R = nw ? 118 : 112, rowH = nw ? 46 : 34, top = 6;
+  const H_ = top + rows.length * rowH + 30;
+  const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': "Harrell's C by validation cohort"}, el);
+  const x = lin(0.45, 0.8, L + 14, W - R), nc = D.nested_cv;
+  S('rect', {x: x(nc.mean_c - nc.sd_c), y: top, width: x(nc.mean_c + nc.sd_c) - x(nc.mean_c - nc.sd_c), height: rows.length * rowH, fill: 'var(--grid)'}, svg);
+  xAxis(svg, x, nw ? [0.5, 0.6, 0.7] : [0.5, 0.6, 0.7, 0.8], top, top + rows.length * rowH, t => t.toFixed(1));
+  S('line', {class: 'refline', x1: x(0.5), x2: x(0.5), y1: top, y2: top + rows.length * rowH}, svg);
+  S('line', {x1: x(nc.mean_c), x2: x(nc.mean_c), y1: top, y2: top + rows.length * rowH, stroke: 'var(--muted)', 'stroke-width': 1}, svg);
+  rows.forEach((v, i) => {
+    const yTop = top + i * rowH, yc = nw ? yTop + 32 : yTop + rowH / 2;
+    S('text', {class: 'lab', x: 0, y: nw ? yTop + 14 : yc + 4, 'font-weight': 600}, svg).textContent = v.cohort;
+    S('line', {x1: x(v.c_lo), x2: x(v.c_hi), y1: yc, y2: yc, stroke: 'var(--ink)', 'stroke-width': 2, 'stroke-linecap': 'round'}, svg);
+    S('circle', {cx: x(v.c), cy: yc, r: 5.5, fill: 'var(--ink)', stroke: 'var(--card)', 'stroke-width': 2}, svg);
+    S('text', {class: 'val', x: W, y: yc + 4, 'text-anchor': 'end'}, svg).textContent = `${f(v.c, 3)} (${f(v.c_lo, 3)}–${f(v.c_hi, 3)})`;
+    hover(hitRect(svg, 0, yTop, W, rowH), () => `<b>${esc(v.cohort)}</b><br><span class="m">Harrell C ${f(v.c, 3)} (${f(v.c_lo, 3)}–${f(v.c_hi, 3)})<br>Uno C ${f(v.uno_c, 3)} (τ ${f(v.tau, 1)} mo)<br>vs nested CV ${sgn(v.c - nc.mean_c)}</span>`);
+  });
+  S('text', {class: 'ax', x: (x(0.45) + x(0.8)) / 2, y: H_ - 1, 'text-anchor': 'middle'}, svg).textContent = nw ? "Harrell's C" : `Harrell's C · training nested CV ${f(nc.mean_c, 3)}`;
+}
+(function () {
+  const t = $('#tbl-valid');
+  t.innerHTML = '<thead><tr><th>Cohort</th><th>Analysis</th><th class="num">n / deaths</th><th class="num">HR per SD (95% CI)</th><th class="num">p</th><th class="num">Harrell C (95% CI)</th><th class="num">Uno C (τ, mo)</th><th class="num">Log-rank p</th></tr></thead><tbody>' +
+    COHORT_ORDER.flatMap(c => D.validation.filter(v => v.cohort === c).sort((a, b) => b.primary - a.primary)).map(v =>
+      `<tr><td>${esc(v.cohort)}</td><td>${esc(analysisLabel(v))}</td><td class="num">${v.n} / ${v.deaths}</td><td class="num">${f(v.hr)} (${f(v.lo)}–${f(v.hi)})</td><td class="num">${pf(v.p)}</td><td class="num">${f(v.c, 3)} (${f(v.c_lo, 3)}–${f(v.c_hi, 3)})</td><td class="num">${f(v.uno_c, 3)} (${f(v.tau, 1)})</td><td class="num">${pf(v.logrank_p)}</td></tr>`).join('') + '</tbody>';
+})();
+
+/* ---------- Kaplan–Meier ---------- */
+const GROUP_COLOR = {high: 'var(--high)', low: 'var(--low)', 'T1 (low)': 'var(--low)', 'T2': 'var(--mid)', 'T3 (high)': 'var(--high)'};
+const GROUP_BAND = {high: 'var(--band-high)', low: 'var(--band-low)', 'T1 (low)': 'var(--band-low)', 'T3 (high)': 'var(--band-high)'};
+const GROUP_NAME = {high: 'High risk', low: 'Low risk', 'T1 (low)': 'T1 (lowest)', 'T2': 'T2', 'T3 (high)': 'T3 (highest)'};
+const gcol = g => GROUP_COLOR[g] || (g.startsWith('T1') ? 'var(--low)' : g.startsWith('T3') ? 'var(--high)' : 'var(--mid)');
+const gname = g => GROUP_NAME[g] || g;
+let kmState = {cohort: 'GSE181063 test', grouping: 'median'};
+seg($('#km-cohort'), COHORT_ORDER.map(c => ({value: c, label: c})), kmState.cohort, v => { kmState.cohort = v; drawKM(); });
+seg($('#km-group'), [{value: 'median', label: 'Two groups'}, {value: 'tertile', label: 'Tertiles'}], kmState.grouping, v => { kmState.grouping = v; drawKM(); });
+function sAt(curve, t) { let s = 1, lo = 1, hi = 1; for (let i = 0; i < curve.times.length && curve.times[i] <= t; i++) { s = curve.surv[i]; lo = curve.lo ? curve.lo[i] : null; hi = curve.hi ? curve.hi[i] : null; } return {s, lo, hi}; }
+function drawKM() {
+  const el = $('#ch-km'); el.innerHTML = '';
+  const groups = D.km_groups.filter(g => g.cohort === kmState.cohort && g.grouping === kmState.grouping);
+  const curvesAll = D.km_curves && D.km_curves.cohorts && D.km_curves.cohorts[kmState.cohort];
+  const curves = curvesAll && curvesAll[kmState.grouping];
+  const legend = $('#km-legend'); legend.innerHTML = '';
+  groups.forEach(g => legend.insertAdjacentHTML('beforeend', `<span><i style="background:${gcol(g.group)}"></i>${esc(gname(g.group))} · n ${g.n}, ${g.deaths} deaths</span>`));
+  const v = V[kmState.cohort];
+  const cut = kmState.cohort === 'GSE181063 test' ? 'training-median cut-off' : "cohort's own median";
+  $('#km-note').textContent = kmState.grouping === 'median'
+    ? `Split at the ${cut}. Log-rank p = ${pf(v.logrank_p)}; HR high vs low ${f(v.hr_high_vs_low)}.`
+    : 'Tertiles are descriptive; no test was pre-specified for them.';
+  if (curves) $('#km-note').textContent += ' Tails with few patients at risk are unstable; see the at-risk numbers.';
+  if (!curves) {
+    const src = D.km_figures && D.km_figures[kmState.cohort + '|' + kmState.grouping];
+    if (src) el.innerHTML = `<div class="kmimg"><img alt="Kaplan–Meier curves, ${esc(kmState.cohort)}, ${esc(kmState.grouping)}" src="${src}"></div>`;
+  } else {
+    const W = widthOf(el), nw = narrow(W);
+    const L = 40, R = 14, top = 10, plotH = nw ? 220 : 280, rtRow = 16;
+    const H_ = top + plotH + 44 + rtRow * (curves.length + 1) + 6;
+    const tmax = curves.reduce((m, c) => Math.max(m, c.times[c.times.length - 1] || 0, ...(c.censor_times || [0])), 0);
+    const step = tmax > 120 ? 24 : 12, xMax = Math.ceil(tmax / step) * step;
+    const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': `Kaplan–Meier overall survival, ${kmState.cohort}`}, el);
+    const x = lin(0, xMax, L, W - R), y = lin(0, 1, top + plotH, top);
+    const ticks = []; for (let t = 0; t <= xMax; t += step) ticks.push(t);
+    const ax = S('g', {class: 'ax'}, svg);
+    [0, 0.25, 0.5, 0.75, 1].forEach(s => {
+      S('line', {class: 'gridline', x1: L, x2: W - R, y1: y(s), y2: y(s)}, ax);
+      S('text', {x: L - 6, y: y(s) + 4, 'text-anchor': 'end'}, ax).textContent = (s * 100) + '%';
+    });
+    ticks.forEach(t => S('text', {x: x(t), y: top + plotH + 16, 'text-anchor': 'middle'}, ax).textContent = t);
+    S('text', {class: 'ax', x: (L + W - R) / 2, y: top + plotH + 32, 'text-anchor': 'middle'}, svg).textContent = 'months since diagnosis';
+    S('line', {class: 'baseline', x1: L, x2: W - R, y1: y(0), y2: y(0)}, svg);
+    if (xMax >= 60) S('line', {class: 'refline', x1: x(60), x2: x(60), y1: top, y2: top + plotH}, svg);
+    curves.forEach(c => {
+      const pts = [[0, 1]]; c.times.forEach((t, i) => { pts.push([t, pts[pts.length - 1][1]]); pts.push([t, c.surv[i]]); });
+      const tEnd = Math.max(c.times[c.times.length - 1] || 0, ...(c.censor_times || [0])); pts.push([tEnd, pts[pts.length - 1][1]]);
+      if (c.lo && c.hi && GROUP_BAND[c.group]) {
+        const up = [[0, 1]], dn = [[0, 1]];
+        c.times.forEach((t, i) => { up.push([t, up[up.length - 1][1]], [t, c.hi[i]]); dn.push([t, dn[dn.length - 1][1]], [t, c.lo[i]]); });
+        up.push([tEnd, up[up.length - 1][1]]); dn.push([tEnd, dn[dn.length - 1][1]]);
+        const d = 'M' + up.map(p => x(p[0]) + ',' + y(p[1])).join('L') + 'L' + dn.reverse().map(p => x(p[0]) + ',' + y(p[1])).join('L') + 'Z';
+        S('path', {d, fill: GROUP_BAND[c.group], stroke: 'none'}, svg);
+      }
+      S('path', {d: 'M' + pts.map(p => x(p[0]) + ',' + y(p[1])).join('L'), fill: 'none', stroke: gcol(c.group), 'stroke-width': 2, 'stroke-linejoin': 'round'}, svg);
+      (c.censor_times || []).forEach(t => { const s = sAt(c, t).s; S('line', {x1: x(t), x2: x(t), y1: y(s) - 4, y2: y(s) + 4, stroke: gcol(c.group), 'stroke-width': 1.2}, svg); });
+    });
+    // risk table
+    const rtTop = top + plotH + 50;
+    S('text', {class: 'sub', x: 0, y: rtTop, 'font-weight': 600}, svg).textContent = 'At risk';
+    curves.forEach((c, k) => {
+      const yy = rtTop + rtRow * (k + 1);
+      S('circle', {cx: 6, cy: yy - 4, r: 4, fill: gcol(c.group)}, svg);
+      ticks.forEach(t => {
+        const idx = (c.risk_table && c.risk_table.t) ? c.risk_table.t.indexOf(t) : -1;
+        if (idx >= 0) S('text', {class: 'val', x: x(t), y: yy, 'text-anchor': 'middle'}, svg).textContent = c.risk_table.n[idx];
+      });
+    });
+    // crosshair
+    const cross = S('line', {x1: 0, x2: 0, y1: top, y2: top + plotH, stroke: 'var(--ink-2)', 'stroke-width': 1, visibility: 'hidden'}, svg);
+    const hit = hitRect(svg, L, top, W - R - L, plotH);
+    const move = e => {
+      const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * (W / r.width);
+      const t = Math.max(0, Math.min(xMax, (px - L) / (W - R - L) * xMax));
+      cross.setAttribute('x1', x(t)); cross.setAttribute('x2', x(t)); cross.setAttribute('visibility', 'visible');
+      showTip(e, `<b>${t.toFixed(0)} months</b><br>` + curves.map(c => { const a = sAt(c, t); return `<span style="color:${gcol(c.group)}">●</span> ${esc(gname(c.group))} <span class="m">${pct(a.s)}${a.lo !== null && a.lo !== undefined ? ` (${pct(a.lo, 0)}–${pct(a.hi, 0)})` : ''}</span>`; }).join('<br>'));
+    };
+    hit.addEventListener('pointermove', move); hit.addEventListener('pointerenter', move);
+    hit.addEventListener('pointerleave', () => { cross.setAttribute('visibility', 'hidden'); hideTip(); });
+  }
+  const t = $('#tbl-km');
+  t.innerHTML = '<thead><tr><th>Group</th><th class="num">Patients</th><th class="num">Deaths</th><th class="num">Median OS, months</th><th class="num">5-year OS (95% CI)</th></tr></thead><tbody>' +
+    groups.map(g => `<tr><td><span class="bar" style="width:10px;background:${gcol(g.group)}"></span> ${esc(gname(g.group))}</td><td class="num">${g.n}</td><td class="num">${g.deaths}</td><td class="num">${g.median_os === null ? 'not reached' : f(g.median_os, 1)}</td><td class="num">${g.os5 === null ? '—' : pct(g.os5) + (g.os5_lo !== null ? ` (${pct(g.os5_lo)}–${pct(g.os5_hi)})` : '')}</td></tr>`).join('') + '</tbody>';
+}
+
+/* ---------- negative control ---------- */
+function drawNull() {
+  const el = $('#ch-null'); el.innerHTML = '';
+  const N = D.negative, W = widthOf(el), nw = narrow(W);
+  const L = 30, R = 12, top = 22, plotH = nw ? 130 : 150, H_ = top + plotH + 36;
+  const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': 'Histogram of test-set C for 100 permutation models with the real model marked'}, el);
+  const lo = 0.30, hi = 0.70, bw = 0.01, nb = Math.round((hi - lo) / bw);
+  const counts = new Array(nb).fill(0); N.perm_c.forEach(c => { const i = Math.min(nb - 1, Math.max(0, Math.floor((c - lo) / bw))); counts[i]++; });
+  const cmax = Math.max(...counts), yMax = cmax > 30 ? Math.ceil(cmax / 20) * 20 : Math.ceil(cmax / 5) * 5;
+  const x = lin(lo, hi, L, W - R), y = lin(0, yMax, top + plotH, top);
+  const ax = S('g', {class: 'ax'}, svg);
+  const ys = yMax > 30 ? 20 : 5;
+  for (let k = 0; k <= yMax; k += ys) { S('line', {class: 'gridline', x1: L, x2: W - R, y1: y(k), y2: y(k)}, ax); S('text', {x: L - 6, y: y(k) + 4, 'text-anchor': 'end'}, ax).textContent = k; }
+  [0.3, 0.4, 0.5, 0.6, 0.7].forEach(t => S('text', {x: x(t), y: top + plotH + 16, 'text-anchor': 'middle'}, ax).textContent = t.toFixed(1));
+  counts.forEach((c, i) => {
+    if (!c) return;
+    const x0 = x(lo + i * bw) + 1, w = Math.max(1, x(lo + (i + 1) * bw) - x(lo + i * bw) - 2), h = y(0) - y(c);
+    const r = S('path', {d: `M${x0},${y(0)}V${y(c) + 2}q0,-2 2,-2h${w - 4}q2,0 2,2V${y(0)}Z`, fill: 'var(--mid)'}, svg);
+    hover(r, () => `<span class="m">C ${(lo + i * bw).toFixed(2)}–${(lo + (i + 1) * bw).toFixed(2)}</span><br>${c} permutation model${c > 1 ? 's' : ''}`);
+  });
+  S('line', {class: 'baseline', x1: L, x2: W - R, y1: y(0), y2: y(0)}, svg);
+  S('line', {class: 'refline', x1: x(0.5), x2: x(0.5), y1: top, y2: y(0)}, svg);
+  const spike = counts[Math.floor((0.5 - lo) / bw + 1e-9)];
+  S('text', {class: 'sub', x: x(0.5) - 6, y: y(spike) + 10, 'text-anchor': 'end'}, svg).textContent = `${Math.round(N.share_empty * N.n)} empty models (C = 0.5)`;
+  const ox = x(N.observed_c);
+  S('line', {x1: ox, x2: ox, y1: top - 4, y2: y(0), stroke: 'var(--high)', 'stroke-width': 2}, svg);
+  S('text', {class: 'val', x: ox, y: top - 9, 'text-anchor': ox > W - 120 ? 'end' : 'middle'}, svg).textContent = `real model ${f(N.observed_c, 3)}`;
+  S('text', {class: 'ax', x: (L + W - R) / 2, y: H_ - 2, 'text-anchor': 'middle'}, svg).textContent = "Harrell's C on the real test labels";
+  $('#null-text').innerHTML = `Permutation models: mean C ${f(N.mean_c, 3)}, highest ${f(N.max_c, 3)}; ${Math.round(N.share_empty * 100)}% selected no gene at all. Empirical p = ${f(N.p_empirical, 4)}, the smallest value possible with ${N.n} permutations. A separate leakage check (10 permutations × 5 nested-CV folds on training data only) gave mean C ${f(N.leakage_mean_c, 3)} (range ${f(N.leakage_min_c, 3)}–${f(N.leakage_max_c, 3)}), below the pre-set stop threshold of 0.55.`;
+}
+
+/* ---------- clinical comparison ---------- */
+let clKey = 'GSE181063_test';
+seg($('#cl-cohort'), D.clinical.cohorts.map(c => ({value: c.key, label: c.label})), clKey, v => { clKey = v; drawClinical(); });
+const MODELS = ['IPI', 'COO', 'LP', 'IPI + COO', 'IPI + LP', 'COO + LP', 'IPI + COO + LP'];
+const MNAME = m => m.replace(/LP/g, 'Score');
+function drawClinical() {
+  const c = CL[clKey];
+  // C by model
+  (function () {
+    const el = $('#ch-models'); el.innerHTML = '';
+    const W = widthOf(el), L = 140, R = 50, rowH = 26, top = 4, H_ = top + MODELS.length * rowH + 30;
+    const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': "Harrell's C for clinical and combined models"}, el);
+    const x = lin(0.55, 0.85, L, W - R);
+    xAxis(svg, x, [0.6, 0.7, 0.8], top, top + MODELS.length * rowH, t => t.toFixed(1));
+    MODELS.forEach((m, i) => {
+      const yc = top + i * rowH + rowH / 2, v = c.c[m];
+      const key = m === 'IPI + COO' || m === 'IPI + COO + LP';
+      const hasLP = m.includes('LP');
+      S('text', {class: 'lab', x: L - 10, y: yc + 4, 'text-anchor': 'end', 'font-weight': key ? 600 : 400}, svg).textContent = MNAME(m);
+      S('line', {x1: x(0.55), x2: x(v), y1: yc, y2: yc, stroke: 'var(--grid)', 'stroke-width': 2}, svg);
+      S('circle', {cx: x(v), cy: yc, r: key ? 6 : 4.5, fill: hasLP ? 'var(--accent)' : 'var(--card)', stroke: hasLP ? 'var(--card)' : 'var(--ink-2)', 'stroke-width': 2}, svg);
+      S('text', {class: 'val', x: W, y: yc + 4, 'text-anchor': 'end'}, svg).textContent = f(v, 3);
+      hover(hitRect(svg, 0, yc - rowH / 2, W, rowH), () => `<b>${esc(MNAME(m))}</b><br><span class="m">C ${f(v, 3)}</span><br>n ${c.n}, ${c.deaths} deaths`);
+    });
+    S('text', {class: 'ax', x: (L + W - R) / 2, y: H_ - 1, 'text-anchor': 'middle'}, svg).textContent = `n ${c.n}, ${c.deaths} deaths · filled = includes score`;
+  })();
+  // adjusted HR ladder
+  (function () {
+    const el = $('#ch-adj'); el.innerHTML = '';
+    const rows = [['LP', 'Score alone'], ['IPI + LP', '+ IPI'], ['COO + LP', '+ COO'], ['IPI + COO + LP', '+ IPI + COO']];
+    const W = widthOf(el), L = 104, R = 104, rowH = 40, top = 4, H_ = top + rows.length * rowH + 30;
+    const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': 'Hazard ratio per SD of the score with increasing adjustment'}, el);
+    const x = logS(0.75, 3.2, L, W - R);
+    xAxis(svg, x, [0.75, 1, 1.5, 2, 3], top, top + rows.length * rowH, t => t);
+    S('line', {class: 'refline', x1: x(1), x2: x(1), y1: top, y2: top + rows.length * rowH}, svg);
+    rows.forEach(([m, lab], i) => {
+      const yc = top + i * rowH + rowH / 2, h = c.hr[m];
+      const crosses = h.lo <= 1;
+      const col = i === 3 ? 'var(--accent)' : 'var(--ink)';
+      S('text', {class: 'lab', x: L - 10, y: yc + 4, 'text-anchor': 'end', 'font-weight': i === 3 ? 600 : 400}, svg).textContent = lab;
+      S('line', {x1: x(h.lo), x2: x(Math.min(h.hi, 3.2)), y1: yc, y2: yc, stroke: col, 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-dasharray': crosses ? '4 3' : null}, svg);
+      S('circle', {cx: x(h.hr), cy: yc, r: 5.5, fill: crosses ? 'var(--card)' : col, stroke: col, 'stroke-width': 2}, svg);
+      S('text', {class: 'val', x: W, y: yc + 4, 'text-anchor': 'end'}, svg).textContent = `${f(h.hr)} (${f(h.lo)}–${f(h.hi)})`;
+      hover(hitRect(svg, 0, yc - rowH / 2, W, rowH), () => `<b>${esc(lab)}</b><br><span class="m">HR/SD ${f(h.hr)} (${f(h.lo)}–${f(h.hi)})</span>${crosses ? '<br>interval includes 1' : ''}`);
+    });
+    S('text', {class: 'ax', x: (L + W - R) / 2, y: H_ - 1, 'text-anchor': 'middle'}, svg).textContent = 'open dot, dashed = CI includes 1';
+  })();
+  // delta C histogram
+  (function () {
+    const el = $('#ch-dc'); el.innerHTML = '';
+    const hh = c.delta_c_hist, W = widthOf(el), L = 34, R = 26, top = 22, plotH = 120, H_ = top + plotH + 36;
+    const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': 'Bootstrap distribution of the change in C when the score is added to IPI and COO'}, el);
+    const e0 = hh.edges[0], e1 = hh.edges[hh.edges.length - 1];
+    const cmax = Math.max(...hh.counts), yMax = Math.ceil(cmax / 20) * 20;
+    const x = lin(e0, e1, L, W - R), y = lin(0, yMax, top + plotH, top);
+    S('rect', {x: x(c.delta_c_ci[0]), y: top, width: x(c.delta_c_ci[1]) - x(c.delta_c_ci[0]), height: plotH, fill: 'var(--accent-soft)'}, svg);
+    const ax = S('g', {class: 'ax'}, svg);
+    for (let k = 0; k <= yMax; k += yMax / 4) { S('line', {class: 'gridline', x1: L, x2: W - R, y1: y(k), y2: y(k)}, ax); S('text', {x: L - 6, y: y(k) + 4, 'text-anchor': 'end'}, ax).textContent = k; }
+    (narrow(W) ? [-0.04, 0, 0.04, 0.08] : [-0.04, -0.02, 0, 0.02, 0.04, 0.06, 0.08]).forEach(t => S('text', {x: x(t), y: top + plotH + 16, 'text-anchor': 'middle'}, ax).textContent = t === 0 ? '0' : sgn(t, 2));
+    hh.counts.forEach((n, i) => {
+      if (!n) return;
+      const x0 = x(hh.edges[i]) + 1, w = Math.max(1, x(hh.edges[i + 1]) - x(hh.edges[i]) - 2);
+      const r = S('path', {d: `M${x0},${y(0)}V${y(n) + 2}q0,-2 2,-2h${Math.max(0, w - 4)}q2,0 2,2V${y(0)}Z`, fill: 'var(--mid)'}, svg);
+      hover(r, () => `<span class="m">ΔC ${sgn(hh.edges[i])} to ${sgn(hh.edges[i + 1])}</span><br>${n} resamples`);
+    });
+    S('line', {class: 'baseline', x1: L, x2: W - R, y1: y(0), y2: y(0)}, svg);
+    S('line', {x1: x(0), x2: x(0), y1: top, y2: y(0), stroke: 'var(--ink-2)', 'stroke-width': 1}, svg);
+    const ox = x(c.delta_c);
+    S('line', {x1: ox, x2: ox, y1: top - 4, y2: y(0), stroke: 'var(--accent)', 'stroke-width': 2}, svg);
+    S('text', {class: 'val', x: ox, y: top - 9, 'text-anchor': 'middle'}, svg).textContent = `ΔC ${sgn(c.delta_c)}`;
+    $('#dc-note').textContent = `95% CI ${sgn(c.delta_c_ci[0])} to ${sgn(c.delta_c_ci[1])}`;
+  })();
+  // LRT table
+  const t = $('#tbl-lrt');
+  const comps = [['IPI vs IPI + LP', 'Score added to IPI'], ['COO vs COO + LP', 'Score added to COO'], ['IPI + COO vs IPI + COO + LP', 'Score added to IPI + COO (H3)']];
+  t.innerHTML = `<thead><tr><th>Likelihood-ratio test, ${esc(c.label)}</th><th class="num">χ² (1 df)</th><th class="num">p</th></tr></thead><tbody>` +
+    comps.map(([k, lab]) => `<tr><td>${esc(lab)}</td><td class="num">${f(c.lrt[k].chi2)}</td><td class="num">${pf(c.lrt[k].p)}</td></tr>`).join('') + '</tbody>';
+  const a = c.hr['IPI + COO + LP'], raw = c.hr['LP'];
+  const msg = {
+    GSE181063_test: `<b>Test set (pre-specified primary for H3):</b> the score keeps an independent association after IPI + COO adjustment (HR ${f(a.hr)}, ${f(a.lo)}–${f(a.hi)}), but its HR falls from ${f(raw.hr)} unadjusted. ${c.missing_ipi} of ${c.n_all} patients had no IPI and are excluded; they died more often.`,
+    GSE10846: `<b>GSE10846:</b> the adjusted HR stays above 1 (${f(a.hr)}) but the interval includes 1 and the test is not significant. ${c.missing_ipi} of ${c.n_all} patients are excluded for missing IPI.`,
+    GSE87371: `<b>GSE87371:</b> IPI alone discriminates better than the score here (C ${f(c.c.IPI, 3)} vs ${f(c.c.LP, 3)}); the score's adjusted HR is ${f(a.hr)} with an interval including 1. Small cohort, 41 deaths.`,
+  };
+  $('#cl-callout').innerHTML = msg[clKey] + ` Spearman correlation of the score with IPI: ${f(c.spearman_lp_ipi)}.`;
+}
+
+/* ---------- Hallmark ---------- */
+function drawHallmark() {
+  const el = $('#ch-hallmark'); el.innerHTML = '';
+  const all = $('#hm-all').checked;
+  const rows = D.hallmark.filter(h => all || h.robust);
+  const W = widthOf(el), nw = narrow(W);
+  const L = nw ? 150 : 210, R = 12, rowH = 22, top = 4, H_ = top + rows.length * rowH + 30;
+  const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': 'Hallmark gene set association with the score (gene-sampling z)'}, el);
+  const zMax = 14, x = lin(-zMax, zMax, L, W - R);
+  xAxis(svg, x, [-12, -6, 0, 6, 12], top, top + rows.length * rowH, t => t > 0 ? '+' + t : t === 0 ? '0' : '−' + Math.abs(t));
+  rows.forEach((h, i) => {
+    const yc = top + i * rowH + rowH / 2, z = Math.max(-zMax, Math.min(zMax, h.z));
+    const col = !h.robust ? 'var(--grid)' : (h.z > 0 ? 'var(--high)' : 'var(--low)');
+    const name = h.set.replace('Epithelial Mesenchymal Transition', 'EMT').replace('Unfolded Protein Response', 'Unfolded protein resp.').replace('Tnfa Signaling Via Nfkb', 'TNFα via NF-κB').replace('Il6 Jak Stat3', 'IL6/JAK/STAT3').replace('Il2 Stat5', 'IL2/STAT5').replace('Mtorc1', 'mTORC1').replace('Myc', 'MYC').replace('E2f', 'E2F').replace('G2m', 'G2M').replace('Dna', 'DNA').replace('Uv ', 'UV ').replace('Pi3k Akt Mtor', 'PI3K/AKT/mTOR').replace('Kras', 'KRAS').replace('Tgf Beta', 'TGF-β').replace('Wnt Beta Catenin', 'WNT/β-catenin').replace('P53', 'p53').replace(' Signaling', '').replace('Interferon', 'IFN');
+    const tl = S('text', {class: 'lab', x: L - 8, y: yc + 4, 'text-anchor': 'end', 'font-size': 12}, svg);
+    tl.textContent = name; if (!h.robust) tl.setAttribute('fill', 'var(--muted)');
+    const x0 = x(0), x1 = x(z), w = Math.abs(x1 - x0);
+    const left = Math.min(x0, x1), bh = 12, yy = yc - bh / 2;
+    let d;
+    if (w < 5) d = `M${left},${yy}h${w}v${bh}h${-w}Z`;
+    else if (z > 0) d = `M${x0},${yy}h${w - 3}q3,0 3,3v${bh - 6}q0,3 -3,3h${-(w - 3)}Z`;
+    else d = `M${x0},${yy}h${-(w - 3)}q-3,0 -3,3v${bh - 6}q0,3 3,3h${w - 3}Z`;
+    S('path', {d, fill: col, stroke: h.robust ? 'none' : 'var(--rule)'}, svg);
+    hover(hitRect(svg, 0, yc - rowH / 2, W, rowH), () => `<b>${esc(h.set)}</b> (${h.n} genes)<br><span class="m">z ${h.z > 0 ? '+' : ''}${f(h.z, 1)} · mean ρ ${h.mean_rho > 0 ? '+' : ''}${f(h.mean_rho, 3)}<br>FDR perm ${pf(h.fdr_perm)} · gene-sampling ${pf(h.fdr_gs)}</span><br>${h.robust ? 'robust' : 'not robust'}${h.leading ? '<br>Leading: ' + esc(h.leading.split(';').slice(0, 4).join(', ')) : ''}`);
+  });
+  S('line', {class: 'baseline', x1: x(0), x2: x(0), y1: top, y2: top + rows.length * rowH}, svg);
+  S('text', {class: 'ax', x: (L + W - R) / 2, y: H_ - 1, 'text-anchor': 'middle'}, svg).textContent = nw ? 'gene-sampling z' : '← with lower score   gene-sampling z   with higher score →';
+}
+
+/* ---------- signatures ---------- */
+const SIG_NAME = {
+  LYMPH2CX_COO_SCORE: 'Lymph2Cx COO (ABC-high)', HALLMARK_MYC_TARGETS_V1: 'MYC targets V1', HALLMARK_G2M_CHECKPOINT: 'G2M checkpoint',
+  HALLMARK_E2F_TARGETS: 'E2F targets', HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION: 'EMT (stromal-1)', HALLMARK_ANGIOGENESIS: 'Angiogenesis (stromal-2)',
+  HALLMARK_TNFA_SIGNALING_VIA_NFKB: 'TNFα via NF-κB', HALLMARK_INTERFERON_GAMMA_RESPONSE: 'IFN-γ response', HALLMARK_INFLAMMATORY_RESPONSE: 'Inflammatory resp.',
+  HALLMARK_IL6_JAK_STAT3_SIGNALING: 'IL6/JAK/STAT3', SHIPP_DLBCL_CURED_VS_FATAL_DN: 'Shipp 2002: fatal-high', SHIPP_DLBCL_CURED_VS_FATAL_UP: 'Shipp 2002: cured-high',
+  MORI_EMU_MYC_LYMPHOMA_BY_ONSET_TIME_UP: 'Mori: Eμ-MYC lymphoma'
+};
+const sigName = n => SIG_NAME[n] || n.replace(/_/g, ' ').toLowerCase().replace(/^\w/, ch => ch.toUpperCase());
+let sigSet = 'curated';
+seg($('#sig-set'), [{value: 'curated', label: 'Curated (10)'}, {value: 'c2', label: 'Lymphoma C2, |ρ| ≥ 0.2'}], sigSet, v => { sigSet = v; drawSig(); });
+function drawSig() {
+  const el = $('#ch-sig'); el.innerHTML = '';
+  let rows = D.signatures.filter(s => sigSet === 'curated' ? s.group === 'curated' : (s.group !== 'curated' && Math.abs(s.rho) >= 0.2 && s.fdr < 0.05));
+  rows = rows.slice().sort((a, b) => b.rho - a.rho);
+  const W = widthOf(el), nw = narrow(W);
+  const L = nw ? 150 : 250, R = 50, rowH = 24, top = 4, H_ = top + rows.length * rowH + 30;
+  const svg = S('svg', {viewBox: `0 0 ${W} ${H_}`, role: 'img', 'aria-label': 'Spearman correlation of known signatures with the score'}, el);
+  const x = lin(-0.6, 0.6, L, W - R);
+  xAxis(svg, x, nw ? [-0.4, 0, 0.4] : [-0.4, -0.2, 0, 0.2, 0.4], top, top + rows.length * rowH, t => t === 0 ? '0' : sgn(t, 1));
+  S('line', {class: 'baseline', x1: x(0), x2: x(0), y1: top, y2: top + rows.length * rowH}, svg);
+  rows.forEach((s, i) => {
+    const yc = top + i * rowH + rowH / 2, weak = Math.abs(s.rho) < 0.2;
+    const col = weak ? 'var(--mid)' : (s.rho > 0 ? 'var(--high)' : 'var(--low)');
+    let nm = sigName(s.name); if (nw && nm.length > 22) nm = nm.slice(0, 21) + '…';
+    const tl = S('text', {class: 'lab', x: L - 8, y: yc + 4, 'text-anchor': 'end', 'font-size': 12}, svg); tl.textContent = nm;
+    if (weak) tl.setAttribute('fill', 'var(--muted)');
+    S('line', {x1: x(s.lo), x2: x(s.hi), y1: yc, y2: yc, stroke: col, 'stroke-width': 2, 'stroke-linecap': 'round'}, svg);
+    S('circle', {cx: x(s.rho), cy: yc, r: 4.5, fill: col, stroke: 'var(--card)', 'stroke-width': 2}, svg);
+    S('text', {class: 'val', x: W, y: yc + 4, 'text-anchor': 'end'}, svg).textContent = sgn(s.rho, 2);
+    hover(hitRect(svg, 0, yc - rowH / 2, W, rowH), () => `<b>${esc(sigName(s.name))}</b><br><span class="m">ρ ${sgn(s.rho, 2)} (${sgn(s.lo, 2)} to ${sgn(s.hi, 2)})${s.rho_removed !== null ? '<br>model genes removed: ' + sgn(s.rho_removed, 2) : ''}<br>FDR ${pf(s.fdr)} · ${s.n_genes} genes</span>`);
+  });
+  S('text', {class: 'ax', x: (L + W - R) / 2, y: H_ - 1, 'text-anchor': 'middle'}, svg).textContent = nw ? 'Spearman ρ with the score' : 'Spearman ρ with the score (training set, n = 373)';
+}
+
+/* ---------- gene table ---------- */
+let geneFilter = 'all', geneSort = {key: 'freq', dir: -1};
+seg($('#gene-filter'), [{value: 'all', label: 'All 44'}, {value: 'up', label: 'Risk-increasing (26)'}, {value: 'down', label: 'Risk-decreasing (18)'}, {value: 'stable', label: 'Selected ≥ 50% (4)'}], geneFilter, v => { geneFilter = v; drawGenes(); });
+function drawGenes() {
+  const t = $('#tbl-genes');
+  const cmax = Math.max(...D.genes.map(g => Math.abs(g.coef)));
+  let rows = D.genes.filter(g => geneFilter === 'all' || (geneFilter === 'up' && g.coef > 0) || (geneFilter === 'down' && g.coef < 0) || (geneFilter === 'stable' && g.freq >= 0.5));
+  const k = geneSort.key;
+  rows = rows.slice().sort((a, b) => (k === 'symbol' ? a.symbol.localeCompare(b.symbol) : (k === 'abscoef' ? Math.abs(a.coef) - Math.abs(b.coef) : a[k] - b[k])) * geneSort.dir);
+  const cols = [['symbol', 'Gene', ''], ['entrez', 'Entrez', 'num'], ['abscoef', 'Coefficient', 'num'], ['hr', 'HR per SD', 'num'], ['freq', 'Bootstrap selection', 'num']];
+  t.innerHTML = '<thead><tr>' + cols.map(([key, lab, cl]) => `<th tabindex="0" class="${cl}" data-k="${key}" aria-sort="${geneSort.key === key ? (geneSort.dir > 0 ? 'ascending' : 'descending') : 'none'}">${lab}</th>`).join('') + '</tr></thead><tbody>' +
+    rows.map(g => {
+      const w = Math.abs(g.coef) / cmax * 35, col = g.coef > 0 ? 'var(--high)' : 'var(--low)';
+      const bar = `<span class="track"><span class="mid"></span><span class="bar" style="position:absolute;top:0;width:${w}px;${g.coef > 0 ? 'left:35px' : 'right:35px'};background:${col}"></span></span>`;
+      return `<tr><td><b>${esc(g.symbol)}</b></td><td class="num">${esc(g.entrez)}</td><td class="num"><span class="cellbar">${g.coef > 0 ? '+' : '−'}${Math.abs(g.coef).toFixed(3)}${bar}</span></td><td class="num">${f(g.hr, 3)}</td><td class="num"><span class="cellbar">${Math.round(g.freq * 100)}%<span class="track" style="background:var(--grid);border-radius:2px"><span class="bar" style="position:absolute;left:0;top:0;width:${g.freq * 70}px;background:${g.freq >= 0.5 ? 'var(--accent)' : 'var(--mid)'}"></span></span></span></td></tr>`;
+    }).join('') + '</tbody>';
+  t.querySelectorAll('th[data-k]').forEach(th => {
+    const act = () => { const key = th.dataset.k; geneSort = {key, dir: geneSort.key === key ? -geneSort.dir : (key === 'symbol' ? 1 : -1)}; drawGenes(); t.querySelector(`th[data-k="${key}"]`).focus(); };
+    th.addEventListener('click', act);
+    th.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); } });
+  });
+}
+
+/* ---------- section bar highlight ---------- */
+(function () {
+  const links = [...document.querySelectorAll('nav.sections a')];
+  const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(ents => {
+    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); const a = map.get(en.target.id); if (a) { a.classList.add('on'); a.scrollIntoView({block: 'nearest', inline: 'nearest'}); } } });
+  }, {rootMargin: '-45% 0px -50% 0px'});
+  map.forEach((a, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+})();
+
+/* ---------- draw all, redraw on resize ---------- */
+function drawAll() { drawForest(); drawCidx(); drawKM(); drawNull(); drawClinical(); drawHallmark(); drawSig(); drawGenes(); }
+$('#sens-toggle').addEventListener('change', drawForest);
+$('#hm-all').addEventListener('change', drawHallmark);
+drawAll();
+let lastW = window.innerWidth, rt;
+window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (Math.abs(window.innerWidth - lastW) > 20) { lastW = window.innerWidth; drawForest(); drawCidx(); drawKM(); drawNull(); drawClinical(); drawHallmark(); drawSig(); } }, 150); });
+})();
+</script>

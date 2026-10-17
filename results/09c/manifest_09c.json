@@ -1,0 +1,238 @@
+{
+  "code_version": "09c-1.0",
+  "date": "2026-10-17",
+  "inputs": {
+    "results/04/plan_lock_04.json": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+    "results/04/model_04.json": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "results/05/test_lp_05.csv": "aaec9fd5738417d8ae120f11b0ba9900f37868613e4aef855f36fd0b712b2a9d",
+    "results/06/external_lp_06.csv": "954b28cd199a33e26ef344622320631875b3af2c11a105b283eb350525f24871",
+    "results/05/km_test_05.csv": "b24f3f21ce5dde943ee983c90fc90505442a6c31107f3ba24b086b7232d60b56",
+    "results/06/km_external_06.csv": "cdcf5fa981fb40e23e831e0f5c0c556fa27f2b99e7d2b54a1a849213ac1e373e"
+  },
+  "outputs": {
+    "results/09c/km_curves_09c.json": "61286b8824c8826b804111b13508b16de7d0402de6a59eac8df072df3abffade"
+  },
+  "data_access": "clinical_clean_all.csv: OS time and event for the scored analysis populations only",
+  "checks": [
+    {
+      "check": "plan lock hash = recorded value",
+      "ok": true,
+      "detail": "8d87cf887e2d"
+    },
+    {
+      "check": "frozen model hash = recorded value",
+      "ok": true,
+      "detail": "661e2b80be77"
+    },
+    {
+      "check": "plan amendments: none recorded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "test_lp_05.csv: hash recorded in manifest_05.json",
+      "ok": true,
+      "detail": "aaec9fd57384"
+    },
+    {
+      "check": "external_lp_06.csv: hash recorded in manifest_06.json",
+      "ok": true,
+      "detail": "954b28cd199a"
+    },
+    {
+      "check": "site source zip present",
+      "ok": true,
+      "detail": "/content/drive/MyDrive/dlbcl-prognosis/release/site_09c.zip"
+    },
+    {
+      "check": "site zip contains build_site.py and template.html",
+      "ok": true,
+      "detail": "['site/build_site.py', 'site/template.html']"
+    },
+    {
+      "check": "sample IDs unique in clinical table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "every scored sample has OS data",
+      "ok": true,
+      "detail": "0 missing"
+    },
+    {
+      "check": "no missing OS time/event",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 test: patients/deaths = recorded",
+      "ok": true,
+      "detail": "162/74"
+    },
+    {
+      "check": "GSE10846: patients/deaths = recorded",
+      "ok": true,
+      "detail": "229/58"
+    },
+    {
+      "check": "GSE87371: patients/deaths = recorded",
+      "ok": true,
+      "detail": "116/41"
+    },
+    {
+      "check": "GSE181063 test / median / high: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 test / median / high: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 90, deaths 54, 5y 0.5667"
+    },
+    {
+      "check": "GSE181063 test / median / low: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 test / median / low: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 72, deaths 20, 5y 0.8185"
+    },
+    {
+      "check": "GSE181063 test / tertile / T1 (low): one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 test / tertile / T1 (low): n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 39, deaths 6, 5y 0.8689"
+    },
+    {
+      "check": "GSE181063 test / tertile / T2: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 test / tertile / T2: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 73, deaths 34, 5y 0.6849"
+    },
+    {
+      "check": "GSE181063 test / tertile / T3 (high): one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 test / tertile / T3 (high): n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 50, deaths 34, 5y 0.5200"
+    },
+    {
+      "check": "GSE10846 / median / high: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE10846 / median / high: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 114, deaths 39, 5y 0.6192"
+    },
+    {
+      "check": "GSE10846 / median / low: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE10846 / median / low: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 115, deaths 19, 5y 0.7548"
+    },
+    {
+      "check": "GSE10846 / tertile / T1 (low): one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE10846 / tertile / T1 (low): n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 77, deaths 10, 5y 0.8271"
+    },
+    {
+      "check": "GSE10846 / tertile / T2: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE10846 / tertile / T2: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 76, deaths 18, 5y 0.6734"
+    },
+    {
+      "check": "GSE10846 / tertile / T3 (high): one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE10846 / tertile / T3 (high): n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 76, deaths 30, 5y 0.5657"
+    },
+    {
+      "check": "GSE87371 / median / high: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE87371 / median / high: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 58, deaths 27, 5y 0.4562"
+    },
+    {
+      "check": "GSE87371 / median / low: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE87371 / median / low: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 58, deaths 14, 5y 0.7515"
+    },
+    {
+      "check": "GSE87371 / tertile / T1 (low): one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE87371 / tertile / T1 (low): n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 39, deaths 9, 5y 0.7685"
+    },
+    {
+      "check": "GSE87371 / tertile / T2: one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE87371 / tertile / T2: n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 38, deaths 13, 5y 0.6018"
+    },
+    {
+      "check": "GSE87371 / tertile / T3 (high): one recorded row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE87371 / tertile / T3 (high): n, deaths, median OS, 5-y OS and CI = recorded",
+      "ok": true,
+      "detail": "n 39, deaths 19, 5y 0.4498"
+    },
+    {
+      "check": "KM file contains no sample identifiers",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

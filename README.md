@@ -1,5 +1,7 @@
 # DLBCL gene-expression prognostic score — a pre-registered analysis of public data
 
+**Interactive summary:** <https://gurbuzmericarda0-arch.github.io/dlbcl-prognostic-score/> (built from the summary results in this repository by `site/build_site.py`; research only, not a clinical tool).
+
 > **Research project, not a clinical tool.** Nothing in this repository is intended for diagnosis, prognosis of
 > individual patients or treatment decisions. The score is z-scored within each cohort and cannot be applied to a
 > single new patient.
@@ -67,7 +69,7 @@ Patient-level score files (`results/05/test_lp_05.csv`, `results/06/external_lp_
 ## Repository layout
 
 ```
-notebooks/        Colab notebooks, steps 02a-09b (outputs cleared)
+notebooks/        Colab notebooks, steps 00-09b (outputs cleared)
 results/02/       step-2 manifests, cohort summary, patient flow, common gene table
 results/03-08/    summary results and manifest of each step (SHA-256 of inputs/outputs)
 results/04/       locked analysis plan, lock file, amendment log, frozen model
