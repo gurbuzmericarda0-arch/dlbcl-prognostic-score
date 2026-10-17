@@ -76,7 +76,7 @@ nav.toc { display: none; }
   nav.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 1px solid var(--rule); }
   nav.toc a { display: block; padding: 3px 0 3px 12px; margin-left: -1px; border-left: 2px solid transparent; color: var(--ink-2); text-decoration: none; }
   nav.toc a:hover { color: var(--ink); }
-  nav.toc a.on { color: var(--ink); border-left-color: var(--accent); }
+  nav.toc a.on { color: var(--accent); font-weight: 600; border-left-color: var(--accent); background: var(--accent-soft); }
 }
 nav.topbar {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule);
@@ -89,7 +89,7 @@ nav.topbar .bar {
 }
 nav.topbar .bar::-webkit-scrollbar { display: none; }
 nav.topbar a { flex: none; font-size: 0.86rem; color: var(--ink-2); text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid transparent; }
-nav.topbar a.on { color: var(--ink); border-bottom-color: var(--accent); }
+nav.topbar a.on { color: var(--accent); font-weight: 600; border-bottom-color: var(--accent); }
 
 /* sections */
 section.sec { padding-block: 40px 4px; display: grid; gap: 16px; }
@@ -902,7 +902,7 @@ function drawGenes() {
   links.forEach(a => { const id = a.getAttribute('href').slice(1); if (!map.has(id)) map.set(id, []); map.get(id).push(a); });
   if (!('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver(ents => {
-    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); (map.get(en.target.id) || []).forEach(a => { a.classList.add('on'); const bar = a.closest('.bar'); if (bar) { const l = a.offsetLeft, r = l + a.offsetWidth; if (l < bar.scrollLeft || r > bar.scrollLeft + bar.clientWidth) bar.scrollLeft = Math.max(0, l - 16); } }); } });
+    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); try { if (location.hash !== '#' + en.target.id) history.replaceState(null, '', '#' + en.target.id); } catch (_) {} (map.get(en.target.id) || []).forEach(a => { a.classList.add('on'); const bar = a.closest('.bar'); if (bar) { const l = a.offsetLeft, r = l + a.offsetWidth; if (l < bar.scrollLeft || r > bar.scrollLeft + bar.clientWidth) bar.scrollLeft = Math.max(0, l - 16); } }); } });
   }, {rootMargin: '-45% 0px -50% 0px'});
   map.forEach((a, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
 })();
