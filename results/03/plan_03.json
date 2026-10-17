@@ -1,0 +1,22 @@
+{
+  "step": "03_positive_control",
+  "dataset": "GSE181063, training split only (n=380)",
+  "endpoint": "overall survival (os_time_months, os_event; 1 = death)",
+  "primary_contrast": "ABC vs GCB (GCB = reference); MHG and UNC excluded from the primary contrast, shown descriptively",
+  "primary_tests": [
+    "Kaplan-Meier",
+    "two-sided log-rank test",
+    "univariable Cox HR with 95% CI"
+  ],
+  "expected_direction": "HR(ABC vs GCB) > 1",
+  "success_criterion": "HR > 1 with 95% CI excluding 1 and log-rank p < 0.05",
+  "if_not_met": "investigate coding/linkage errors; do NOT change cohort, endpoint or contrast to obtain significance",
+  "secondary": [
+    "proportional-hazards check (Schoenfeld residual test)",
+    "Cox ABC vs GCB adjusted for IPI (complete cases), compared with unadjusted HR in the same subset",
+    "sensitivity: exclude sex_mismatch_confident samples",
+    "sensitivity: exclude correlation outliers",
+    "label consistency: Lymph2Cx-gene COO score vs provided COO labels (no survival data used)"
+  ],
+  "saved_at": "2026-10-14T22:55:09"
+}

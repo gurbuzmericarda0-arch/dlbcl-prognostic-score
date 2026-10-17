@@ -1,0 +1,21 @@
+{
+  "notebook": "02a_clinical_cleaning.ipynb",
+  "seed": 20261014,
+  "exclude_non_pretreatment": true,
+  "raw_inputs_sha256": {
+    "GSE181063_clinical_raw.csv": "2009c76bdb7fdc6b946376d5cf3f5c31f9ba50fed75a934082648b92d552e7ed",
+    "GSE10846_clinical_raw.csv": "60afdafef6729f54dab0021474761cab890eaed0b4209dad7a44df0981011fb6",
+    "GSE87371_clinical_raw.csv": "8e4b5dcf712d826dfa5b9795dc42c431b410a0227448aef6c414b4f432748fe2"
+  },
+  "outputs_sha256": {
+    "clinical_clean_GSE181063.csv": "9adfd93b09eba18d379ccb4b5a4f2fcd80ee33147e7bd8b0ebf94ca5353cffa0",
+    "clinical_clean_GSE10846.csv": "aa3ae4a4ff44578a29d8da2274dc6f393ab77677f3fe168ea4826ea3d718bf1e",
+    "clinical_clean_GSE87371.csv": "5d4f454557d1f3bbb705b529d9ab80e122c5e61053475fa3064e5499c1a8cd82",
+    "clinical_clean_all.csv": "06f0804687fbddd5939e116830a9132fdcce0ba1ce7ac1cc6074968099a1c333",
+    "patient_flow.csv": "0e501ec3ce2ffdfe91dee196124ac6a7cafd4176e88cbcd57801784595ee29ce",
+    "cohort_summary.csv": "69b2665311c2e194607ac544d916e194ea71a670c2795cf7cb985eda617f08a0",
+    "split_GSE181063.csv": "8997da18e62861ddc7614885dfa4ad5075d412a34cca4ba511e922e245c628f2"
+  },
+  "pandas": "2.2.3",
+  "numpy": "2.1.3"
+}

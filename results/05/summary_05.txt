@@ -1,0 +1,20 @@
+Step 5 summary (plan v1.0, code 05-1.0, 2026-10-15 19:59 UTC)
+Reproducibility: step-4b fit reproduced (44 genes, lambda 0.086259, max |coef diff| 0.0e+00)
+Leakage check: mean C 0.499 (10 permutations x 5 folds, folds 0.422–0.534, empty models 70%) -> PASSED
+Frozen model: sha256 661e2b80be77 = manifest_04b = progress_step4b; 44 genes; cutoff -0.0048
+Null models: 100 fixed before the test set was opened; empty 61%
+Test set: 164 patients (74 deaths); QC excluded 2 -> 162 patients, 74 deaths; median follow-up 101.3 mo
+H1  HR per SD 1.93 (1.49–2.49), p = 5.2e-07 -> MET
+Harrell C 0.664 (0.596–0.730); Uno C 0.670 (tau 60 months)
+KM high: n 90, deaths 54, median OS 82.1 mo (50.1–132.9), 5-year OS 56.7% (45.8–66.2)
+KM low : n 72, deaths 20, median OS not reached, 5-year OS 81.9% (70.8–89.0)
+Log-rank p = 2.4e-04; HR high vs low 2.54 (1.52–4.24), p = 3.9e-04
+Calibration slope 1.56 (0.95–2.16); PH test p = 0.218 (rank), 0.267 (KM)
+Tertiles: T1 (low) n 39, deaths 6, 5y OS 86.9% (71.3–94.3); T2 n 73, deaths 34, 5y OS 68.5% (56.5–77.8); T3 (high) n 50, deaths 34, 5y OS 52.0% (37.4–64.7)
+Negative control: permuted test C mean 0.493 (0.395–0.559), max 0.580; permutation p = 0.010
+Sensitivity (a) within-test z-score: HR per SD 1.91 (1.48–2.47), p = 7.4e-07; C 0.662
+Sensitivity (b) corr outliers excluded (n 156): HR per SD 1.97 (1.51–2.58), p = 6.3e-07; C 0.668
+Supporting: C CI > 0.5 yes; log-rank p < 0.05 yes; permutation p < 0.05 yes
+Test C - nested-CV C: +0.052; red flags: none
+Conclusion (plan §12): Internally validated (H1 met)
+First-run record: first complete run: first_results_05.json written; test-set openings logged: 1

@@ -1,0 +1,363 @@
+{
+  "description": "Frozen OS risk model from step 4b (plan v1.0). Research use only; not a diagnostic or treatment tool.",
+  "estimator": {
+    "alpha_min_ratio": 0.01,
+    "implementation": "scikit-survival CoxnetSurvivalAnalysis",
+    "l1_ratio": 0.9,
+    "max_iter": 100000,
+    "n_alphas": 100,
+    "scikit_survival_version": "0.28.0",
+    "ties": "breslow",
+    "tol": 1e-07
+  },
+  "expression_index_dtype": "object",
+  "gene_id": "Entrez Gene ID, stored as text",
+  "genes": [
+    {
+      "coef": 0.016274209667529016,
+      "entrez": "656",
+      "symbol": "BMP8B",
+      "train_mean": 10.230872663032594,
+      "train_sd": 0.8585727972670654
+    },
+    {
+      "coef": -0.03394042089468153,
+      "entrez": "753",
+      "symbol": "LDLRAD4",
+      "train_mean": 9.340508118391677,
+      "train_sd": 1.0417150281396332
+    },
+    {
+      "coef": -0.023223724913604395,
+      "entrez": "1305",
+      "symbol": "COL13A1",
+      "train_mean": 9.798899010103446,
+      "train_sd": 1.0211313370895547
+    },
+    {
+      "coef": -0.01102133340846559,
+      "entrez": "2017",
+      "symbol": "CTTN",
+      "train_mean": 10.267137611839152,
+      "train_sd": 0.9039317323991698
+    },
+    {
+      "coef": 0.02221556226891331,
+      "entrez": "2167",
+      "symbol": "FABP4",
+      "train_mean": 8.991935737650772,
+      "train_sd": 0.9253341393901245
+    },
+    {
+      "coef": 0.0021973600515930434,
+      "entrez": "2549",
+      "symbol": "GAB1",
+      "train_mean": 11.018783229285846,
+      "train_sd": 0.9879679545885783
+    },
+    {
+      "coef": 0.0682797107119431,
+      "entrez": "2920",
+      "symbol": "CXCL2",
+      "train_mean": 11.420592489574933,
+      "train_sd": 1.1247367920465132
+    },
+    {
+      "coef": 0.05451323449426166,
+      "entrez": "3045",
+      "symbol": "HBD",
+      "train_mean": 8.74469568390629,
+      "train_sd": 0.8779687536129119
+    },
+    {
+      "coef": 0.05442019438907076,
+      "entrez": "3142",
+      "symbol": "HLX",
+      "train_mean": 10.911558167864106,
+      "train_sd": 0.834690309074041
+    },
+    {
+      "coef": 0.008730733402528154,
+      "entrez": "6326",
+      "symbol": "SCN2A",
+      "train_mean": 9.47628293791661,
+      "train_sd": 1.736667336363917
+    },
+    {
+      "coef": -0.008288793425189534,
+      "entrez": "7471",
+      "symbol": "WNT1",
+      "train_mean": 8.600574898655868,
+      "train_sd": 0.8831700893166524
+    },
+    {
+      "coef": -0.027795502162039618,
+      "entrez": "9289",
+      "symbol": "ADGRG1",
+      "train_mean": 10.077848384591274,
+      "train_sd": 1.1236078759188908
+    },
+    {
+      "coef": -0.025449542071117527,
+      "entrez": "9527",
+      "symbol": "GOSR1",
+      "train_mean": 9.895315493719188,
+      "train_sd": 0.8443496184567362
+    },
+    {
+      "coef": 0.04563824181083388,
+      "entrez": "9767",
+      "symbol": "JADE3",
+      "train_mean": 11.460706446189983,
+      "train_sd": 1.24110044122086
+    },
+    {
+      "coef": -0.034353501318689174,
+      "entrez": "10653",
+      "symbol": "SPINT2",
+      "train_mean": 11.028699969478332,
+      "train_sd": 1.0591457373459874
+    },
+    {
+      "coef": -0.007934090403454821,
+      "entrez": "23316",
+      "symbol": "CUX2",
+      "train_mean": 9.3492365266938,
+      "train_sd": 1.625564732913263
+    },
+    {
+      "coef": -0.0689806641649988,
+      "entrez": "27143",
+      "symbol": "PALD1",
+      "train_mean": 11.465701530190639,
+      "train_sd": 0.8412922548928273
+    },
+    {
+      "coef": 0.007787271153209247,
+      "entrez": "51327",
+      "symbol": "AHSP",
+      "train_mean": 9.988247232207025,
+      "train_sd": 1.1522037922083366
+    },
+    {
+      "coef": 0.027610885426769486,
+      "entrez": "54596",
+      "symbol": "L1TD1",
+      "train_mean": 8.979702282207581,
+      "train_sd": 1.0819782721145652
+    },
+    {
+      "coef": 0.0007396237118751183,
+      "entrez": "55335",
+      "symbol": "NIPSNAP3B",
+      "train_mean": 9.156134293482067,
+      "train_sd": 0.855394648930009
+    },
+    {
+      "coef": 0.008179464230674602,
+      "entrez": "55897",
+      "symbol": "MESP1",
+      "train_mean": 8.872593612517493,
+      "train_sd": 0.9148356173004157
+    },
+    {
+      "coef": 0.0029600725047081618,
+      "entrez": "57156",
+      "symbol": "TMEM63C",
+      "train_mean": 8.918068085534962,
+      "train_sd": 0.8447827960802863
+    },
+    {
+      "coef": 0.008768206400422961,
+      "entrez": "57453",
+      "symbol": "DSCAML1",
+      "train_mean": 9.104370592746275,
+      "train_sd": 0.927631901792404
+    },
+    {
+      "coef": -0.031048950004114697,
+      "entrez": "57619",
+      "symbol": "SHROOM3",
+      "train_mean": 10.151626949975062,
+      "train_sd": 1.5188812225658612
+    },
+    {
+      "coef": 0.045740745651372844,
+      "entrez": "57720",
+      "symbol": "GPR107",
+      "train_mean": 10.21741857094036,
+      "train_sd": 0.9721202994569205
+    },
+    {
+      "coef": 0.024908322883387485,
+      "entrez": "59084",
+      "symbol": "ENPP5",
+      "train_mean": 11.437522296291894,
+      "train_sd": 1.090855707889335
+    },
+    {
+      "coef": -0.010507300675113549,
+      "entrez": "59271",
+      "symbol": "EVA1C",
+      "train_mean": 10.226973601384712,
+      "train_sd": 0.9139790066791967
+    },
+    {
+      "coef": 0.004855498546345049,
+      "entrez": "65975",
+      "symbol": "STK33",
+      "train_mean": 12.123898301623143,
+      "train_sd": 1.12293174607757
+    },
+    {
+      "coef": -0.03342931387648216,
+      "entrez": "80975",
+      "symbol": "TMPRSS5",
+      "train_mean": 8.445880374703906,
+      "train_sd": 0.8520513643327748
+    },
+    {
+      "coef": 0.05459808479592843,
+      "entrez": "83858",
+      "symbol": "ATAD3B",
+      "train_mean": 12.105602250342075,
+      "train_sd": 0.9247645935843495
+    },
+    {
+      "coef": 0.03445563001420707,
+      "entrez": "84871",
+      "symbol": "AGBL4",
+      "train_mean": 8.996122448437974,
+      "train_sd": 1.0865149002435621
+    },
+    {
+      "coef": 0.04510256482863273,
+      "entrez": "92609",
+      "symbol": "TIMM50",
+      "train_mean": 8.652495774123368,
+      "train_sd": 0.8266658424644382
+    },
+    {
+      "coef": -0.16368965813092656,
+      "entrez": "120425",
+      "symbol": "JAML",
+      "train_mean": 12.199316543804096,
+      "train_sd": 0.9532682210259772
+    },
+    {
+      "coef": -0.13669150593269175,
+      "entrez": "137902",
+      "symbol": "PXDNL",
+      "train_mean": 9.258058239883136,
+      "train_sd": 1.4622464650694513
+    },
+    {
+      "coef": 0.036485552858014116,
+      "entrez": "146894",
+      "symbol": "CD300LG",
+      "train_mean": 10.153655497062621,
+      "train_sd": 1.3388118860628606
+    },
+    {
+      "coef": 0.0034215847541224564,
+      "entrez": "148046",
+      "symbol": "CIRBP-AS1",
+      "train_mean": 11.059590888087296,
+      "train_sd": 0.9522176582025325
+    },
+    {
+      "coef": 0.00872398331380821,
+      "entrez": "152137",
+      "symbol": "CCDC50",
+      "train_mean": 11.045514497935931,
+      "train_sd": 0.8153719868888335
+    },
+    {
+      "coef": 0.0803230268777844,
+      "entrez": "153770",
+      "symbol": "PLAC8L1",
+      "train_mean": 9.521032743735224,
+      "train_sd": 0.9954658845998497
+    },
+    {
+      "coef": -0.019836736768763456,
+      "entrez": "170482",
+      "symbol": "CLEC4C",
+      "train_mean": 8.722852727363321,
+      "train_sd": 1.0398840067415753
+    },
+    {
+      "coef": -0.06938241756753755,
+      "entrez": "201501",
+      "symbol": "ZBTB7C",
+      "train_mean": 8.76204162500499,
+      "train_sd": 0.9352989034967769
+    },
+    {
+      "coef": -0.02795779847332209,
+      "entrez": "283651",
+      "symbol": "HMGN2P46",
+      "train_mean": 9.571190853221168,
+      "train_sd": 1.1745587305216845
+    },
+    {
+      "coef": -0.06553959163297275,
+      "entrez": "353345",
+      "symbol": "GPR141",
+      "train_mean": 10.599252730208491,
+      "train_sd": 1.0462895624596125
+    },
+    {
+      "coef": 0.015124542812129507,
+      "entrez": "389206",
+      "symbol": "BEND4",
+      "train_mean": 11.606970416317036,
+      "train_sd": 1.4078269184803607
+    },
+    {
+      "coef": 0.07063436982448038,
+      "entrez": "391059",
+      "symbol": "FRRS1",
+      "train_mean": 11.390694740949943,
+      "train_sd": 0.8816633071691694
+    }
+  ],
+  "n_genes": 44,
+  "null_model": false,
+  "penalty": {
+    "at_grid_boundary": false,
+    "cv": "10-fold, stratified by os_event, seed 20261015; grouped partial-likelihood deviance",
+    "grid_position": 18,
+    "lambda": 0.08625910082886222,
+    "rule": "lambda_min",
+    "valid_grid_size": 100
+  },
+  "plan_json_sha256": "e854f71c1e83955335adf421d9eae2e81fd48bf605a11aa7611dc230ee5998c1",
+  "plan_version": "1.0",
+  "preprocessing": {
+    "input": "data/processed/expr_GSE181063_train.parquet (log2, quantile-normalized)",
+    "variance_filter_top_n": 5000,
+    "z_score": "z = (x - train_mean) / train_sd, ddof = 1, on the primary training population"
+  },
+  "risk_groups": {
+    "cutoff": -0.00482672866074027,
+    "cutoff_definition": "median LP of the primary training population",
+    "rule": "high if LP > cutoff, else low",
+    "tertile_cutoffs_descriptive": [
+      -0.2358779514126806,
+      0.2446879213795422
+    ]
+  },
+  "risk_score": "LP = sum over genes of coef * (x - train_mean) / train_sd",
+  "training_lp": {
+    "mean": -2.5240459112121523e-16,
+    "sd": 0.46086374641165145
+  },
+  "training_population": {
+    "cohort": "GSE181063",
+    "deaths": 171,
+    "patients": 373,
+    "qc_rule": "sex_mismatch_confident excluded",
+    "split": "train"
+  }
+}

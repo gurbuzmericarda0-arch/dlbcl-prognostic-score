@@ -1,0 +1,316 @@
+{
+  "caveats": [
+    "Exploratory analysis; no hypothesis test; p-values and FDRs are descriptive.",
+    "Gene selection was unstable in 4b (4/44 genes selected in >= 50% of bootstraps); interpret the score as a whole.",
+    "Training set only; LP is apparent (in-sample). No survival data used.",
+    "Stromal signatures are Hallmark proxies, not the Lenz 2008 gene lists.",
+    "COO labels come from the authors' classifier on the same arrays."
+  ],
+  "clinical_descriptive": {
+    "coo_median_lp_per_sd": {
+      "ABC": 0.802,
+      "GCB": -0.535,
+      "MHG": 0.397,
+      "UNC": -0.109
+    },
+    "kruskal_p_lp_by_coo": 4.988431125921815e-19,
+    "n_ipi": 281,
+    "spearman_lp_ipi": 0.3556840919942834
+  },
+  "code_version": "08-1.1",
+  "exploratory": true,
+  "model": {
+    "n_genes": 44,
+    "risk_down": 18,
+    "risk_up": 26,
+    "stable_genes_ge_50pct": [
+      {
+        "coef": -0.13669150593269175,
+        "freq": 0.84,
+        "symbol": "PXDNL"
+      },
+      {
+        "coef": -0.16368965813092656,
+        "freq": 0.68,
+        "symbol": "JAML"
+      },
+      {
+        "coef": 0.0803230268777844,
+        "freq": 0.6,
+        "symbol": "PLAC8L1"
+      },
+      {
+        "coef": 0.03445563001420707,
+        "freq": 0.5,
+        "symbol": "AGBL4"
+      }
+    ],
+    "symbols_differ_between_platforms": 9
+  },
+  "ora": {
+    "n_fdr_lt_005_primary_background": 0,
+    "n_fdr_lt_005_sensitivity_background": 0
+  },
+  "population": {
+    "coo_counts": {
+      "ABC": 104,
+      "GCB": 185,
+      "MHG": 23,
+      "UNC": 61
+    },
+    "n": 373,
+    "qc_excluded": 7
+  },
+  "rank_test": {
+    "GO_BP": {
+      "n_fdr_gene_sampling_lt_005": 306,
+      "n_fdr_perm_lt_005": 1500,
+      "n_robust": 306,
+      "sets_tested": 2802,
+      "top_robust_sets": [
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 5.493846827904696e-27,
+          "fdr_perm": 0.001697333151606015,
+          "gene_set": "GOBP_MITOTIC_CELL_CYCLE",
+          "z_gene_sampling": 11.47
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 1.4178297273642124e-26,
+          "fdr_perm": 0.001697333151606015,
+          "gene_set": "GOBP_CHROMOSOME_ORGANIZATION",
+          "z_gene_sampling": 11.32
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 2.3285526517903596e-25,
+          "fdr_perm": 0.001697333151606015,
+          "gene_set": "GOBP_DNA_METABOLIC_PROCESS",
+          "z_gene_sampling": 11.04
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 5.056618528569172e-25,
+          "fdr_perm": 0.001697333151606015,
+          "gene_set": "GOBP_MITOTIC_CELL_CYCLE_PROCESS",
+          "z_gene_sampling": 10.94
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 6.817497235491389e-25,
+          "fdr_perm": 0.001697333151606015,
+          "gene_set": "GOBP_CELL_CYCLE_PROCESS",
+          "z_gene_sampling": 10.9
+        }
+      ]
+    },
+    "HALLMARK": {
+      "n_fdr_gene_sampling_lt_005": 11,
+      "n_fdr_perm_lt_005": 24,
+      "n_robust": 11,
+      "sets_tested": 50,
+      "top_robust_sets": [
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 6.543641602247382e-33,
+          "fdr_perm": 0.0019221158651443508,
+          "gene_set": "HALLMARK_E2F_TARGETS",
+          "z_gene_sampling": 12.27
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 1.215363851385811e-28,
+          "fdr_perm": 0.0019221158651443508,
+          "gene_set": "HALLMARK_G2M_CHECKPOINT",
+          "z_gene_sampling": 11.39
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 7.217569071735509e-15,
+          "fdr_perm": 0.0019221158651443508,
+          "gene_set": "HALLMARK_MYC_TARGETS_V1",
+          "z_gene_sampling": 8.13
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 3.545839080226875e-10,
+          "fdr_perm": 0.0019221158651443508,
+          "gene_set": "HALLMARK_MTORC1_SIGNALING",
+          "z_gene_sampling": 6.65
+        },
+        {
+          "direction": "higher with lower risk score",
+          "fdr_gene_sampling": 1.1049432278075902e-07,
+          "fdr_perm": 0.0019221158651443508,
+          "gene_set": "HALLMARK_MYOGENESIS",
+          "z_gene_sampling": -5.71
+        }
+      ]
+    },
+    "REACTOME": {
+      "n_fdr_gene_sampling_lt_005": 198,
+      "n_fdr_perm_lt_005": 401,
+      "n_robust": 198,
+      "sets_tested": 580,
+      "top_robust_sets": [
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 1.0174944598612277e-45,
+          "fdr_perm": 0.0011830819284235434,
+          "gene_set": "REACTOME_CELL_CYCLE",
+          "z_gene_sampling": 14.63
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 6.44332707970809e-39,
+          "fdr_perm": 0.0011830819284235434,
+          "gene_set": "REACTOME_CELL_CYCLE_MITOTIC",
+          "z_gene_sampling": 13.47
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 1.1401261375907234e-36,
+          "fdr_perm": 0.0011830819284235434,
+          "gene_set": "REACTOME_CELL_CYCLE_CHECKPOINTS",
+          "z_gene_sampling": 13.06
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 5.880080792476319e-26,
+          "fdr_perm": 0.0011830819284235434,
+          "gene_set": "REACTOME_G2_M_CHECKPOINTS",
+          "z_gene_sampling": 10.99
+        },
+        {
+          "direction": "higher with higher risk score",
+          "fdr_gene_sampling": 5.048652214732058e-21,
+          "fdr_perm": 0.0011830819284235434,
+          "gene_set": "REACTOME_DNA_REPLICATION",
+          "z_gene_sampling": 9.9
+        }
+      ]
+    }
+  },
+  "signatures": {
+    "c2_cgp_fdr_lt_005": 16,
+    "c2_cgp_tested": 30,
+    "curated": [
+      {
+        "ci95": [
+          0.372,
+          0.541
+        ],
+        "fdr": 5.172879013097876e-20,
+        "rho": 0.461,
+        "rho_model_genes_removed": 0.449,
+        "signature": "LYMPH2CX_COO_SCORE"
+      },
+      {
+        "ci95": [
+          0.334,
+          0.497
+        ],
+        "fdr": 7.159088901401044e-17,
+        "rho": 0.422,
+        "rho_model_genes_removed": 0.422,
+        "signature": "HALLMARK_MYC_TARGETS_V1"
+      },
+      {
+        "ci95": [
+          0.327,
+          0.49
+        ],
+        "fdr": 5.332625751594435e-16,
+        "rho": 0.41,
+        "rho_model_genes_removed": 0.41,
+        "signature": "HALLMARK_G2M_CHECKPOINT"
+      },
+      {
+        "ci95": [
+          0.305,
+          0.463
+        ],
+        "fdr": 2.3347650251979487e-14,
+        "rho": 0.387,
+        "rho_model_genes_removed": 0.387,
+        "signature": "HALLMARK_E2F_TARGETS"
+      },
+      {
+        "ci95": [
+          -0.318,
+          -0.131
+        ],
+        "fdr": 1.76110298413359e-05,
+        "rho": -0.228,
+        "rho_model_genes_removed": -0.228,
+        "signature": "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION"
+      },
+      {
+        "ci95": [
+          -0.294,
+          -0.106
+        ],
+        "fdr": 0.00011957594532137144,
+        "rho": -0.204,
+        "rho_model_genes_removed": -0.204,
+        "signature": "HALLMARK_ANGIOGENESIS"
+      },
+      {
+        "ci95": [
+          -0.21,
+          -0.009
+        ],
+        "fdr": 0.04786455965346574,
+        "rho": -0.109,
+        "rho_model_genes_removed": -0.113,
+        "signature": "HALLMARK_TNFA_SIGNALING_VIA_NFKB"
+      },
+      {
+        "ci95": [
+          -0.208,
+          0.001
+        ],
+        "fdr": 0.04786455965346574,
+        "rho": -0.107,
+        "rho_model_genes_removed": -0.107,
+        "signature": "HALLMARK_INTERFERON_GAMMA_RESPONSE"
+      },
+      {
+        "ci95": [
+          -0.189,
+          0.008
+        ],
+        "fdr": 0.08722063024569429,
+        "rho": -0.091,
+        "rho_model_genes_removed": -0.091,
+        "signature": "HALLMARK_INFLAMMATORY_RESPONSE"
+      },
+      {
+        "ci95": [
+          -0.162,
+          0.044
+        ],
+        "fdr": 0.21497819748142258,
+        "rho": -0.064,
+        "rho_model_genes_removed": -0.064,
+        "signature": "HALLMARK_IL6_JAK_STAT3_SIGNALING"
+      }
+    ],
+    "lymph2cx_auc_abc_vs_gcb": 0.9586278586278586
+  },
+  "test_mode": false,
+  "variance_explained": {
+    "adj_r2_signatures": 0.3417708472229031,
+    "predictors": [
+      "LYMPH2CX_COO_SCORE",
+      "HALLMARK_E2F_TARGETS",
+      "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
+      "HALLMARK_ANGIOGENESIS",
+      "HALLMARK_INTERFERON_GAMMA_RESPONSE",
+      "HALLMARK_TNFA_SIGNALING_VIA_NFKB"
+    ],
+    "r2_lymph2cx_only": 0.1863087251893728,
+    "r2_signatures": 0.3523874464612433
+  }
+}

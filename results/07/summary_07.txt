@@ -1,0 +1,25 @@
+Step 7 clinical comparison (07-1.1) | model 661e2b80be77 | lock 8d87cf887e2d | first complete run: first_results_07.json written
+GSE181063 test (internal test (primary for H3)): all 162/74 d; IPI missing 36, COO missing 0 -> complete case 126/54 d; COO {'GCB': 54, 'ABC': 43, 'UNC': 22, 'MHG': 7}
+  missing-data check: death rate 55.6% vs 42.9%, OS log-rank p 0.074; LP mean +0.16 vs -0.04 (MW p 0.309)
+  C: IPI 0.679 | COO 0.647 | LP 0.688 | IPI + COO 0.727 | IPI + LP 0.724 | COO + LP 0.711 | IPI + COO + LP 0.746
+  LRT +LP: IPI: chi2 16.68, p 4.4e-05 | COO: chi2 15.11, p 1.0e-04 | IPI + COO: chi2 7.35, p 0.007
+  HR/SD of LP: LP: 2.18 (1.59–3.00) | IPI + LP: 1.93 (1.39–2.67) | COO + LP: 1.94 (1.38–2.73) | IPI + COO + LP: 1.63 (1.14–2.34)
+  full model: ipi 1.51 (1.15–1.97); coo_ABC 2.51 (1.24–5.09); coo_other 1.70 (0.78–3.69); lp_per_sd 1.63 (1.14–2.34)
+  delta C +0.020 (-0.004 to +0.053) [1000/1000 valid, 0 failed]; Spearman(LP, IPI) +0.40
+GSE10846 (external, main): all 229/58 d; IPI missing 75, COO missing 0 -> complete case 154/39 d; COO {'GCB': 71, 'ABC': 61, 'UNC': 22}
+  missing-data check: death rate 25.3% vs 25.3%, OS log-rank p 0.541; LP mean +0.02 vs -0.01 (MW p 0.522)
+  C: IPI 0.706 | COO 0.695 | LP 0.722 | IPI + COO 0.765 | IPI + LP 0.748 | COO + LP 0.747 | IPI + COO + LP 0.780
+  LRT +LP: IPI: chi2 8.14, p 0.004 | COO: chi2 5.90, p 0.015 | IPI + COO: chi2 2.25, p 0.134
+  HR/SD of LP: LP: 1.88 (1.41–2.51) | IPI + LP: 1.55 (1.15–2.09) | COO + LP: 1.52 (1.09–2.12) | IPI + COO + LP: 1.29 (0.93–1.80)
+  full model: ipi 1.63 (1.23–2.15); coo_ABC 3.01 (1.28–7.05); coo_other 1.30 (0.39–4.41); lp_per_sd 1.29 (0.93–1.80)
+  delta C +0.015 (-0.006 to +0.051) [1000/1000 valid, 0 failed]; Spearman(LP, IPI) +0.38
+GSE87371 (external, supportive): all 116/41 d; IPI missing 0, COO missing 0 -> complete case 116/41 d; COO {'ABC': 56, 'GCB': 42, 'UNC': 18}
+  C: IPI 0.731 | COO 0.641 | LP 0.630 | IPI + COO 0.752 | IPI + LP 0.753 | COO + LP 0.660 | IPI + COO + LP 0.760
+  LRT +LP: IPI: chi2 3.08, p 0.079 | COO: chi2 1.57, p 0.210 | IPI + COO: chi2 0.61, p 0.434
+  HR/SD of LP: LP: 1.49 (1.09–2.05) | IPI + LP: 1.35 (0.96–1.89) | COO + LP: 1.26 (0.88–1.80) | IPI + COO + LP: 1.17 (0.79–1.73)
+  full model: ipi 1.98 (1.44–2.74); coo_ABC 1.62 (0.72–3.67); coo_other 0.84 (0.26–2.71); lp_per_sd 1.17 (0.79–1.73)
+  delta C +0.008 (-0.008 to +0.045) [1000/1000 valid, 0 failed]; Spearman(LP, IPI) +0.28
+MHG separate (test, n MHG 7): LRT p 0.007, adj HR 1.65 (1.13–2.39), p = 0.009, delta C +0.017 (-0.005 to +0.051)
+H3 (test): chi2 7.35, p 0.007 -> MET
+Red flags: none | extra warnings: none
+CONCLUSION: Adds information beyond IPI and COO (H3 in the test set met (LRT chi2 = 7.35, p = 0.007; adjusted HR per SD 1.63); adjusted HR per SD GSE10846 1.29 (> 1); GSE87371 1.17 (> 1))

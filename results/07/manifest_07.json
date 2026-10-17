@@ -1,0 +1,379 @@
+{
+  "step": "07",
+  "notebook": "07_clinical_comparison.ipynb",
+  "code_version": "07-1.1",
+  "created_utc": "2026-10-16T17:41:40+00:00",
+  "plan": {
+    "version": "1.0",
+    "plan_json_sha256": "e854f71c1e83955335adf421d9eae2e81fd48bf605a11aa7611dc230ee5998c1",
+    "plan_md_sha256": "7bddc953f1bedfc2e5193a5b7cb29febff528bbefd98f9135bb113d8364bde66",
+    "lock_file_sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+    "amendments": 0,
+    "sections_implemented": [
+      "11",
+      "12",
+      "13"
+    ]
+  },
+  "frozen_model": {
+    "file": "results/04/model_04.json",
+    "sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "matches": [
+      "progress_step4b.md",
+      "manifest_04b.json, frozen_model.sha256",
+      "manifest_04b.json, outputs entry",
+      "manifest_05.json, frozen_model.sha256",
+      "manifest_06.json, frozen_model.sha256"
+    ],
+    "n_genes": 44
+  },
+  "inputs_verified_against_lock": {
+    "clinical_all": {
+      "file": "data/clean/clinical_clean_all.csv",
+      "sha256": "06f0804687fbddd5939e116830a9132fdcce0ba1ce7ac1cc6074968099a1c333",
+      "status": "match"
+    },
+    "split": {
+      "file": "data/clean/split_GSE181063.csv",
+      "sha256": "8997da18e62861ddc7614885dfa4ad5075d412a34cca4ba511e922e245c628f2",
+      "status": "match"
+    },
+    "manifest_02a": {
+      "file": "data/clean/manifest_02a.json",
+      "sha256": "50d28deada771335efa7d2e86659ef0f7bb679d11498799e3ddfab3c0ab626fd",
+      "status": "match"
+    },
+    "expr_train": {
+      "file": "data/processed/expr_GSE181063_train.parquet",
+      "sha256": "57485c2b85d714dfa9ffacecfc7ff15ce5cae4745d8390d1bb2216772c350c13",
+      "status": "match"
+    },
+    "gene_table": {
+      "file": "data/processed/gene_table_common.csv",
+      "sha256": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0",
+      "status": "match"
+    },
+    "qc_samples": {
+      "file": "data/processed/qc_samples.csv",
+      "sha256": "0a893af9499fad6d844c0d11591b0f56674c38e93f7747e4d1bb9d2d7ab52882",
+      "status": "match"
+    },
+    "manifest_02b": {
+      "file": "data/processed/manifest_02b.json",
+      "sha256": "48270500185cf7db4260fb2aceef09b42c8e7d4a8ed613cf6d8b992103ab9c11",
+      "status": "match"
+    },
+    "plan_03": {
+      "file": "results/03/plan_03.json",
+      "sha256": "32facc8043d7ced962fa62fadbf2f7f688e6f2d25d305459c2fcc2ffecfec831",
+      "status": "match"
+    },
+    "manifest_03": {
+      "file": "results/03/manifest_03.json",
+      "sha256": "a76e64d35fbab8a6d9754513f91b0d62096bcaebfde97710d33c09fabdcf56b6",
+      "status": "match"
+    },
+    "expr_test": {
+      "file": "data/processed/expr_GSE181063_test.parquet",
+      "sha256": "da21983c79a389011c80c59008c88cf5b707242f094d0439ab4ecadf45add17c",
+      "status": "match"
+    },
+    "expr_GSE10846": {
+      "file": "data/processed/expr_GSE10846.parquet",
+      "sha256": "3be078dfabbc3ea3ca414f5b9d2b1df41b24905eac154c3900e7baea7fb70662",
+      "status": "match"
+    },
+    "expr_GSE87371": {
+      "file": "data/processed/expr_GSE87371.parquet",
+      "sha256": "9d064d94eb6e72e1dad4abd24d1e6ad71197bc2b65ccf442db000084e2d51a06",
+      "status": "match"
+    }
+  },
+  "upstream_outputs_verified": {
+    "results/05/test_lp_05.csv": {
+      "sha256": "aaec9fd5738417d8ae120f11b0ba9900f37868613e4aef855f36fd0b712b2a9d",
+      "matches": "manifest_05.json"
+    },
+    "results/06/external_lp_06.csv": {
+      "sha256": "954b28cd199a33e26ef344622320631875b3af2c11a105b283eb350525f24871",
+      "matches": "manifest_06.json"
+    },
+    "results/06/manifest_06.json": {
+      "sha256": "0899a7594a1be465fb59b4ae77dcfb604d71822dc7df776dc98fa37fbdb4534a",
+      "matches": "progress_step6.md (prefix)"
+    }
+  },
+  "data_access": {
+    "opened": [
+      "results/05/test_lp_05.csv",
+      "results/06/external_lp_06.csv",
+      "rows of data/clean/clinical_clean_all.csv for the scored test and external patients (OS, IPI, COO, age, sex)",
+      "data/clean/split_GSE181063.csv (test membership check)"
+    ],
+    "not_opened": [
+      "every expression file (training, test, external)"
+    ],
+    "fitted": "unpenalized Cox models of clinical variables and the frozen score; no gene model"
+  },
+  "populations": {
+    "GSE181063_test": {
+      "n": 162,
+      "deaths": 74,
+      "missing_ipi": 36,
+      "missing_coo": 0,
+      "deaths_missing_ipi": 20,
+      "complete_case_n": 126,
+      "complete_case_deaths": 54,
+      "incomplete_vs_complete": {
+        "death_rate_incomplete": 0.5555555555555556,
+        "death_rate_complete": 0.42857142857142855,
+        "logrank_p_os": 0.0738345357502711,
+        "lp_per_sd_mean_incomplete": 0.15502953143280046,
+        "lp_per_sd_mean_complete": -0.04429415183794298,
+        "lp_mannwhitney_p": 0.30904121990904454,
+        "age_median_incomplete": 68.95,
+        "age_median_complete": 66.15,
+        "coo_incomplete": {
+          "GCB": 19,
+          "ABC": 7,
+          "MHG": 5,
+          "UNC": 5
+        },
+        "coo_complete": {
+          "GCB": 54,
+          "ABC": 43,
+          "UNC": 22,
+          "MHG": 7
+        },
+        "lp_hr_per_sd_incomplete": {
+          "hr": 1.4874912877436972,
+          "hr_ci_95": [
+            0.9441488452229977,
+            2.343518548275938
+          ],
+          "coef": 0.3970910014414686,
+          "se": 0.23192387986140245,
+          "p_wald": 0.08686701879829253
+        },
+        "lp_hr_per_sd_complete": {
+          "hr": 2.1808205630875364,
+          "hr_ci_95": [
+            1.5868727327786885,
+            2.997076091954456
+          ],
+          "coef": 0.7797012110644006,
+          "se": 0.16221520845783496,
+          "p_wald": 1.5353011405336573e-06
+        }
+      }
+    },
+    "GSE10846": {
+      "n": 229,
+      "deaths": 58,
+      "missing_ipi": 75,
+      "missing_coo": 0,
+      "deaths_missing_ipi": 19,
+      "complete_case_n": 154,
+      "complete_case_deaths": 39,
+      "incomplete_vs_complete": {
+        "death_rate_incomplete": 0.25333333333333335,
+        "death_rate_complete": 0.2532467532467532,
+        "logrank_p_os": 0.541041543719347,
+        "lp_per_sd_mean_incomplete": 0.0172345190597106,
+        "lp_per_sd_mean_complete": -0.008393434607001907,
+        "lp_mannwhitney_p": 0.5216521283422564,
+        "age_median_incomplete": 65.0,
+        "age_median_complete": 60.0,
+        "coo_incomplete": {
+          "GCB": 34,
+          "ABC": 30,
+          "UNC": 11
+        },
+        "coo_complete": {
+          "GCB": 71,
+          "ABC": 61,
+          "UNC": 22
+        },
+        "lp_hr_per_sd_incomplete": {
+          "hr": 1.2504127547976958,
+          "hr_ci_95": [
+            0.7799182559388864,
+            2.0047383754064594
+          ],
+          "coef": 0.2234737006470772,
+          "se": 0.24084109159108524,
+          "p_wald": 0.3534653641704205
+        },
+        "lp_hr_per_sd_complete": {
+          "hr": 1.8824541685942857,
+          "hr_ci_95": [
+            1.4141853446222052,
+            2.505777414773502
+          ],
+          "coef": 0.6325763343632902,
+          "se": 0.14593262912048133,
+          "p_wald": 1.459491842727174e-05
+        }
+      }
+    },
+    "GSE87371": {
+      "n": 116,
+      "deaths": 41,
+      "missing_ipi": 0,
+      "missing_coo": 0,
+      "deaths_missing_ipi": 0,
+      "complete_case_n": 116,
+      "complete_case_deaths": 41
+    }
+  },
+  "reproduction_of_steps_5_6": {
+    "GSE181063_test": {
+      "n": 162,
+      "deaths": 74,
+      "hr_per_sd": 1.9267409272158302,
+      "harrell_c": 0.6636787378988885
+    },
+    "GSE10846": {
+      "n": 229,
+      "deaths": 58,
+      "hr_per_sd": 1.692398945623466,
+      "harrell_c": 0.6594181888470088
+    },
+    "GSE87371": {
+      "n": 116,
+      "deaths": 41,
+      "hr_per_sd": 1.4919978022996025,
+      "harrell_c": 0.6297064927364364
+    }
+  },
+  "clinical_comparison": {
+    "code_version": "07-1.1",
+    "model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "GSE181063_test": {
+      "complete_case_n": 126,
+      "complete_case_deaths": 54,
+      "lrt_chi2": 7.348989109346007,
+      "lrt_p": 0.0067100475328352215,
+      "adjusted_hr_per_sd": 1.6309992664661745,
+      "adjusted_hr_ci_95": [
+        1.1385922567826694,
+        2.336357542716858
+      ],
+      "c_ipi_coo": 0.7265857811834824,
+      "c_ipi_coo_lp": 0.7464878671775224,
+      "delta_c": 0.019902085994039975,
+      "delta_c_ci_95": [
+        -0.004218430611310981,
+        0.05281562753270171
+      ]
+    },
+    "GSE10846": {
+      "complete_case_n": 154,
+      "complete_case_deaths": 39,
+      "lrt_chi2": 2.2497652567320756,
+      "lrt_p": 0.13363467317843586,
+      "adjusted_hr_per_sd": 1.289570786873548,
+      "adjusted_hr_ci_95": [
+        0.9261505465357601,
+        1.7955966452517242
+      ],
+      "c_ipi_coo": 0.7646365001072271,
+      "c_ipi_coo_lp": 0.7799699764100364,
+      "delta_c": 0.015333476302809346,
+      "delta_c_ci_95": [
+        -0.006180053859499157,
+        0.0510075286954069
+      ]
+    },
+    "GSE87371": {
+      "complete_case_n": 116,
+      "complete_case_deaths": 41,
+      "lrt_chi2": 0.6122235468342865,
+      "lrt_p": 0.43395183173207497,
+      "adjusted_hr_per_sd": 1.1695421669958164,
+      "adjusted_hr_ci_95": [
+        0.790188083745307,
+        1.731016840823618
+      ],
+      "c_ipi_coo": 0.7521494218796324,
+      "c_ipi_coo_lp": 0.7601541654313667,
+      "delta_c": 0.008004743551734306,
+      "delta_c_ci_95": [
+        -0.008002618453865342,
+        0.04536093714885015
+      ]
+    },
+    "mhg_separate": {
+      "lrt_p": 0.007391437218932826,
+      "adjusted_hr_per_sd": 1.6461356978327666,
+      "delta_c": 0.017028522775649146,
+      "delta_c_ci_95": [
+        -0.005470550014748943,
+        0.050795534500872305
+      ]
+    },
+    "h3_met": true,
+    "adds_information_beyond_ipi_and_coo": true
+  },
+  "H3_met": true,
+  "supporting_evidence": {
+    "GSE181063_test": {
+      "adjusted HR 95% CI excludes 1": true,
+      "LRT p < 0.05": true,
+      "delta C 95% CI above 0": false
+    },
+    "GSE10846": {
+      "adjusted HR 95% CI excludes 1": false,
+      "LRT p < 0.05": false,
+      "delta C 95% CI above 0": false
+    },
+    "GSE87371": {
+      "adjusted HR 95% CI excludes 1": false,
+      "LRT p < 0.05": false,
+      "delta C 95% CI above 0": false
+    }
+  },
+  "conclusion": "Adds information beyond IPI and COO (H3 in the test set met (LRT chi2 = 7.35, p = 0.007; adjusted HR per SD 1.63); adjusted HR per SD GSE10846 1.29 (> 1); GSE87371 1.17 (> 1))",
+  "red_flags": [],
+  "extra_warnings": [],
+  "first_results_status": "first complete run: first_results_07.json written",
+  "implementation_notes": [
+    "Order: plan lock, plan files, amendments and inputs (vs lock, manifest_04b, manifest_05, manifest_06); manifest_06 hash prefix vs progress_step6.md; frozen model hash (5 records); test_lp_05.csv and external_lp_06.csv vs the outputs of their manifests; joins checked by reproducing the recorded counts, LP-alone HR per SD and Harrell C.",
+    "Score: lp_per_sd from steps 5 and 6 (LP standardized with the mean and SD, ddof 1, of each analysis population: test set 162, GSE10846 229, GSE87371 116).",
+    "COO coding: text stripped and upper-cased; empty/NA treated as missing; GCB reference, ABC, other = any other non-missing value (UNC, MHG, unclassified). Sensitivity: GCB, ABC, MHG, other. IPI used as linear 0-5.",
+    "Complete case: patients with both IPI and COO known; all seven models of a cohort fitted to the same patients. Missing COO is not covered by the plan text and is handled like missing IPI.",
+    "Cox models: lifelines CoxPHFitter (Efron ties, no penalty). LRT = 2 x difference in log partial likelihood, chi-square with df = number of added terms (1). Adjusted HR = HR per SD of lp_per_sd in Cox(IPI + COO + LP), Wald 95% CI.",
+    "Harrell C: scikit-survival concordance_index_censored on each model linear predictor (apparent, same patients).",
+    "Delta C bootstrap: 1,000 resamples of complete-case patients, numpy default_rng(20261515).integers, all index vectors drawn at once, separately per cohort and for the MHG sensitivity analysis; both models refitted in every resample; C computed on the resample; percentile interval. Columns without variation in a resample dropped from both models of that resample (counted).",
+    "A covariate column without variation in a whole complete-case subset is dropped from all models of that subset (reported in dropped_constant_columns).",
+    "Missingness diagnostics (descriptive): patients with vs without complete IPI/COO compared on death rate, OS (log-rank), lp_per_sd (Mann-Whitney), LP-alone HR, age and COO.",
+    "PH check: lifelines proportional_hazard_test on the full model, rank transform; descriptive only.",
+    "Conclusion: plan 12, adjusted HR > 1 judged on the point estimate in both external cohorts."
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "cpu_count": 2,
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.9.1",
+    "scikit-survival": "0.28.0",
+    "lifelines": "0.30.3",
+    "matplotlib": "3.10.0"
+  },
+  "runtime_seconds_this_run": 290.5,
+  "outputs": {
+    "results/07/missingness_07.csv": "c7ecc2e276e94f11b4d8956851761ae8d120b71c80589e2097bb8f277fbbacf1",
+    "results/07/c_index_models_07.csv": "3a4c8dc313be237605b9a41f08c1e512f43f1944fda6e5ceee669fa981df621f",
+    "results/07/lrt_07.csv": "4951c6672232efa2a71c36a9625a2682c39fb0e26a00b07fced28fc2edf44d2c",
+    "results/07/hr_lp_07.csv": "6f9aab66327dd36ae229741b11d7db1a3ba10c12ccf2646768e7915e8c916e0f",
+    "results/07/delta_c_bootstrap_07.csv": "b3fbc22cf4725c888e15fb7572982e6ccc8f3629a067eeb1bc89752e3dbfaa1a",
+    "results/07/clinical_comparison_07.json": "e54355d9822c93309a776cf86980c85e31c1257a214d7b0551bb0af324e00f01",
+    "results/07/first_results_07.json": "11a17906885e322cab438f483fb10058a826ba2c1a2f2fdd4eed1363ecbca4ce",
+    "results/07/summary_07.txt": "a053129b5772b2217f43b49e1b483fb7d35c8b53c9ef45283f344f97d765a327",
+    "figures/07/forest_adjusted_hr_07.png": "5b00ea29dbf0001072d7ca880e8ee1ab11dce7e0d914280c2dbb1db0b2e976b1",
+    "figures/07/c_index_models_07.png": "ddbf35e635b1cc7604a9f3c240a9038257da57937fbd8efbe297320e09f1ad68",
+    "figures/07/delta_c_bootstrap_07.png": "070f2083ca70eaecf240a2f7a3b1b43b6cef98da5d94b635f41361f04a7f3901"
+  }
+}

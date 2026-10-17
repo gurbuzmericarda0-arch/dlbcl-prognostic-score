@@ -1,0 +1,294 @@
+{
+  "plan": "dlbcl-prognosis analysis plan for steps 4-7",
+  "version": "1.0",
+  "drafted_on": "2026-10-15",
+  "master_seed": 20261015,
+  "cohorts": {
+    "training": {
+      "gse": "GSE181063",
+      "split": "train",
+      "platform": "GPL14951",
+      "patients": 380,
+      "deaths": 173,
+      "first_used_in_step": 4
+    },
+    "internal_test": {
+      "gse": "GSE181063",
+      "split": "test",
+      "platform": "GPL14951",
+      "patients": 164,
+      "deaths": 74,
+      "first_used_in_step": 5
+    },
+    "external_main": {
+      "gse": "GSE10846",
+      "platform": "GPL570",
+      "patients": 232,
+      "deaths": 59,
+      "first_used_in_step": 6
+    },
+    "external_supportive": {
+      "gse": "GSE87371",
+      "platform": "GPL570",
+      "patients": 116,
+      "deaths": 41,
+      "first_used_in_step": 6
+    }
+  },
+  "qc": {
+    "primary_exclusion_flag": "sex_mismatch_confident",
+    "sensitivity_exclusion_flag": "corr_outlier",
+    "expected_exclusions": {
+      "training": 7,
+      "internal_test": 2,
+      "GSE10846": 3,
+      "GSE87371": 0
+    },
+    "applies_to_all_cohorts": true
+  },
+  "endpoints": {
+    "primary": {
+      "name": "OS",
+      "time": "os_time_months",
+      "event": "os_event",
+      "event_definition": "death from any cause",
+      "administrative_truncation": null
+    },
+    "secondary": {
+      "name": "PFS",
+      "cohorts": "only where the raw GEO records provide PFS; extracted with the step 2a inclusion rules; coding checked before any PFS analysis",
+      "model_trained_on_pfs": false
+    },
+    "uno_c_tau_months": 60,
+    "uno_c_min_at_risk_fraction": 0.2
+  },
+  "features": {
+    "gene_table": "data/processed/gene_table_common.csv",
+    "gene_id": "entrez_id",
+    "n_genes_input": 13747,
+    "variance_filter_top_n": 5000,
+    "variance_ddof": 1,
+    "standardization": "gene-wise z-score with the mean and SD (ddof=1) of the training data of the current fit",
+    "refit_inside_every_cv_fold": true,
+    "supervised_prescreening": false,
+    "clinical_variables_as_model_inputs": false
+  },
+  "model": {
+    "type": "Cox proportional hazards with elastic-net penalty",
+    "implementation": "scikit-survival CoxnetSurvivalAnalysis",
+    "l1_ratio": 0.9,
+    "n_alphas": 100,
+    "alpha_min_ratio": 0.01,
+    "ties": "breslow",
+    "cv_folds": 10,
+    "cv_stratified_by": "os_event",
+    "cv_criterion": "cross-validated partial-likelihood deviance (Verweij and van Houwelingen 1993; grouped, as in glmnet)",
+    "lambda_rule_primary": "lambda_min",
+    "lambda_rule_sensitivity": "lambda_1se",
+    "numerical_failure_rule": "penalty values at which any fold fails are dropped for all folds; reported",
+    "empty_model_rule": "reported as a null result; settings are not changed to force genes into the model",
+    "grid_boundary_rule": "if lambda_min is the smallest penalty on the grid, this is reported; the grid is not extended",
+    "risk_score": "linear predictor LP = sum over selected genes of beta_g * z_g"
+  },
+  "risk_groups": {
+    "primary_cutoff": "median LP of the training set; high vs low",
+    "internal_test_cutoff": "the numeric training cutoff",
+    "external_cutoff": "median LP of each external cohort",
+    "descriptive": "tertiles",
+    "optimal_cutpoint_search": false
+  },
+  "step4_training": {
+    "nested_cv": {
+      "outer_folds": 5,
+      "outer_repeats": 5,
+      "stratified_by": "os_event",
+      "metric": "Harrell's C in each outer test fold",
+      "lambda_rules": [
+        "lambda_min",
+        "lambda_1se"
+      ],
+      "cv_km": "repeat 1; each outer test fold split at the median LP of its outer training fold"
+    },
+    "added_value_descriptive": "out-of-fold LP (repeat 1, standardized with the LP mean and SD of its outer training fold) added to Cox(IPI + COO) in IPI complete cases; LRT and delta C",
+    "stability_bootstrap": {
+      "resamples": 100,
+      "penalty": "fixed at lambda_min of the final model"
+    },
+    "sensitivity": {
+      "a_lambda_1se": "same CV as the primary model",
+      "b_pure_lasso": {
+        "l1_ratio": 1.0,
+        "nested_cv": "5-fold x 1 repeat, same folds as primary repeat 1"
+      },
+      "c_no_variance_filter": {
+        "variance_filter_top_n": null,
+        "nested_cv": "5-fold x 1 repeat, same folds as primary repeat 1"
+      },
+      "d_exclude_corr_outliers": "final model only",
+      "e_alternative_cv_seeds": "final model only, 5 seeds",
+      "reported": [
+        "number of genes",
+        "Jaccard overlap with the primary model",
+        "nested-CV C where computed"
+      ],
+      "taken_to_test_set": false
+    },
+    "outputs": [
+      "results/04/model_04.json (frozen model)",
+      "CV deviance curve",
+      "nested-CV results",
+      "gene stability table",
+      "training sensitivity table",
+      "results/04/manifest_04b.json"
+    ]
+  },
+  "step5_internal_validation": {
+    "precondition": "SHA-256 of the frozen model recorded in manifest_04b.json",
+    "test_scaling": "training means and SDs",
+    "test_scaling_sensitivity": "z-score within the test set (primary population)",
+    "primary_metric": "Cox HR per 1 SD of LP (SD of the cohort's own LP) with 95% CI",
+    "other_metrics": [
+      "Harrell's C with 95% bootstrap CI (percentile)",
+      "Uno's C truncated at tau (endpoints: uno_c_tau_months, uno_c_min_at_risk_fraction)",
+      "Kaplan-Meier high vs low risk (training cutoff), log-rank test, HR high vs low",
+      "calibration slope (Cox coefficient of the raw LP)",
+      "proportional-hazards check (Schoenfeld residuals), descriptive"
+    ],
+    "bootstrap_resamples": 1000,
+    "H1": "HR per SD > 1 with 95% CI excluding 1 (two-sided alpha = 0.05)",
+    "supporting": [
+      "C-index 95% CI excludes 0.5",
+      "log-rank p < 0.05",
+      "permutation p < 0.05"
+    ],
+    "qc_sensitivity": "correlation outliers excluded (no re-scaling)"
+  },
+  "step5_negative_control": {
+    "permutation": "(time, event) pairs permuted jointly among the primary training patients",
+    "n_permutations": 100,
+    "procedure": "full pipeline of plan sections 4-5, including CV for the penalty, re-run on each permutation",
+    "evaluation": "C-index on the true test labels",
+    "report": [
+      "mean and 2.5-97.5 percentiles of permuted test C",
+      "share of empty models",
+      "empirical p = (1 + number of permuted C >= observed C) / (1 + n_permutations)"
+    ],
+    "leakage_check": {
+      "n_permutations": 10,
+      "nested_cv": "5-fold x 1 repeat",
+      "stop_if_mean_c_above": 0.55
+    }
+  },
+  "step6_external_validation": {
+    "transfer": "frozen Entrez IDs and coefficients; no re-selection, re-fitting or re-tuning",
+    "scaling": "gene-wise z-score within each cohort, computed on its primary analysis population",
+    "not_transferred": "absolute scale: baseline hazard and numeric LP cutoff",
+    "risk_group_cutoff": "median LP of each cohort",
+    "metrics": "as step 5, except calibration slope",
+    "H2": "per cohort: HR per SD > 1 with 95% CI excluding 1; GSE10846 main, GSE87371 supportive",
+    "sensitivity": [
+      "GSE87371 without R-mini-CHOP21 patients (n = 13)",
+      "correlation outliers excluded"
+    ],
+    "sensitivity_scaling": "scores of the primary analysis; no re-scaling"
+  },
+  "step7_clinical_comparison": {
+    "benchmarks": [
+      "IPI (0-5, linear, 1 df)",
+      "COO (GCB reference; ABC; other = UNC, MHG or unclassified)",
+      "IPI + COO"
+    ],
+    "H3": "likelihood-ratio test (1 df), Cox(IPI + COO) vs Cox(IPI + COO + LP per SD); primary in the test set, p < 0.05",
+    "also_reported": [
+      "adjusted HR per SD with 95% CI",
+      "delta Harrell's C with 95% bootstrap CI (both models refitted in each resample)"
+    ],
+    "delta_c_note": "combination weights are fitted in the same cohort, which slightly favours the larger model; the likelihood-ratio test accounts for the extra parameter",
+    "bootstrap_resamples": 1000,
+    "missing_ipi": "complete-case analysis with missingness diagnostics",
+    "coo_sensitivity": "GSE181063: MHG as a separate category",
+    "descriptive": "C-index of IPI, COO and LP alone and combined, in the same complete-case subset",
+    "training_reference_from_step3": {
+      "subset": "ABC/GCB patients with known IPI",
+      "n": 223,
+      "coo_alone_c": 0.614,
+      "ipi_plus_coo_c": 0.736
+    }
+  },
+  "conclusion_rules": {
+    "internally_validated": "H1 met",
+    "externally_validated": "H2 met in GSE10846 and HR > 1 in GSE87371",
+    "adds_information_beyond_ipi_and_coo": "H3 met in the test set and adjusted HR > 1 in both external cohorts",
+    "otherwise": "reported as negative or inconclusive, with the same detail"
+  },
+  "red_flags": [
+    "any C-index > 0.90",
+    "permuted-label mean C > 0.55",
+    "test-set C exceeds the nested-CV mean C by more than 0.10"
+  ],
+  "power": {
+    "GSE181063 test": {
+      "deaths": 74,
+      "min_hr_per_sd_80pct": 1.38,
+      "power_hr_1_3": 0.62,
+      "power_hr_1_5": 0.94
+    },
+    "GSE10846": {
+      "deaths": 59,
+      "min_hr_per_sd_80pct": 1.44,
+      "power_hr_1_3": 0.52,
+      "power_hr_1_5": 0.88
+    },
+    "GSE87371": {
+      "deaths": 41,
+      "min_hr_per_sd_80pct": 1.55,
+      "power_hr_1_3": 0.39,
+      "power_hr_1_5": 0.74
+    }
+  },
+  "multiplicity": "H1 is the only primary hypothesis; all other tests are secondary, unadjusted and supportive",
+  "seeds": {
+    "final_model_cv_folds": 20261015,
+    "alternative_cv_seeds": [
+      20261016,
+      20261017,
+      20261018,
+      20261019,
+      20261020
+    ],
+    "nested_cv_outer_split": "SEED + 100 + r (repeat r = 0..4)",
+    "nested_cv_inner_folds": "SEED + 200 + 10*r + j (outer fold j = 0..4)",
+    "stability_bootstrap": 20261315,
+    "validation_bootstrap": 20261415,
+    "delta_c_bootstrap": 20261515,
+    "permutation_labels": "SEED + 1000 + i (i = 0..99)",
+    "permutation_cv_folds": "SEED + 2000 + i",
+    "leakage_check_labels": "SEED + 3000 + i (i = 0..9)",
+    "leakage_check_outer_split": "SEED + 3100 + i",
+    "leakage_check_inner_folds": "SEED + 3200 + 10*i + j"
+  },
+  "data_access": {
+    "step4_uses": [
+      "training rows of clinical_clean_all.csv (other rows dropped right after loading)",
+      "split_GSE181063.csv",
+      "expr_GSE181063_train.parquet",
+      "training rows of qc_samples.csv",
+      "gene_table_common.csv"
+    ],
+    "step4_never_opens": [
+      "expr_GSE181063_test.parquet",
+      "expr_GSE10846.parquet",
+      "expr_GSE87371.parquet"
+    ],
+    "test_set_opened_in": "step 5, after the frozen model hash is recorded",
+    "external_cohorts_opened_in": "step 6"
+  },
+  "deviations": {
+    "file": "results/04/plan_amendments.md",
+    "policy": "locked files are never edited; changes are appended with date, reason and data seen; after the test set is opened only error corrections are allowed and both the original and the corrected results are reported"
+  },
+  "reporting": [
+    "TRIPOD+AI",
+    "REMARK"
+  ]
+}

@@ -1,0 +1,343 @@
+{
+  "populations": {
+    "GSE10846": {
+      "patients_before_qc": 232,
+      "deaths_before_qc": 59,
+      "excluded_by_primary_qc": [
+        "GSM275133",
+        "GSM275199",
+        "GSM275229"
+      ],
+      "patients": 229,
+      "deaths": 58,
+      "corr_outliers_kept": 8
+    },
+    "GSE87371": {
+      "patients_before_qc": 116,
+      "deaths_before_qc": 41,
+      "excluded_by_primary_qc": [],
+      "patients": 116,
+      "deaths": 41,
+      "corr_outliers_kept": 2
+    }
+  },
+  "scaling": "gene-wise z-score within each cohort (primary population, ddof 1); frozen coefficients",
+  "primary": {
+    "GSE10846": {
+      "n": 229,
+      "deaths": 58,
+      "lp_mean": 5.4299117361579706e-17,
+      "lp_sd": 0.39420436543477555,
+      "hr_per_sd": {
+        "hr": 1.6923989456234663,
+        "hr_ci_95": [
+          1.3180301364088125,
+          2.1731022015562083
+        ],
+        "coef": 0.5261470168568845,
+        "coef_ci_95": [
+          0.27613830107597526,
+          0.7761557326377937
+        ],
+        "p_wald": 3.71100562490906e-05
+      },
+      "harrell_c": 0.6594181888470088,
+      "harrell_c_ci_95": [
+        0.5921539813262924,
+        0.7315003382736319
+      ],
+      "harrell_c_bootstrap": {
+        "resamples": 1000,
+        "failed": 0,
+        "sd": 0.03541644385900641
+      },
+      "uno_tau_months": 47.88,
+      "uno_c": 0.6452451325200902,
+      "cutoff": -0.008308694157008235,
+      "groups": [
+        {
+          "group": "high",
+          "n": 114,
+          "deaths": 39,
+          "median_os_months": null,
+          "median_ci_95": [
+            null,
+            null
+          ],
+          "os_5y": 0.6192120281332015,
+          "os_5y_ci_95": [
+            0.5154261985937364,
+            0.7070638943490237
+          ]
+        },
+        {
+          "group": "low",
+          "n": 115,
+          "deaths": 19,
+          "median_os_months": null,
+          "median_ci_95": [
+            null,
+            null
+          ],
+          "os_5y": 0.7547704965575432,
+          "os_5y_ci_95": [
+            0.6115127660839842,
+            0.8513437592195406
+          ]
+        }
+      ],
+      "logrank": {
+        "chi2": 10.974977367692222,
+        "p": 0.0009235038313725735
+      },
+      "hr_high_vs_low": {
+        "hr": 2.45605050874154,
+        "hr_ci_95": [
+          1.4179254151240765,
+          4.254232301042242
+        ],
+        "coef": 0.8985545755219397,
+        "coef_ci_95": [
+          0.34919482808347324,
+          1.4479143229604063
+        ],
+        "p_wald": 0.001346900137947162
+      },
+      "ph_test": {
+        "rank": {
+          "statistic": 0.004657563291233235,
+          "p": 0.9455895368031338
+        },
+        "km": {
+          "statistic": 0.021952118267154,
+          "p": 0.8822145474674588
+        }
+      },
+      "uno_tau_rule": "47.9 months (fewer than 20% at risk at 60 months)",
+      "median_follow_up_months_reverse_km": 34.2
+    },
+    "GSE87371": {
+      "n": 116,
+      "deaths": 41,
+      "lp_mean": 1.4499895537130278e-16,
+      "lp_sd": 0.3966048295131998,
+      "hr_per_sd": {
+        "hr": 1.4919978022996028,
+        "hr_ci_95": [
+          1.0870520683333231,
+          2.047792839840555
+        ],
+        "coef": 0.4001160287909418,
+        "coef_ci_95": [
+          0.08346950794247754,
+          0.7167625496394061
+        ],
+        "p_wald": 0.013263314833551637
+      },
+      "harrell_c": 0.6297064927364364,
+      "harrell_c_ci_95": [
+        0.536409288825197,
+        0.7179365001546937
+      ],
+      "harrell_c_bootstrap": {
+        "resamples": 1000,
+        "failed": 0,
+        "sd": 0.04627720868225183
+      },
+      "uno_tau_months": 55.16221766,
+      "uno_c": 0.6261487004084954,
+      "cutoff": 0.0011974761745658855,
+      "groups": [
+        {
+          "group": "high",
+          "n": 58,
+          "deaths": 27,
+          "median_os_months": 50.26694045,
+          "median_ci_95": [
+            29.30595483,
+            null
+          ],
+          "os_5y": 0.456220937925114,
+          "os_5y_ci_95": [
+            0.30390607237313183,
+            0.5962513648776814
+          ]
+        },
+        {
+          "group": "low",
+          "n": 58,
+          "deaths": 14,
+          "median_os_months": 68.56673511,
+          "median_ci_95": [
+            68.50102669,
+            null
+          ],
+          "os_5y": 0.7515212981744424,
+          "os_5y_ci_95": [
+            0.5882954517991882,
+            0.8574365449788631
+          ]
+        }
+      ],
+      "logrank": {
+        "chi2": 5.777129646511188,
+        "p": 0.016236034711871638
+      },
+      "hr_high_vs_low": {
+        "hr": 2.168477448355734,
+        "hr_ci_95": [
+          1.1359715530396763,
+          4.139447358030062
+        ],
+        "coef": 0.7740252845877126,
+        "coef_ci_95": [
+          0.1274882786471071,
+          1.4205622905283182
+        ],
+        "p_wald": 0.018953608344429596
+      },
+      "ph_test": {
+        "rank": {
+          "statistic": 0.592965322150424,
+          "p": 0.4412747324811166
+        },
+        "km": {
+          "statistic": 1.2829180608290374,
+          "p": 0.25735717550792336
+        }
+      },
+      "uno_tau_rule": "55.2 months (fewer than 20% at risk at 60 months)",
+      "median_follow_up_months_reverse_km": 49.24845996
+    }
+  },
+  "tertiles_descriptive": {
+    "GSE10846": [
+      {
+        "group": "T1 (low)",
+        "n": 77,
+        "deaths": 10,
+        "median_os_months": null,
+        "median_ci_95": [
+          null,
+          null
+        ],
+        "os_5y": 0.827065645973445,
+        "os_5y_ci_95": [
+          0.6829181177006368,
+          0.9098023607910978
+        ]
+      },
+      {
+        "group": "T2",
+        "n": 76,
+        "deaths": 18,
+        "median_os_months": null,
+        "median_ci_95": [
+          52.32000000000001,
+          null
+        ],
+        "os_5y": 0.6733732430791498,
+        "os_5y_ci_95": [
+          0.49406108360210615,
+          0.8010815405453049
+        ]
+      },
+      {
+        "group": "T3 (high)",
+        "n": 76,
+        "deaths": 30,
+        "median_os_months": null,
+        "median_ci_95": [
+          16.919999999999998,
+          null
+        ],
+        "os_5y": 0.5656627721930169,
+        "os_5y_ci_95": [
+          0.4385757659134609,
+          0.6744526451899275
+        ]
+      }
+    ],
+    "GSE87371": [
+      {
+        "group": "T1 (low)",
+        "n": 39,
+        "deaths": 9,
+        "median_os_months": 68.56673511,
+        "median_ci_95": [
+          68.56673511,
+          null
+        ],
+        "os_5y": 0.7684795673076925,
+        "os_5y_ci_95": [
+          0.5764102748974739,
+          0.8817256553883837
+        ]
+      },
+      {
+        "group": "T2",
+        "n": 38,
+        "deaths": 13,
+        "median_os_months": 68.50102669,
+        "median_ci_95": [
+          44.28747433,
+          null
+        ],
+        "os_5y": 0.6017732503301264,
+        "os_5y_ci_95": [
+          0.37615678128944324,
+          0.7681221834636542
+        ]
+      },
+      {
+        "group": "T3 (high)",
+        "n": 39,
+        "deaths": 19,
+        "median_os_months": 50.26694045,
+        "median_ci_95": [
+          27.20328542,
+          null
+        ],
+        "os_5y": 0.4497942450256619,
+        "os_5y_ci_95": [
+          0.27500649576159053,
+          0.6098922432240291
+        ]
+      }
+    ]
+  },
+  "tertile_cutoffs": {
+    "GSE10846": [
+      -0.21013656786173596,
+      0.17851642932724593
+    ],
+    "GSE87371": [
+      -0.1798370307598128,
+      0.1570042949095503
+    ]
+  },
+  "H2": {
+    "definition": "per cohort: HR per SD > 1 with 95% CI excluding 1; GSE10846 main, GSE87371 supportive",
+    "met": {
+      "GSE10846": true,
+      "GSE87371": true
+    }
+  },
+  "supporting_evidence": {
+    "GSE10846": {
+      "Harrell C 95% CI above 0.5": true,
+      "log-rank p < 0.05": true
+    },
+    "GSE87371": {
+      "Harrell C 95% CI above 0.5": true,
+      "log-rank p < 0.05": true
+    }
+  },
+  "red_flags": [],
+  "extra_warnings": [],
+  "c_minus_nested_cv_mean_c": {
+    "GSE10846": 0.04774974784345354,
+    "GSE87371": 0.0180380517328812
+  },
+  "conclusion": "Externally validated (H2 met in GSE10846 and HR > 1 in GSE87371)"
+}

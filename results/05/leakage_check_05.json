@@ -1,0 +1,33 @@
+{
+  "n_permutations": 10,
+  "outer_folds": 5,
+  "units": 50,
+  "mean_c": 0.499393546181157,
+  "sd_c_folds": 0.01970252910192025,
+  "min_c": 0.4217983651226158,
+  "max_c": 0.5341928251121076,
+  "mean_c_per_permutation": [
+    0.5057869472575355,
+    0.5,
+    0.4980855855855856,
+    0.5,
+    0.5074887058692298,
+    0.4843596730245231,
+    0.5020585048754063,
+    0.5127275797449583,
+    0.47831576616901056,
+    0.5051126992853217
+  ],
+  "share_empty_models": 0.7,
+  "median_genes": 0.0,
+  "stop_if_mean_c_above": 0.55,
+  "passed": true,
+  "path_events": {
+    "spurious_stop_restarts": 0,
+    "genuine_early_stops": 0,
+    "numerical_failures": 0,
+    "convergence_warnings": 0,
+    "penalties_dropped": 0
+  },
+  "folds_lambda_min_at_boundary": 0
+}

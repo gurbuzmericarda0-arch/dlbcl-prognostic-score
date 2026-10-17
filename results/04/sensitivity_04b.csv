@@ -1,0 +1,11 @@
+analysis,description,patients,n_genes,shared_with_primary,jaccard_vs_primary,lambda,lambda_position,at_grid_boundary,nested_cv_c_mean,nested_cv_c_sd,note
+primary,"lambda_min, l1_ratio 0.9, top 5000 genes",373,44,44,1.0,0.08625910082886222,18,False,0.6116684410035552,0.05094076544234931,nested CV 5x5; repeat 1 alone: C 0.615
+a,lambda_1se (same CV as primary),373,3,3,0.06818181818181818,0.1579178379112559,5,False,0.5389975997285181,0.048915121164461624,"nested CV 5x5, lambda_1se of each fold"
+b,pure LASSO (l1_ratio 1.0),373,44,44,1.0,0.07763319074597601,18,False,0.6143860706934394,0.06056117554714962,nested CV 5x1 on the folds of primary repeat 1
+c,"no variance filter (all 13,747 genes)",373,14,9,0.1836734693877551,0.12514718588969623,10,False,0.6056776842433603,0.05176222509384497,nested CV 5x1 on the folds of primary repeat 1
+d,correlation outliers excluded (n = 356),356,20,16,0.3333333333333333,0.11630782208757251,13,False,,,
+e1,CV seed 20261016 (same full-data path),373,44,44,1.0,0.08625910082886222,18,False,,,
+e2,CV seed 20261017 (same full-data path),373,11,11,0.25,0.11945905314658119,11,False,,,
+e3,CV seed 20261018 (same full-data path),373,35,35,0.7954545454545454,0.09466925667221733,16,False,,,
+e4,CV seed 20261019 (same full-data path),373,40,40,0.9090909090909091,0.09036639284978809,17,False,,,
+e5,CV seed 20261020 (same full-data path),373,40,40,0.9090909090909091,0.09036639284978809,17,False,,,

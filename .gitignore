@@ -1,0 +1,8 @@
+data/
+*.parquet
+*.gz
+*.soft
+*.pkl
+*.npz
+.ipynb_checkpoints/
+__pycache__/

@@ -1,0 +1,23 @@
+{
+  "note": "Written once, at the first complete run of step 5; never overwritten (plan \u00a717).",
+  "created_utc": "2026-10-15T19:59:41+00:00",
+  "code_version": "05-1.0",
+  "model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+  "n": 162,
+  "deaths": 74,
+  "hr_per_sd": 1.9267409272158305,
+  "hr_per_sd_ci_95": [
+    1.4913583069926495,
+    2.489227828887411
+  ],
+  "p_wald": 5.212801170170913e-07,
+  "harrell_c": 0.6636787378988885,
+  "harrell_c_ci_95": [
+    0.5959186508323522,
+    0.7295786868125876
+  ],
+  "uno_c": 0.6695105127213974,
+  "logrank_p": 0.00023502225780270276,
+  "permutation_p": 0.009900990099009901,
+  "h1_met": true
+}

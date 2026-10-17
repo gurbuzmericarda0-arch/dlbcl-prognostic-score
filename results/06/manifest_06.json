@@ -1,0 +1,346 @@
+{
+  "step": "06",
+  "notebook": "06_external_validation.ipynb",
+  "code_version": "06-1.0",
+  "created_utc": "2026-10-16T11:05:54+00:00",
+  "plan": {
+    "version": "1.0",
+    "plan_json_sha256": "e854f71c1e83955335adf421d9eae2e81fd48bf605a11aa7611dc230ee5998c1",
+    "plan_md_sha256": "7bddc953f1bedfc2e5193a5b7cb29febff528bbefd98f9135bb113d8364bde66",
+    "lock_file_sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+    "amendments": 0,
+    "sections_implemented": [
+      "10",
+      "12",
+      "13"
+    ]
+  },
+  "frozen_model": {
+    "file": "results/04/model_04.json",
+    "sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "matches": [
+      "progress_step4b.md",
+      "manifest_04b.json, frozen_model.sha256",
+      "manifest_04b.json, outputs entry",
+      "manifest_05.json, frozen_model.sha256"
+    ],
+    "n_genes": 44,
+    "lambda": 0.08625910082886222
+  },
+  "inputs_verified_against_lock": {
+    "clinical_all": {
+      "file": "data/clean/clinical_clean_all.csv",
+      "sha256": "06f0804687fbddd5939e116830a9132fdcce0ba1ce7ac1cc6074968099a1c333",
+      "status": "match"
+    },
+    "split": {
+      "file": "data/clean/split_GSE181063.csv",
+      "sha256": "8997da18e62861ddc7614885dfa4ad5075d412a34cca4ba511e922e245c628f2",
+      "status": "match"
+    },
+    "manifest_02a": {
+      "file": "data/clean/manifest_02a.json",
+      "sha256": "50d28deada771335efa7d2e86659ef0f7bb679d11498799e3ddfab3c0ab626fd",
+      "status": "match"
+    },
+    "expr_train": {
+      "file": "data/processed/expr_GSE181063_train.parquet",
+      "sha256": "57485c2b85d714dfa9ffacecfc7ff15ce5cae4745d8390d1bb2216772c350c13",
+      "status": "match"
+    },
+    "gene_table": {
+      "file": "data/processed/gene_table_common.csv",
+      "sha256": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0",
+      "status": "match"
+    },
+    "qc_samples": {
+      "file": "data/processed/qc_samples.csv",
+      "sha256": "0a893af9499fad6d844c0d11591b0f56674c38e93f7747e4d1bb9d2d7ab52882",
+      "status": "match"
+    },
+    "manifest_02b": {
+      "file": "data/processed/manifest_02b.json",
+      "sha256": "48270500185cf7db4260fb2aceef09b42c8e7d4a8ed613cf6d8b992103ab9c11",
+      "status": "match"
+    },
+    "plan_03": {
+      "file": "results/03/plan_03.json",
+      "sha256": "32facc8043d7ced962fa62fadbf2f7f688e6f2d25d305459c2fcc2ffecfec831",
+      "status": "match"
+    },
+    "manifest_03": {
+      "file": "results/03/manifest_03.json",
+      "sha256": "a76e64d35fbab8a6d9754513f91b0d62096bcaebfde97710d33c09fabdcf56b6",
+      "status": "match"
+    },
+    "expr_test": {
+      "file": "data/processed/expr_GSE181063_test.parquet",
+      "sha256": "da21983c79a389011c80c59008c88cf5b707242f094d0439ab4ecadf45add17c",
+      "status": "match"
+    },
+    "expr_GSE10846": {
+      "file": "data/processed/expr_GSE10846.parquet",
+      "sha256": "3be078dfabbc3ea3ca414f5b9d2b1df41b24905eac154c3900e7baea7fb70662",
+      "status": "match"
+    },
+    "expr_GSE87371": {
+      "file": "data/processed/expr_GSE87371.parquet",
+      "sha256": "9d064d94eb6e72e1dad4abd24d1e6ad71197bc2b65ccf442db000084e2d51a06",
+      "status": "match"
+    }
+  },
+  "data_access": {
+    "gates_before_opening": [
+      "plan lock, plan files and amendments verified",
+      "all input files match lock, manifest_04b and manifest_05",
+      "frozen model SHA-256 matches 4 records",
+      "manifest_05: external files never opened in step 5"
+    ],
+    "external_opened_utc": "2026-10-16T11:05:17+00:00",
+    "access_log": "results/06/external_access_log_06.jsonl",
+    "openings_logged": 1,
+    "opened": [
+      "GSE10846 and GSE87371 rows of data/clean/clinical_clean_all.csv",
+      "GSE10846 and GSE87371 rows of data/processed/qc_samples.csv",
+      "data/processed/expr_GSE10846.parquet",
+      "data/processed/expr_GSE87371.parquet",
+      "results/04/model_04.json, manifest_04b.json; results/05/manifest_05.json"
+    ],
+    "not_opened": [
+      "GSE181063 expression files (training and test)"
+    ]
+  },
+  "populations": {
+    "GSE10846": {
+      "patients_before_qc": 232,
+      "deaths_before_qc": 59,
+      "excluded_by_primary_qc": [
+        "GSM275133",
+        "GSM275199",
+        "GSM275229"
+      ],
+      "patients": 229,
+      "deaths": 58,
+      "corr_outliers_kept": 8
+    },
+    "GSE87371": {
+      "patients_before_qc": 116,
+      "deaths_before_qc": 41,
+      "excluded_by_primary_qc": [],
+      "patients": 116,
+      "deaths": 41,
+      "corr_outliers_kept": 2
+    }
+  },
+  "external_validation": {
+    "code_version": "06-1.0",
+    "model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "GSE10846": {
+      "n": 229,
+      "deaths": 58,
+      "hr_per_sd": 1.6923989456234663,
+      "hr_per_sd_ci_95": [
+        1.3180301364088125,
+        2.1731022015562083
+      ],
+      "p_wald": 3.71100562490906e-05,
+      "harrell_c": 0.6594181888470088,
+      "harrell_c_ci_95": [
+        0.5921539813262924,
+        0.7315003382736319
+      ],
+      "uno_c": 0.6452451325200902,
+      "uno_tau_months": 47.88,
+      "logrank_p": 0.0009235038313725735,
+      "h2_met": true
+    },
+    "GSE87371": {
+      "n": 116,
+      "deaths": 41,
+      "hr_per_sd": 1.4919978022996028,
+      "hr_per_sd_ci_95": [
+        1.0870520683333231,
+        2.047792839840555
+      ],
+      "p_wald": 0.013263314833551637,
+      "harrell_c": 0.6297064927364364,
+      "harrell_c_ci_95": [
+        0.536409288825197,
+        0.7179365001546937
+      ],
+      "uno_c": 0.6261487004084954,
+      "uno_tau_months": 55.16221766,
+      "logrank_p": 0.016236034711871638,
+      "h2_met": true
+    },
+    "externally_validated": true
+  },
+  "H2_met": {
+    "GSE10846": true,
+    "GSE87371": true
+  },
+  "supporting_evidence": {
+    "GSE10846": {
+      "Harrell C 95% CI above 0.5": true,
+      "log-rank p < 0.05": true
+    },
+    "GSE87371": {
+      "Harrell C 95% CI above 0.5": true,
+      "log-rank p < 0.05": true
+    }
+  },
+  "sensitivity": [
+    {
+      "cohort": "GSE10846",
+      "analysis": "primary",
+      "n": 229,
+      "deaths": 58,
+      "hr_per_sd": 1.6923989456234663,
+      "hr_ci_low": 1.3180301364088125,
+      "hr_ci_high": 2.1731022015562083,
+      "p_wald": 3.71100562490906e-05,
+      "harrell_c": 0.6594181888470088,
+      "c_ci_low": 0.5921539813262924,
+      "c_ci_high": 0.7315003382736319,
+      "uno_c": 0.6452451325200902,
+      "uno_tau_months": 47.88,
+      "cutoff": -0.008308694157008235,
+      "logrank_p": 0.0009235038313725735,
+      "hr_high_vs_low": 2.45605050874154
+    },
+    {
+      "cohort": "GSE87371",
+      "analysis": "primary",
+      "n": 116,
+      "deaths": 41,
+      "hr_per_sd": 1.4919978022996028,
+      "hr_ci_low": 1.0870520683333231,
+      "hr_ci_high": 2.047792839840555,
+      "p_wald": 0.013263314833551637,
+      "harrell_c": 0.6297064927364364,
+      "c_ci_low": 0.536409288825197,
+      "c_ci_high": 0.7179365001546937,
+      "uno_c": 0.6261487004084954,
+      "uno_tau_months": 55.16221766,
+      "cutoff": 0.0011974761745658855,
+      "logrank_p": 0.016236034711871638,
+      "hr_high_vs_low": 2.168477448355734
+    },
+    {
+      "cohort": "GSE87371",
+      "analysis": "without R-mini-CHOP21 (n excluded = 13)",
+      "n": 103,
+      "deaths": 36,
+      "hr_per_sd": 1.3902410686377658,
+      "hr_ci_low": 0.9845667486545018,
+      "hr_ci_high": 1.9630667311976358,
+      "p_wald": 0.061260427458350315,
+      "harrell_c": 0.6061285500747384,
+      "c_ci_low": 0.5063513288058413,
+      "c_ci_high": 0.7040707575601857,
+      "uno_c": 0.6062179898801204,
+      "uno_tau_months": 55.16221766,
+      "cutoff": 0.0011974761745658855,
+      "logrank_p": 0.07785410120475283,
+      "hr_high_vs_low": 1.8129564245338405
+    },
+    {
+      "cohort": "GSE10846",
+      "analysis": "correlation outliers excluded (n excluded = 8)",
+      "n": 221,
+      "deaths": 55,
+      "hr_per_sd": 1.8584872919673543,
+      "hr_ci_low": 1.3872396469048123,
+      "hr_ci_high": 2.4898185559435286,
+      "p_wald": 3.272596779322036e-05,
+      "harrell_c": 0.6668074770303094,
+      "c_ci_low": 0.5967198757489278,
+      "c_ci_high": 0.728933995610447,
+      "uno_c": 0.6493471096768201,
+      "uno_tau_months": 47.88,
+      "cutoff": -0.008308694157008235,
+      "logrank_p": 0.001089567226329014,
+      "hr_high_vs_low": 2.482257587458628
+    },
+    {
+      "cohort": "GSE87371",
+      "analysis": "correlation outliers excluded (n excluded = 2)",
+      "n": 114,
+      "deaths": 40,
+      "hr_per_sd": 1.4649426494044244,
+      "hr_ci_low": 1.062871038764353,
+      "hr_ci_high": 2.0191132204890683,
+      "p_wald": 0.019677501596714116,
+      "harrell_c": 0.6229863692688972,
+      "c_ci_low": 0.528472935908264,
+      "c_ci_high": 0.723001368199245,
+      "uno_c": 0.6196804028955283,
+      "uno_tau_months": 55.16221766,
+      "cutoff": 0.0011974761745658855,
+      "logrank_p": 0.02565620575119051,
+      "hr_high_vs_low": 2.064506713242645
+    }
+  ],
+  "conclusion": "Externally validated (H2 met in GSE10846 and HR > 1 in GSE87371)",
+  "red_flags": [],
+  "extra_warnings": [],
+  "c_minus_nested_cv_mean_c": {
+    "GSE10846": 0.04774974784345354,
+    "GSE87371": 0.0180380517328812
+  },
+  "first_results_status": "first complete run: first_results_06.json written",
+  "implementation_notes": [
+    "Order: plan lock and inputs (vs lock, manifest_04b, manifest_05); frozen model hash (4 records) and content; step-5 state; external cohorts opened (logged).",
+    "Scoring: the 44 frozen Entrez IDs (parquet index converted to text, \"1234.0\" -> \"1234\"); each gene z-scored with the mean and SD (ddof 1) of the cohort primary population; LP = sum of frozen coef x z. Training means/SDs of model_04.json not used.",
+    "Risk groups: high = LP > median LP of the cohort primary population; tertiles from the cohort own LP tertiles (T1: LP <= q1; T2: q1 < LP <= q2; T3: LP > q2), descriptive.",
+    "Cox models: lifelines CoxPHFitter (Efron ties, no penalty). HR per SD: LP standardized with the mean and SD (ddof 1) of the cohort primary population. No calibration slope (plan 10.4). PH check: lifelines proportional_hazard_test, rank and KM transforms.",
+    "Harrell C: scikit-survival concordance_index_censored; 1,000 bootstrap resamples, numpy default_rng(20261415).integers, all index vectors drawn at once per cohort; percentile interval.",
+    "Uno C: concordance_index_ipcw with the cohort primary population as censoring and evaluation sample; tau = 60 months unless fewer than 20% have follow-up >= 60 months, then the latest time with >= 20% at risk.",
+    "Kaplan-Meier: lifelines defaults; 5-year OS = KM at 60 months, reported only if the group has follow-up >= 60 months.",
+    "Sensitivity, not fixed in detail by the plan: LP values, per-SD scaling, median cutoff and tau of the primary analysis; bootstrap default_rng(20261415) on the subset size. R-mini-CHOP21 identified from the clinical treatment column (text contains \"mini-chop\").",
+    "Red flags: any Harrell or Uno C > 0.90. The test-set gap rule of plan 13 is reported for the external cohorts as an extra warning only."
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "cpu_count": 2,
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.9.1",
+    "scikit-survival": "0.28.0",
+    "lifelines": "0.30.3",
+    "matplotlib": "3.10.0"
+  },
+  "environment_step5": {
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "cpu_count": 2,
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.9.1",
+    "scikit-survival": "0.28.0",
+    "lifelines": "0.30.3",
+    "joblib": "1.6.0",
+    "matplotlib": "3.10.0"
+  },
+  "runtime_seconds_this_run": 45.6,
+  "outputs": {
+    "results/06/external_lp_06.csv": "954b28cd199a33e26ef344622320631875b3af2c11a105b283eb350525f24871",
+    "results/06/km_external_06.csv": "cdcf5fa981fb40e23e831e0f5c0c556fa27f2b99e7d2b54a1a849213ac1e373e",
+    "results/06/cohort_scaling_06.csv": "22d941a3e21a5a4e60067599101888cf3cc76a8ba773a9a9f5043131c8474796",
+    "results/06/sensitivity_06.csv": "6d247d911c74e64d3b6b107e30577bb66e3b70fc2f902dcb77be66021f00708f",
+    "results/06/sensitivity_06.json": "61bee97f7f7cc72aefe3a038e64f6fae58869bf1dbc92dfd508edd72b8b75345",
+    "results/06/external_validation_06.json": "60d1e2d8e28a9aeab6c5ac52625200281fa6335f0fde854304d8da8f5e300e5c",
+    "results/06/first_results_06.json": "8afd6c3783ccfce3597f3b4ffeae1f9787f3333a73cf4a6fc1265553d4233c8b",
+    "results/06/summary_06.txt": "94781aaa15528fd774a8c64f4cc91f4aeb52e2eeef2b5b404c67d33f52472d1e",
+    "results/06/external_access_log_06.jsonl": "d2d74a0b4c422fb236b714aba34d8b60c308ad64c559a1579f12bf6cdb01f3cc",
+    "figures/06/km_GSE10846_median_06.png": "56bc8c4c33a7464a54b114831363ea6472e5eeae3bdc46422f746f647b1d9260",
+    "figures/06/km_GSE10846_tertiles_06.png": "fa0edb0d84afd4a68965703fc162938fe34d65fb3aeb15fc20d99cfed64b278a",
+    "figures/06/km_GSE87371_median_06.png": "b512527bb984b91a32bd6043b023f6b68f47104ba977f49b5f2a38b1e32d0dda",
+    "figures/06/km_GSE87371_tertiles_06.png": "73c65493cd2833fd67978354d525744b79f6f749b3c8b24dbf72b105296d4d75",
+    "figures/06/lp_distribution_06.png": "e38a8ac8b63710a518cbdfb4fe905a02d609925b8c286ad31b806677e6b9de2f",
+    "figures/06/forest_hr_per_sd_06.png": "1d70467380aa34a8ae454dfc89086431b0750283ff3cb478f94d9f3469dd9c10"
+  }
+}

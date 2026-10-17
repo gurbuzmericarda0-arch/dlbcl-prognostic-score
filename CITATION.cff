@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: If you use this work, please cite it as below.
+title: 'DLBCL gene-expression prognostic score: a pre-registered analysis of public
+  data'
+type: software
+authors:
+- family-names: Gürbüz
+  given-names: Meriç Arda
+version: 1.0.0
+date-released: '2026-10-17'
+repository-code: https://github.com/gurbuzmericarda0-arch/dlbcl-prognostic-score
+license: MIT
+keywords:
+- diffuse large B-cell lymphoma
+- prognostic model
+- gene expression
+- elastic-net Cox
+- external validation
+- TRIPOD+AI
+- REMARK

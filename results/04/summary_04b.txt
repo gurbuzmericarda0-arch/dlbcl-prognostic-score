@@ -1,0 +1,15 @@
+==== 04b SUMMARY ====
+Plan v1.0 lock verified (8d87cf887e2d); inputs unchanged 12/12; amendments 0
+Training population: 373 patients, 171 deaths (7 excluded by sex_mismatch_confident); tied OS times: 13 values, 26 patients
+Final model (lambda_min): 44 genes; lambda 0.08626, position 18/100; at grid boundary: no
+  lambda_1se (sensitivity only): 3 genes; path events of the final fit: {'spurious_stop_restarts': 0, 'genuine_early_stops': 0, 'numerical_failures': 0, 'convergence_warnings': 0, 'penalties_dropped': 0}
+  largest |coef|: JAML (-0.164), PXDNL (-0.137), PLAC8L1 (+0.080), FRRS1 (+0.071), ZBTB7C (-0.069), PALD1 (-0.069), CXCL2 (+0.068), GPR141 (-0.066)
+Frozen model: already frozen, identical result; file not rewritten; SHA-256 661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403
+Nested CV (5x5): C lambda_min 0.612 (SD 0.051, range 0.539-0.726), median 19 genes, empty 0/25; C lambda_1se 0.539 (SD 0.049)
+  nested-CV path events (all folds): {'spurious_stop_restarts': 0, 'genuine_early_stops': 0, 'numerical_failures': 0, 'convergence_warnings': 0, 'penalties_dropped': 0}
+CV-KM repeat 1 (descriptive): high n=195, deaths=114, 5y OS 54.2%; low n=178, deaths=57, 5y OS 80.9%
+Added value (descriptive, IPI complete cases n=281): HR/SD 1.22 (0.98-1.51), LRT p=0.072, C 0.738 -> 0.742
+Stability: 100/100 resamples; final genes selected in >=50%: 4/44; most stable: PXDNL 84%, JAML 68%, PLAC8L1 60%, AGBL4 50%, ATAD3B 49%, CXCL2 44%
+Sensitivity: a) 3 genes, J=0.07; b) 44 genes, J=1.00, C=0.614; c) 14 genes, J=0.18, C=0.606; d) 20 genes, J=0.33; e1) 44 genes, J=1.00; e2) 11 genes, J=0.25; e3) 35 genes, J=0.80; e4) 40 genes, J=0.91; e5) 40 genes, J=0.91
+Red flags: none
+Runtime this run: 7 min

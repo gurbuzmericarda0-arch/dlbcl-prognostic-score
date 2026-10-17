@@ -1,0 +1,6 @@
+gene,claim,source,dlbcl_link
+PXDNL,peroxidasin-like protein; function practically unknown; expressed in human cardiomyocytes,Peterfi et al. 2014 Cardiovasc Res 101(3):342; Kovacs et al. 2021 Antioxidants 10:1565 (doi 10.3390/antiox10101565),none found
+JAML,binds CXADR (CAR); costimulates gamma-delta T cells via PI3K; enriched in CD8 tissue-resident memory TILs; supports antitumor CD8/gamma-delta TIL responses in mice,Witherden et al. 2010 Science 329:1205; Verdino et al. 2010 Science 329:1210; McGraw et al. 2021 J Exp Med 218:e20202644; Eschweiler et al. 2023 Cell Rep 42:112040,none found (direction consistent with an infiltrating-T-cell hypothesis; untested)
+PLAC8L1,uncharacterized PLAC8-motif protein,NCBI Gene 153770,none found
+AGBL4,cytosolic carboxypeptidase 6 (CCP6); long-chain protein deglutamylase; deglutamylates cGAS,Rogowski et al. 2010 Cell; Xia et al. 2016 Nat Immunol (doi 10.1038/ni.3397); UniProt Q5VU57,none found
+CXCL2,neutrophil chemokine (CXCR2 ligand),tumor-associated neutrophils and poor prognosis in DLBCL: Manfroi et al. 2018 Blood Cancer J (doi 10.1038/s41408-018-0099-y),"indirect (neutrophil signature), not CXCL2 itself"

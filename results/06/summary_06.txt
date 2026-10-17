@@ -1,0 +1,21 @@
+Step 6 external validation (06-1.0) | model 661e2b80be77 | lock 8d87cf887e2d | first complete run: first_results_06.json written
+GSE10846 (main): n 229, deaths 58 (QC excluded 3); median FU 34.2 mo
+  H2 HR/SD 1.69 (1.32–2.17), p = 3.7e-05 -> MET
+  Harrell C 0.659 (0.592–0.732); Uno C 0.645 (tau 47.9 months (fewer than 20% at risk at 60 months))
+  log-rank p 9.2e-04; HR high/low 2.46 (1.42–4.25), p = 0.001; PH p 0.946 (rank)
+  high: n 114, deaths 39, median OS not reached, 5-y OS 61.9% (51.5–70.7)
+  low: n 115, deaths 19, median OS not reached, 5-y OS 75.5% (61.2–85.1)
+  tertiles: T1 (low) n 77/10 d, 5-y 82.7% (68.3–91.0); T2 n 76/18 d, 5-y 67.3% (49.4–80.1); T3 (high) n 76/30 d, 5-y 56.6% (43.9–67.4)
+GSE87371 (supportive): n 116, deaths 41 (QC excluded 0); median FU 49.2 mo
+  H2 HR/SD 1.49 (1.09–2.05), p = 0.013 -> MET
+  Harrell C 0.630 (0.536–0.718); Uno C 0.626 (tau 55.2 months (fewer than 20% at risk at 60 months))
+  log-rank p 0.016; HR high/low 2.17 (1.14–4.14), p = 0.019; PH p 0.441 (rank)
+  high: n 58, deaths 27, median OS 50.3 (29.3–no upper limit), 5-y OS 45.6% (30.4–59.6)
+  low: n 58, deaths 14, median OS 68.6 (68.5–no upper limit), 5-y OS 75.2% (58.8–85.7)
+  tertiles: T1 (low) n 39/9 d, 5-y 76.8% (57.6–88.2); T2 n 38/13 d, 5-y 60.2% (37.6–76.8); T3 (high) n 39/19 d, 5-y 45.0% (27.5–61.0)
+Sensitivity (primary scores, no re-scaling):
+  GSE87371 without R-mini-CHOP21 (n excluded = 13): n 103, deaths 36, HR/SD 1.39 (0.98–1.96), C 0.606, log-rank p 0.078
+  GSE10846 correlation outliers excluded (n excluded = 8): n 221, deaths 55, HR/SD 1.86 (1.39–2.49), C 0.667, log-rank p 0.001
+  GSE87371 correlation outliers excluded (n excluded = 2): n 114, deaths 40, HR/SD 1.46 (1.06–2.02), C 0.623, log-rank p 0.026
+Red flags: none | extra warnings: none
+CONCLUSION: Externally validated (H2 met in GSE10846 and HR > 1 in GSE87371)

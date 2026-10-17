@@ -1,0 +1,45 @@
+{
+  "plan": "dlbcl-prognosis analysis plan for steps 4-7",
+  "version": "1.0",
+  "locked_at_utc": "2026-10-15T08:53:26+00:00",
+  "locked_at_local": "2026-10-15T11:53:26+03:00",
+  "plan_json_file": "results/04/analysis_plan_04.json",
+  "plan_json_sha256": "e854f71c1e83955335adf421d9eae2e81fd48bf605a11aa7611dc230ee5998c1",
+  "plan_md_file": "results/04/analysis_plan_04.md",
+  "plan_md_sha256": "7bddc953f1bedfc2e5193a5b7cb29febff528bbefd98f9135bb113d8364bde66",
+  "input_files": {
+    "clinical_all": "data/clean/clinical_clean_all.csv",
+    "split": "data/clean/split_GSE181063.csv",
+    "manifest_02a": "data/clean/manifest_02a.json",
+    "expr_train": "data/processed/expr_GSE181063_train.parquet",
+    "gene_table": "data/processed/gene_table_common.csv",
+    "qc_samples": "data/processed/qc_samples.csv",
+    "manifest_02b": "data/processed/manifest_02b.json",
+    "plan_03": "results/03/plan_03.json",
+    "manifest_03": "results/03/manifest_03.json",
+    "expr_test": "data/processed/expr_GSE181063_test.parquet",
+    "expr_GSE10846": "data/processed/expr_GSE10846.parquet",
+    "expr_GSE87371": "data/processed/expr_GSE87371.parquet"
+  },
+  "input_sha256": {
+    "clinical_all": "06f0804687fbddd5939e116830a9132fdcce0ba1ce7ac1cc6074968099a1c333",
+    "split": "8997da18e62861ddc7614885dfa4ad5075d412a34cca4ba511e922e245c628f2",
+    "manifest_02a": "50d28deada771335efa7d2e86659ef0f7bb679d11498799e3ddfab3c0ab626fd",
+    "expr_train": "57485c2b85d714dfa9ffacecfc7ff15ce5cae4745d8390d1bb2216772c350c13",
+    "gene_table": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0",
+    "qc_samples": "0a893af9499fad6d844c0d11591b0f56674c38e93f7747e4d1bb9d2d7ab52882",
+    "manifest_02b": "48270500185cf7db4260fb2aceef09b42c8e7d4a8ed613cf6d8b992103ab9c11",
+    "plan_03": "32facc8043d7ced962fa62fadbf2f7f688e6f2d25d305459c2fcc2ffecfec831",
+    "manifest_03": "a76e64d35fbab8a6d9754513f91b0d62096bcaebfde97710d33c09fabdcf56b6",
+    "expr_test": "da21983c79a389011c80c59008c88cf5b707242f094d0439ab4ecadf45add17c",
+    "expr_GSE10846": "3be078dfabbc3ea3ca414f5b9d2b1df41b24905eac154c3900e7baea7fb70662",
+    "expr_GSE87371": "9d064d94eb6e72e1dad4abd24d1e6ad71197bc2b65ccf442db000084e2d51a06"
+  },
+  "statement": "Locked before any model fitting and before the GSE181063 test set or the external cohorts were used in any outcome analysis.",
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3"
+  }
+}

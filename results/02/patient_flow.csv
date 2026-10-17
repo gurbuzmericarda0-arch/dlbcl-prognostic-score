@@ -1,0 +1,17 @@
+cohort,step,n,events
+GSE181063,all samples in series,1310,683
+GSE181063,"DLBCL, NOS",1042,584
+GSE181063,qc_fail == 0,885,490
+GSE181063,first-line CHOP-R,633,296
+GSE181063,curative intent,633,296
+GSE181063,OS time > 0,633,296
+GSE181063,one array per patient,596,278
+GSE181063,pre-treatment biopsy,544,247
+GSE10846,all samples in series,420,165
+GSE10846,patient samples (reference arrays removed),414,165
+GSE10846,R-CHOP-like,233,60
+GSE10846,OS time > 0,232,59
+GSE87371,samples with survival data,221,53
+GSE87371,R-CHOP family,122,43
+GSE87371,PMBL excluded,116,41
+GSE87371,OS time > 0,116,41

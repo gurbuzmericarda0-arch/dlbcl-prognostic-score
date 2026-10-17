@@ -1,0 +1,1696 @@
+{
+  "step": "09b",
+  "code_version": "09b-1.0",
+  "timestamp_utc": "2026-10-17T06:01:40+00:00",
+  "repository": "https://github.com/gurbuzmericarda0-arch/dlbcl-prognostic-score",
+  "plan_lock_sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+  "model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+  "checks": [
+    {
+      "check": "plan lock file exists",
+      "ok": true,
+      "detail": "/content/drive/MyDrive/dlbcl-prognosis/results/04/plan_lock_04.json"
+    },
+    {
+      "check": "plan lock hash = recorded value",
+      "ok": true,
+      "detail": "8d87cf887e2d"
+    },
+    {
+      "check": "analysis_plan_04.md: current hash is recorded in the lock",
+      "ok": true,
+      "detail": "7bddc953f1be"
+    },
+    {
+      "check": "analysis_plan_04.json: current hash is recorded in the lock",
+      "ok": true,
+      "detail": "e854f71c1e83"
+    },
+    {
+      "check": "frozen model hash = recorded value",
+      "ok": true,
+      "detail": "661e2b80be77"
+    },
+    {
+      "check": "model hash recorded in manifest_04b",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_05.json exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_06.json exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_07.json exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_08.json exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "plan_amendments.md exists",
+      "ok": true,
+      "detail": "374 bytes"
+    },
+    {
+      "check": "OS event coded 0/1",
+      "ok": true,
+      "detail": "[np.int64(0), np.int64(1)]"
+    },
+    {
+      "check": "sample IDs unique in clinical table",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "GSE181063 eligible patients/deaths = 544/247",
+      "ok": true,
+      "detail": "544/247"
+    },
+    {
+      "check": "GSE10846 eligible patients/deaths = 232/59",
+      "ok": true,
+      "detail": "232/59"
+    },
+    {
+      "check": "GSE87371 eligible patients/deaths = 116/41",
+      "ok": true,
+      "detail": "116/41"
+    },
+    {
+      "check": "split file has a train/test column",
+      "ok": true,
+      "detail": "set"
+    },
+    {
+      "check": "split train = 380/173",
+      "ok": true,
+      "detail": "380/173"
+    },
+    {
+      "check": "split test = 164/74",
+      "ok": true,
+      "detail": "164/74"
+    },
+    {
+      "check": "test population = split test minus QC exclusions",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "Training: all samples found in clinical table",
+      "ok": true,
+      "detail": "0 missing"
+    },
+    {
+      "check": "Training analysis population = 373/171",
+      "ok": true,
+      "detail": "373/171"
+    },
+    {
+      "check": "Test: all samples found in clinical table",
+      "ok": true,
+      "detail": "0 missing"
+    },
+    {
+      "check": "Test analysis population = 162/74",
+      "ok": true,
+      "detail": "162/74"
+    },
+    {
+      "check": "GSE10846: all samples found in clinical table",
+      "ok": true,
+      "detail": "0 missing"
+    },
+    {
+      "check": "GSE10846 analysis population = 229/58",
+      "ok": true,
+      "detail": "229/58"
+    },
+    {
+      "check": "GSE87371: all samples found in clinical table",
+      "ok": true,
+      "detail": "0 missing"
+    },
+    {
+      "check": "GSE87371 analysis population = 116/41",
+      "ok": true,
+      "detail": "116/41"
+    },
+    {
+      "check": "Training: IPI missing = 92",
+      "ok": true,
+      "detail": "92"
+    },
+    {
+      "check": "Training COO counts = step 4a inventory",
+      "ok": true,
+      "detail": "{'GCB': 185, 'ABC': 104, 'UNC': 61, 'MHG': 23}"
+    },
+    {
+      "check": "Test: IPI missing = 36",
+      "ok": true,
+      "detail": "36"
+    },
+    {
+      "check": "Test: reverse-KM follow-up ≈ 101.3 months",
+      "ok": true,
+      "detail": "101.32"
+    },
+    {
+      "check": "GSE10846: IPI missing = 75",
+      "ok": true,
+      "detail": "75"
+    },
+    {
+      "check": "GSE10846: reverse-KM follow-up ≈ 34.2 months",
+      "ok": true,
+      "detail": "34.20"
+    },
+    {
+      "check": "GSE87371: IPI missing = 0",
+      "ok": true,
+      "detail": "0"
+    },
+    {
+      "check": "GSE87371: reverse-KM follow-up ≈ 49.2 months",
+      "ok": true,
+      "detail": "49.25"
+    },
+    {
+      "check": "stability table: gene key column found",
+      "ok": true,
+      "detail": "entrez (entrez)"
+    },
+    {
+      "check": "stability table: selection-frequency column found",
+      "ok": true,
+      "detail": "n_selected"
+    },
+    {
+      "check": "model has 44 genes",
+      "ok": true,
+      "detail": "44"
+    },
+    {
+      "check": "26 risk-increasing / 18 risk-decreasing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "JAML coefficient = -0.164",
+      "ok": true,
+      "detail": "-0.1637"
+    },
+    {
+      "check": "PXDNL coefficient = -0.137",
+      "ok": true,
+      "detail": "-0.1367"
+    },
+    {
+      "check": "PXDNL bootstrap frequency = 0.84",
+      "ok": true,
+      "detail": "0.840"
+    },
+    {
+      "check": "JAML bootstrap frequency = 0.68",
+      "ok": true,
+      "detail": "0.680"
+    },
+    {
+      "check": "PLAC8L1 bootstrap frequency = 0.60",
+      "ok": true,
+      "detail": "0.600"
+    },
+    {
+      "check": "AGBL4 bootstrap frequency = 0.50",
+      "ok": true,
+      "detail": "0.500"
+    },
+    {
+      "check": "staged: results/04/analysis_plan_04.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "staged: results/04/analysis_plan_04.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "staged: results/04/plan_lock_04.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "staged: results/04/plan_amendments.md",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "staged: results/04/model_04.json",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "safety scan: no raw data, large files, secrets or patient-level clinical files",
+      "ok": true,
+      "detail": "clean"
+    }
+  ],
+  "log": [
+    {
+      "level": "INFO",
+      "msg": "report edit \"title\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"empty header table\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"date/author line\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"code availability\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"path note\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"data/clean paths\": 3 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"qc_samples path\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"Fig. 1 row\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"patient-level note\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"TRIPOD 18c\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"TRIPOD 18f\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"TRIPOD 20a\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"TRIPOD 20b\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"TRIPOD 22\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"TRIPOD summary\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"REMARK 2\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"REMARK 12\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"REMARK 13\": 1 replacement(s)"
+    },
+    {
+      "level": "INFO",
+      "msg": "report edit \"REMARK summary\": 1 replacement(s)"
+    }
+  ],
+  "decisions": {
+    "publish_patient_scores": true,
+    "publish_patient_clinical": false,
+    "max_file_mb": 20,
+    "notebook_outputs": "cleared",
+    "raw_data": "not redistributed"
+  },
+  "report_source": "dlbcl-prognosis/report/DLBCL Gene-Expression Prognostic Score — Report (Step 9a).md",
+  "notebooks": {
+    "00_setup.ipynb": "Colab Notebooks/00_setup.ipynb",
+    "01_download.ipynb": "Colab Notebooks/01_download.ipynb",
+    "01b_candidates.ipynb": "Colab Notebooks/01b_candidates.ipynb",
+    "02a_clinical_cleaning.ipynb": "Colab Notebooks/02a_clinical_cleaning.ipynb",
+    "02b_expression_processing.ipynb": "Colab Notebooks/02b_expression_processing.ipynb",
+    "03_positive_control.ipynb": "Colab Notebooks/03_positive_control.ipynb",
+    "04a_analysis_plan.ipynb": "Colab Notebooks/04a_analysis_plan.ipynb",
+    "04b_training_model.ipynb": "Colab Notebooks/04b_training_model.ipynb",
+    "05_internal_validation.ipynb": "Colab Notebooks/05_internal_validation.ipynb",
+    "06_external_validation.ipynb": "Colab Notebooks/06_external_validation.ipynb",
+    "07_clinical_comparison.ipynb": "Colab Notebooks/07_clinical_comparison.ipynb",
+    "08_biological_interpretation.ipynb": "Colab Notebooks/08_biological_interpretation.ipynb",
+    "09b_github_repo.ipynb": "Colab Notebooks/09b_github_repo.ipynb"
+  },
+  "excluded": [
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_000.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_010.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_020.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_030.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_040.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_050.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_060.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_070.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_080.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/boot_090.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/final_primary.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r0_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r0_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r0_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r0_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r0_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r1_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r1_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r1_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r1_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r1_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r2_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r2_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r2_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r2_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r2_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r3_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r3_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r3_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r3_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r3_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r4_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r4_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r4_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r4_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/nested_r4_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_b_final.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_b_nested_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_b_nested_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_b_nested_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_b_nested_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_b_nested_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_c_final.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_c_nested_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_c_nested_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_c_nested_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_c_nested_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_c_nested_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_d_final.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_e_seed20261016.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_e_seed20261017.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_e_seed20261018.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_e_seed20261019.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/checkpoints_04b/sens_e_seed20261020.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/04/cv_km_repeat1_04b.csv",
+      "reason": "patient-level file with clinical/survival columns"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p0_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p0_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p0_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p0_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p0_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p1_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p1_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p1_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p1_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p1_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p2_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p2_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p2_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p2_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p2_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p3_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p3_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p3_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p3_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p3_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p4_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p4_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p4_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p4_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p4_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p5_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p5_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p5_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p5_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p5_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p6_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p6_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p6_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p6_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p6_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p7_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p7_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p7_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p7_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p7_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p8_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p8_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p8_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p8_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p8_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p9_f0.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p9_f1.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p9_f2.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p9_f3.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/leak_p9_f4.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p000.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p001.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p002.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p003.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p004.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p005.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p006.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p007.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p008.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p009.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p010.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p011.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p012.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p013.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p014.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p015.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p016.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p017.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p018.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p019.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p020.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p021.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p022.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p023.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p024.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p025.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p026.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p027.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p028.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p029.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p030.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p031.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p032.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p033.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p034.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p035.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p036.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p037.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p038.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p039.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p040.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p041.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p042.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p043.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p044.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p045.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p046.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p047.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p048.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p049.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p050.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p051.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p052.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p053.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p054.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p055.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p056.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p057.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p058.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p059.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p060.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p061.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p062.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p063.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p064.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p065.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p066.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p067.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p068.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p069.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p070.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p071.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p072.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p073.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p074.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p075.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p076.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p077.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p078.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p079.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p080.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p081.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p082.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p083.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p084.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p085.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p086.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p087.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p088.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p089.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p090.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p091.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p092.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p093.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p094.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p095.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p096.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p097.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p098.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/null_p099.pkl",
+      "reason": "checkpoint (intermediate state)"
+    },
+    {
+      "file": "dlbcl-prognosis/results/05/checkpoints_05/reproduce_4b_fit.pkl",
+      "reason": "checkpoint (intermediate state)"
+    }
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "fd6b3784b36d5ebfc7cbbdddc995ceb31cc8162a48cde14f31f9eee6de806926"
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "513fe8e0411b9a9eaaef2439d626735061e81901879568e025536cbb41f84fc0"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "4da328dd771d89b9909df0503e2cf5e442bcccdeec8d69b49c469233648e14df"
+    },
+    {
+      "path": "README.md",
+      "sha256": "bdb33097eadfe4bcd581671b70c9f8335bab58b107566b3f6cc24198d50ce25a"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "ac15aef29e4a44fc2e9f63fd71397d27a34560c474ad910c830ccca643b8ba8c"
+    },
+    {
+      "path": "figures/02b/boxplots_normalisation.png",
+      "sha256": "53d967f0c2019acaa15db4d4088afddda514dc067c4668a7e929183cb62a4780"
+    },
+    {
+      "path": "figures/02b/pca_train.png",
+      "sha256": "530685b90dba85feba60439c5af1d252def8201d3ee72b3f34a38a5571168d9a"
+    },
+    {
+      "path": "figures/02b/sex_check.png",
+      "sha256": "bbf7a1da75e3d40b401ab87e9bde2168c8af1b76788f8f585b6243bba0af7175"
+    },
+    {
+      "path": "figures/03/coo_score_by_label.png",
+      "sha256": "82065411e47516da4528b4ab960b3264417f3044f2f0c7155ee62b984bad0082"
+    },
+    {
+      "path": "figures/03/km_ABC_vs_GCB.png",
+      "sha256": "7979d5c0e098648089a098bc09120c87cfbd22ec88cbece3f593ea7b9fa6f4c1"
+    },
+    {
+      "path": "figures/03/km_all_COO.png",
+      "sha256": "b3850ff2c461ff6df22aabc021980d97d4d0a4e90c119213b83aba4ee8db21fe"
+    },
+    {
+      "path": "figures/04/coefficients_04b.png",
+      "sha256": "e49aa1095a1e063bb0cf13092cc91f68ffce1f0045f9dbf4de94ae14771eb45f"
+    },
+    {
+      "path": "figures/04/cv_deviance_04b.png",
+      "sha256": "fb59d6e3e0caa2d9a9017abb1ffa94828c61f22f721645a04205c7fed744ff20"
+    },
+    {
+      "path": "figures/04/cv_km_repeat1_04b.png",
+      "sha256": "d10e1b6566222b13a76c73223a1799b13481e5b446948429f779899706a2d993"
+    },
+    {
+      "path": "figures/04/nested_cv_c_04b.png",
+      "sha256": "401e855c11a57bbd4a6554e24e20877c8ec8002cf3286c2f261b061af37fba33"
+    },
+    {
+      "path": "figures/04/stability_top30_04b.png",
+      "sha256": "583ea7f75507c65858fafe70d95d73fb605f8f9556dc7145afd66f49970f758c"
+    },
+    {
+      "path": "figures/05/km_test_median_05.png",
+      "sha256": "37f4d660de4a8c12e0569d32033faffed6cd81bde98e0273edf725969ffe54a9"
+    },
+    {
+      "path": "figures/05/km_test_tertiles_05.png",
+      "sha256": "07dd8f063b99f79de1e7d15bb56b4dc153dac33a15602225f3ce67e8403b5a76"
+    },
+    {
+      "path": "figures/05/leakage_check_05.png",
+      "sha256": "fec8ae54f1ee134ac54610a9130e414dd1370e5f2c4af352fa593fcb05251724"
+    },
+    {
+      "path": "figures/05/lp_distribution_05.png",
+      "sha256": "6193a5d92c7d9ae18e487c391d5f7348c89d7a502091111b205f1b4086f81ac0"
+    },
+    {
+      "path": "figures/05/negative_control_05.png",
+      "sha256": "a0dcd376f53775ec0abafab5820a424b428537c44ba7bc6b44c65a57d8267e81"
+    },
+    {
+      "path": "figures/06/forest_hr_per_sd_06.png",
+      "sha256": "1d70467380aa34a8ae454dfc89086431b0750283ff3cb478f94d9f3469dd9c10"
+    },
+    {
+      "path": "figures/06/km_GSE10846_median_06.png",
+      "sha256": "56bc8c4c33a7464a54b114831363ea6472e5eeae3bdc46422f746f647b1d9260"
+    },
+    {
+      "path": "figures/06/km_GSE10846_tertiles_06.png",
+      "sha256": "fa0edb0d84afd4a68965703fc162938fe34d65fb3aeb15fc20d99cfed64b278a"
+    },
+    {
+      "path": "figures/06/km_GSE87371_median_06.png",
+      "sha256": "b512527bb984b91a32bd6043b023f6b68f47104ba977f49b5f2a38b1e32d0dda"
+    },
+    {
+      "path": "figures/06/km_GSE87371_tertiles_06.png",
+      "sha256": "73c65493cd2833fd67978354d525744b79f6f749b3c8b24dbf72b105296d4d75"
+    },
+    {
+      "path": "figures/06/lp_distribution_06.png",
+      "sha256": "e38a8ac8b63710a518cbdfb4fe905a02d609925b8c286ad31b806677e6b9de2f"
+    },
+    {
+      "path": "figures/07/c_index_models_07.png",
+      "sha256": "ddbf35e635b1cc7604a9f3c240a9038257da57937fbd8efbe297320e09f1ad68"
+    },
+    {
+      "path": "figures/07/delta_c_bootstrap_07.png",
+      "sha256": "070f2083ca70eaecf240a2f7a3b1b43b6cef98da5d94b635f41361f04a7f3901"
+    },
+    {
+      "path": "figures/07/forest_adjusted_hr_07.png",
+      "sha256": "5b00ea29dbf0001072d7ca880e8ee1ab11dce7e0d914280c2dbb1db0b2e976b1"
+    },
+    {
+      "path": "figures/08/hallmark_rank_test_08.png",
+      "sha256": "ba5c1932c74961ea75b88cf56235e56113224883143edef053f2575334e885b1"
+    },
+    {
+      "path": "figures/08/model_genes_coefficients_08.png",
+      "sha256": "fedbd5cf53ecd18c830c358ffbaa1ac6f905899ac42519c4885e53afe9056487"
+    },
+    {
+      "path": "figures/08/signatures_vs_score_08.png",
+      "sha256": "c036706c3982ca303fa366500f23913000d97d30c1f79e3cfd7b530d2d9be6f7"
+    },
+    {
+      "path": "figures/09b/flow_diagram_09b.pdf",
+      "sha256": "9c0934c8735aa9e11d5dcf2f00d26b3dce328039554ef854b768c15a48649711"
+    },
+    {
+      "path": "figures/09b/flow_diagram_09b.png",
+      "sha256": "cbd6e985bbc9b278758ac57d9d695f081c107b51feced464c70d7160de35ffaa"
+    },
+    {
+      "path": "notebooks/00_setup.ipynb",
+      "sha256": "7c1c1df942db8267a66770eb56cd174b73308acfff5d2754158da54622505307"
+    },
+    {
+      "path": "notebooks/01_download.ipynb",
+      "sha256": "783b83e4b40b48d84a91fd018b150ce9c4423b30011b7a9fd05a51481275424c"
+    },
+    {
+      "path": "notebooks/01b_candidates.ipynb",
+      "sha256": "6f365ee35b2b92f506c8a6157900f9ff464ac335fff675f578c8b71ea53b2bd3"
+    },
+    {
+      "path": "notebooks/02a_clinical_cleaning.ipynb",
+      "sha256": "8c5df9a6739173a6a42ed1a3bfe1c9ca911bbf334de13430bae8efde8a9ca391"
+    },
+    {
+      "path": "notebooks/02b_expression_processing.ipynb",
+      "sha256": "342c08357a3eb0173bea72f3d4351458c9b50f675909b4ab55bfed9dbb6820ef"
+    },
+    {
+      "path": "notebooks/03_positive_control.ipynb",
+      "sha256": "2dc51ae7282d87c271fdd5247ecb5e5d2237085b5a63029e8d257c2385facbe0"
+    },
+    {
+      "path": "notebooks/04a_analysis_plan.ipynb",
+      "sha256": "3081c4b28d6dc995fcf9722f0a0fc4a620497d2dab06b08a64bececf55a48b09"
+    },
+    {
+      "path": "notebooks/04b_training_model.ipynb",
+      "sha256": "52cbfa1e03dc237fec2f239f1ab43e147377ea9174ff13959b423ddc4c7c5dfe"
+    },
+    {
+      "path": "notebooks/05_internal_validation.ipynb",
+      "sha256": "97361686d66272b9a7a83efbee95d813dbebf76e11509fe5c8c43da939825ec1"
+    },
+    {
+      "path": "notebooks/06_external_validation.ipynb",
+      "sha256": "aea5232f145893241b89792f064612edcc630211e0cfb467238d46d934ac1a45"
+    },
+    {
+      "path": "notebooks/07_clinical_comparison.ipynb",
+      "sha256": "e20d186a97524d74a0b800676354c7d036992a2d6eeeac0c205a98c1587364cb"
+    },
+    {
+      "path": "notebooks/08_biological_interpretation.ipynb",
+      "sha256": "163e9ca5c787681e7f3bf86421d1bc7b56f402b4eb2bb6c0af9920b8c796eedd"
+    },
+    {
+      "path": "notebooks/09b_github_repo.ipynb",
+      "sha256": "fabab8cceb7bfb78bccfc350b71b53606a34aa65c3f895e7587bbdfae8b3cbca"
+    },
+    {
+      "path": "results/02/cohort_summary.csv",
+      "sha256": "69b2665311c2e194607ac544d916e194ea71a670c2795cf7cb985eda617f08a0"
+    },
+    {
+      "path": "results/02/gene_table_common.csv",
+      "sha256": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0"
+    },
+    {
+      "path": "results/02/manifest_02a.json",
+      "sha256": "50d28deada771335efa7d2e86659ef0f7bb679d11498799e3ddfab3c0ab626fd"
+    },
+    {
+      "path": "results/02/manifest_02b.json",
+      "sha256": "48270500185cf7db4260fb2aceef09b42c8e7d4a8ed613cf6d8b992103ab9c11"
+    },
+    {
+      "path": "results/02/patient_flow.csv",
+      "sha256": "0e501ec3ce2ffdfe91dee196124ac6a7cafd4176e88cbcd57801784595ee29ce"
+    },
+    {
+      "path": "results/03/cox_results.csv",
+      "sha256": "816196f4c2b04a2f332edbcceb32c853a2f56c88cc913a6b57ee6eb948442626"
+    },
+    {
+      "path": "results/03/km_summary_ABC_GCB.csv",
+      "sha256": "23be5f22e8e5fade6fc1bc263c6e0f6cc2acc00536a46b27c5111b3409d3bf46"
+    },
+    {
+      "path": "results/03/km_summary_all_COO.csv",
+      "sha256": "a69bfe40cae53dc7a6a8ef2d4916a159f9af65e599e652d5fb1eeced5f485977"
+    },
+    {
+      "path": "results/03/logrank_results.csv",
+      "sha256": "3b2142e937cb8db3a1ad1bf4c709d507b40aa6d1f00d2df9233cb76ef8a380ec"
+    },
+    {
+      "path": "results/03/manifest_03.json",
+      "sha256": "a76e64d35fbab8a6d9754513f91b0d62096bcaebfde97710d33c09fabdcf56b6"
+    },
+    {
+      "path": "results/03/plan_03.json",
+      "sha256": "32facc8043d7ced962fa62fadbf2f7f688e6f2d25d305459c2fcc2ffecfec831"
+    },
+    {
+      "path": "results/04/added_value_04b.json",
+      "sha256": "a3a5e6c5a46fea76f37b418768d988ae4e1e44abab05b5d55bc15f219897a8ab"
+    },
+    {
+      "path": "results/04/analysis_plan_04.json",
+      "sha256": "e854f71c1e83955335adf421d9eae2e81fd48bf605a11aa7611dc230ee5998c1"
+    },
+    {
+      "path": "results/04/analysis_plan_04.md",
+      "sha256": "7bddc953f1bedfc2e5193a5b7cb29febff528bbefd98f9135bb113d8364bde66"
+    },
+    {
+      "path": "results/04/cv_deviance_04b.csv",
+      "sha256": "1911e91c66884d2ec3dc04637189b187975a64e3dcaea14b4ca86a966ae8b404"
+    },
+    {
+      "path": "results/04/inventory_04a.json",
+      "sha256": "2a2e75b819827bbf9f6dac07c9fa95cb8090106297157bfe57c143d52089bbe1"
+    },
+    {
+      "path": "results/04/manifest_04b.json",
+      "sha256": "20fc5740f0eb9ea37bd87e20c41cecdb96db20922ec509781b161cb4d9b2a5bc"
+    },
+    {
+      "path": "results/04/model_04.json",
+      "sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403"
+    },
+    {
+      "path": "results/04/model_genes_04b.csv",
+      "sha256": "9a61ef7281866b6782564ac0f41f90fc588caee41e4ac46ff0a41e9591b351f4"
+    },
+    {
+      "path": "results/04/nested_cv_folds_04b.csv",
+      "sha256": "5336e3dba894ddbd2cbdca015ffacfa6644492bf857c43f4235b7ed4d66b2eaa"
+    },
+    {
+      "path": "results/04/nested_cv_summary_04b.json",
+      "sha256": "3c60330efe7d32ea1440ecee53d62893483bb7ca3d79acc0a2c7dab92b159aae"
+    },
+    {
+      "path": "results/04/plan_amendments.md",
+      "sha256": "8757d41d6649f8f90ffe8daba13590f148fee041330844f60f4b8196bb43bc16"
+    },
+    {
+      "path": "results/04/plan_lock_04.json",
+      "sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d"
+    },
+    {
+      "path": "results/04/sensitivity_04b.csv",
+      "sha256": "24151c53ff571c6f1372d52ab70b9cc7a62359355457c86c63988a75a5e3722d"
+    },
+    {
+      "path": "results/04/stability_04b.csv",
+      "sha256": "fd6e78aa3e8e3f4cb8b52bf693dd37b03c50634e4f1688f43f592130d8f2ba20"
+    },
+    {
+      "path": "results/04/summary_04b.txt",
+      "sha256": "f8aa3d5c72e7a8ae48fae61af9d8e0b3903ecb68adab1433c4177839a30c8ab6"
+    },
+    {
+      "path": "results/04/variance_filter_genes_04b.csv",
+      "sha256": "2a4fe1b60fbaa45dc8ceda5f71a5877a06dc6057c909d55dc87342908aab62b7"
+    },
+    {
+      "path": "results/05/first_results_05.json",
+      "sha256": "4efaa5464d73834e75cf1c28dd754955540985f35d0d60ef31d744394f02e93b"
+    },
+    {
+      "path": "results/05/frozen_model_check_05.json",
+      "sha256": "052c740da12697ace7c390c7c84d98a443be972d2a74757ceaa74833298ca688"
+    },
+    {
+      "path": "results/05/internal_validation_05.json",
+      "sha256": "8c71e5919cc86b2bd02acc3e78d29398e3bbf1d61514fd73a416b42f9f409773"
+    },
+    {
+      "path": "results/05/km_test_05.csv",
+      "sha256": "b24f3f21ce5dde943ee983c90fc90505442a6c31107f3ba24b086b7232d60b56"
+    },
+    {
+      "path": "results/05/leakage_check_05.csv",
+      "sha256": "07a7aa5149945f525bc3662aeaefe809b4eff93d9356e667b96f7fead8855d19"
+    },
+    {
+      "path": "results/05/leakage_check_05.json",
+      "sha256": "b8423cd10f43479356d28a61bd3e44c74b5c5d29d701deb545f697f4ec570108"
+    },
+    {
+      "path": "results/05/manifest_05.json",
+      "sha256": "cb8d10f0f7e0beecec66a2dd1d915552c6751aba3b39a50e9a6943eb1392a166"
+    },
+    {
+      "path": "results/05/negative_control_05.csv",
+      "sha256": "7f896c523c4ceacb8bfa16749ea19a2bb47a3e8dd3a247a35a9b3715c25ebcd5"
+    },
+    {
+      "path": "results/05/negative_control_05.json",
+      "sha256": "3effd702414212a53469141262eaa3deba4158a860512d682cf86873a316ddc7"
+    },
+    {
+      "path": "results/05/null_models_05.csv",
+      "sha256": "5a3af1ecc37e03162357f1f9d40351b05edfd6c35a97399b5740fd012eaa9e66"
+    },
+    {
+      "path": "results/05/sensitivity_05.csv",
+      "sha256": "356a4ee91e2ab88b5d35807565528353680f41afcd53d813f85198871e98a895"
+    },
+    {
+      "path": "results/05/sensitivity_05.json",
+      "sha256": "e660b760aa431f0cad9d3407e56b0da06aa2f3a546e914b5d191a9ccb5d89a59"
+    },
+    {
+      "path": "results/05/summary_05.txt",
+      "sha256": "16f01e32cfb4c889f30dc113b92df2af22f75bb88567da41699d56a44ac818e8"
+    },
+    {
+      "path": "results/05/test_access_log_05.jsonl",
+      "sha256": "89e8f61fd475a25f1e991bd369f2fd072d33a0fe5ccf0d4e87a1c586eaface6f"
+    },
+    {
+      "path": "results/05/test_lp_05.csv",
+      "sha256": "aaec9fd5738417d8ae120f11b0ba9900f37868613e4aef855f36fd0b712b2a9d"
+    },
+    {
+      "path": "results/06/cohort_scaling_06.csv",
+      "sha256": "22d941a3e21a5a4e60067599101888cf3cc76a8ba773a9a9f5043131c8474796"
+    },
+    {
+      "path": "results/06/external_access_log_06.jsonl",
+      "sha256": "d2d74a0b4c422fb236b714aba34d8b60c308ad64c559a1579f12bf6cdb01f3cc"
+    },
+    {
+      "path": "results/06/external_lp_06.csv",
+      "sha256": "954b28cd199a33e26ef344622320631875b3af2c11a105b283eb350525f24871"
+    },
+    {
+      "path": "results/06/external_validation_06.json",
+      "sha256": "60d1e2d8e28a9aeab6c5ac52625200281fa6335f0fde854304d8da8f5e300e5c"
+    },
+    {
+      "path": "results/06/first_results_06.json",
+      "sha256": "8afd6c3783ccfce3597f3b4ffeae1f9787f3333a73cf4a6fc1265553d4233c8b"
+    },
+    {
+      "path": "results/06/km_external_06.csv",
+      "sha256": "cdcf5fa981fb40e23e831e0f5c0c556fa27f2b99e7d2b54a1a849213ac1e373e"
+    },
+    {
+      "path": "results/06/manifest_06.json",
+      "sha256": "0899a7594a1be465fb59b4ae77dcfb604d71822dc7df776dc98fa37fbdb4534a"
+    },
+    {
+      "path": "results/06/sensitivity_06.csv",
+      "sha256": "6d247d911c74e64d3b6b107e30577bb66e3b70fc2f902dcb77be66021f00708f"
+    },
+    {
+      "path": "results/06/sensitivity_06.json",
+      "sha256": "61bee97f7f7cc72aefe3a038e64f6fae58869bf1dbc92dfd508edd72b8b75345"
+    },
+    {
+      "path": "results/06/summary_06.txt",
+      "sha256": "94781aaa15528fd774a8c64f4cc91f4aeb52e2eeef2b5b404c67d33f52472d1e"
+    },
+    {
+      "path": "results/07/c_index_models_07.csv",
+      "sha256": "3a4c8dc313be237605b9a41f08c1e512f43f1944fda6e5ceee669fa981df621f"
+    },
+    {
+      "path": "results/07/clinical_comparison_07.json",
+      "sha256": "e54355d9822c93309a776cf86980c85e31c1257a214d7b0551bb0af324e00f01"
+    },
+    {
+      "path": "results/07/delta_c_bootstrap_07.csv",
+      "sha256": "b3fbc22cf4725c888e15fb7572982e6ccc8f3629a067eeb1bc89752e3dbfaa1a"
+    },
+    {
+      "path": "results/07/first_results_07.json",
+      "sha256": "11a17906885e322cab438f483fb10058a826ba2c1a2f2fdd4eed1363ecbca4ce"
+    },
+    {
+      "path": "results/07/hr_lp_07.csv",
+      "sha256": "6f9aab66327dd36ae229741b11d7db1a3ba10c12ccf2646768e7915e8c916e0f"
+    },
+    {
+      "path": "results/07/lrt_07.csv",
+      "sha256": "4951c6672232efa2a71c36a9625a2682c39fb0e26a00b07fced28fc2edf44d2c"
+    },
+    {
+      "path": "results/07/manifest_07.json",
+      "sha256": "c2daad1cc47b2560d59e9f97754d664a3f80b4662a5388a394581b3db346214f"
+    },
+    {
+      "path": "results/07/missingness_07.csv",
+      "sha256": "c7ecc2e276e94f11b4d8956851761ae8d120b71c80589e2097bb8f277fbbacf1"
+    },
+    {
+      "path": "results/07/summary_07.txt",
+      "sha256": "a053129b5772b2217f43b49e1b483fb7d35c8b53c9ef45283f344f97d765a327"
+    },
+    {
+      "path": "results/08/analysis_config_08.json",
+      "sha256": "8e504a132c8ed98dafa6f5d1b04afc76e3191bccf6881680fe9f232d093abb02"
+    },
+    {
+      "path": "results/08/checks_08.csv",
+      "sha256": "21f0627ae8cb1117a0d8e62c55cf6d1263ada6e1d87fdd1f3b0bde9a702969df"
+    },
+    {
+      "path": "results/08/gene_lp_correlation_08.csv",
+      "sha256": "cea7abe3a92400280a9002a44fcb884d7d37b607d394fb424c4a5b5d63d0698e"
+    },
+    {
+      "path": "results/08/literature_genes_08.csv",
+      "sha256": "21f2254038230b99dd9ad7df0a07597cb50139980772940fcc58c379ccda4076"
+    },
+    {
+      "path": "results/08/manifest_08.json",
+      "sha256": "690edb7136ccd0d586c5b8bc7a9a831ab598e569f530dec5e5a95a116c8d333e"
+    },
+    {
+      "path": "results/08/model_genes_annotated_08.csv",
+      "sha256": "bbd1a0f949929b8682f7731ce5f12e71466f5d778c44015860f81b25c562dabc"
+    },
+    {
+      "path": "results/08/ora_08.csv",
+      "sha256": "52440dd81ec20da421b267f151fc7eedeff96b772022165e552c89da58692941"
+    },
+    {
+      "path": "results/08/rank_test_08.csv",
+      "sha256": "e5e965c203728aca92b1049014b8e067e9765cb2aa29915f953bd391482b8da7"
+    },
+    {
+      "path": "results/08/results_08.json",
+      "sha256": "c94020cba84652f5da261830a00c192bf6ad76680c4920c4ac48e6a5ae808fc1"
+    },
+    {
+      "path": "results/08/run_log_08.jsonl",
+      "sha256": "67e961657584289cdf9a07e18dd20e8a69517820e56184716ac6956e6c2a4430"
+    },
+    {
+      "path": "results/08/signature_associations_08.csv",
+      "sha256": "d4d739eaa855caedc18569e6fc275f7b237928973e470ced8cdb6854b265e3a6"
+    },
+    {
+      "path": "results/08/summary_08.txt",
+      "sha256": "53707886b7c4b1a2fc4e125798edbd19d0871dc39754c288276914917a10556b"
+    },
+    {
+      "path": "results/09b/table_s1_characteristics_09b.csv",
+      "sha256": "637743a52f4f06fd88af0b36819b19db082916486111fbf77a45ec5866ac9cfe"
+    },
+    {
+      "path": "results/09b/table_s1_characteristics_wide_09b.csv",
+      "sha256": "d53ccf7bd992d3464594d474f11278e8611a3c0b626c3c104e14e1fcee85f3b5"
+    },
+    {
+      "path": "results/09b/table_s2_model_coefficients_09b.csv",
+      "sha256": "4469ad7b48180f53ac67cc641c8c9aa13c97e55d55e96563c2b252c210a050cd"
+    }
+  ],
+  "total_mb": 8.78
+}

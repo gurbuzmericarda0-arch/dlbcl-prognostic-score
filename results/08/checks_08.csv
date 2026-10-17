@@ -1,0 +1,62 @@
+check,ok,detail
+file exists: lock,True,results/04/plan_lock_04.json
+file exists: amendments,True,results/04/plan_amendments.md
+file exists: model,True,results/04/model_04.json
+file exists: manifest_04b,True,results/04/manifest_04b.json
+file exists: manifest_05,True,results/05/manifest_05.json
+file exists: manifest_06,True,results/06/manifest_06.json
+file exists: manifest_07,True,results/07/manifest_07.json
+file exists: first_results_07,True,results/07/first_results_07.json
+file exists: expr_train,True,data/processed/expr_GSE181063_train.parquet
+file exists: gene_table,True,data/processed/gene_table_common.csv
+file exists: qc,True,data/processed/qc_samples.csv
+file exists: clinical,True,data/clean/clinical_clean_all.csv
+file exists: stability,True,results/04/stability_04b.csv
+file exists: variance_filter,True,results/04/variance_filter_genes_04b.csv
+plan lock SHA-256,True,8d87cf887e2d
+frozen model SHA-256,True,661e2b80be77
+manifest_04b records the frozen model hash,True,
+manifest_06 SHA-256 prefix,True,0899a7594a1b
+lock: no changed files among named records,True,[]
+manifest_04b: no changed files among named records,True,[]
+manifest_05: no changed files among named records,True,[]
+manifest_06: no changed files among named records,True,[]
+manifest_07: no changed files among named records,True,[]
+file exists: plan_md,True,
+current SHA-256 of plan_md recorded in the plan lock,True,7bddc953f1be
+file exists: plan_json,True,
+current SHA-256 of plan_json recorded in the plan lock,True,e854f71c1e83
+file exists: expr_train,True,
+current SHA-256 of expr_train recorded in the plan lock,True,57485c2b85d7
+file exists: gene_table,True,
+current SHA-256 of gene_table recorded in the plan lock,True,4fcb0b07e6bd
+file exists: qc,True,
+current SHA-256 of qc recorded in the plan lock,True,0a893af9499f
+file exists: clinical,True,
+current SHA-256 of clinical recorded in the plan lock,True,06f0804687fb
+frozen model hash recorded in manifest_04b,True,661e2b80be77
+frozen model hash recorded in manifest_05,True,
+frozen model hash recorded in manifest_06,True,
+model has expected number of genes,True,44
+model lambda,True,0.08625910082886222
+training expression: genes x samples,True,"(13747, 380)"
+gene identifiers unique,True,
+QC table columns found,True,"('sample_id', 380)"
+QC exclusions in training set,True,7
+primary population size,True,373
+"clinical columns found (id, coo, ipi only)",True,"('sample_id', 'coo', 'ipi', 380)"
+COO distribution (primary),True,"{'GCB': 185, 'ABC': 104, 'UNC': 61, 'MHG': 23}"
+IPI missing (primary),True,92
+all model genes present in expression,True,[]
+model train_mean reproduced from training data,True,0.0
+model train_sd reproduced from training data,True,0.0
+training LP median equals frozen cutoff,True,"(np.float64(-0.004826728660740319), -0.00482672866074027)"
+frozen cutoff matches step-5 record,True,-0.00482672866074027
+"all 44 model genes inside the recomputed 5,000-gene pool",True,
+"recomputed 5,000-gene pool identical to 4b file",True,0
+gene table symbol columns,True,"['symbol', 'symbol_GPL570', 'probe_GSE181063', 'probe_GSE10846', 'probe_GSE87371', 'train_mean_GSE181063']"
+stability table key column found,True,"['entrez', 'symbol', 'n_selected', 'in_final_model', 'final_coef', 'selection_frequency']"
+known stable genes mapped to Entrez,True,"{'PXDNL': 0.84, 'JAML': 0.68, 'PLAC8L1': 0.6, 'AGBL4': 0.5}"
+"bootstrap frequency column reproduces 4b values (PXDNL 84%, JAML 68%, PLAC8L1 60%, AGBL4 50%)",True,"['entrez', 'symbol', 'n_selected', 'in_final_model', 'final_coef', 'selection_frequency', '_entrez']"
+Hallmark collection has 50 sets,True,50
+at least 12 of 15 Lymph2Cx genes found,True,[]

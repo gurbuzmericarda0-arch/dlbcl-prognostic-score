@@ -1,0 +1,88 @@
+{
+  "created_utc": "2026-10-15T08:53:26+00:00",
+  "plan_lock_sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+  "input_check": {
+    "clinical_all": "match",
+    "split": "match",
+    "expr_train": "match",
+    "gene_table": "match",
+    "qc_samples": "match",
+    "plan_03": "not listed",
+    "expr_test": "match",
+    "expr_GSE10846": "match",
+    "expr_GSE87371": "match"
+  },
+  "training_all": {
+    "patients": 380,
+    "deaths": 173
+  },
+  "excluded_by_primary_qc": {
+    "patients": 7,
+    "deaths": 2,
+    "sample_ids": [
+      "GSM5482781",
+      "GSM5482796",
+      "GSM5482806",
+      "GSM5482816",
+      "GSM5483107",
+      "GSM5483164",
+      "GSM5483553"
+    ]
+  },
+  "primary_population": {
+    "patients": 373,
+    "deaths": 171,
+    "ipi_missing": 92,
+    "coo": {
+      "GCB": 185,
+      "ABC": 104,
+      "UNC": 61,
+      "MHG": 23
+    },
+    "corr_outliers_retained": 17
+  },
+  "expression_train": {
+    "genes": 13747,
+    "samples": 380,
+    "index_columns": [
+      "gene"
+    ],
+    "samples_equal_training_ids": true,
+    "n_genes_as_planned": true
+  },
+  "schema": {
+    "clinical_columns": [
+      "sample_id",
+      "array_id",
+      "patient_key",
+      "cohort",
+      "platform",
+      "os_time_months",
+      "os_event",
+      "age",
+      "sex",
+      "stage",
+      "ecog",
+      "ldh_high",
+      "extranodal",
+      "ipi",
+      "coo",
+      "treatment"
+    ],
+    "qc_columns": [
+      "sample_id",
+      "cohort",
+      "sex_clinical",
+      "sex_predicted",
+      "y_score",
+      "xist_score",
+      "sex_score",
+      "sex_mismatch_any",
+      "sex_mismatch_confident",
+      "median_corr",
+      "corr_robust_z",
+      "corr_outlier",
+      "set"
+    ]
+  }
+}

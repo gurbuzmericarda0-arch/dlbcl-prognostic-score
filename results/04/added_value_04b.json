@@ -1,0 +1,15 @@
+{
+  "n": 281,
+  "deaths": 118,
+  "description": "Cox(IPI + COO) vs Cox(IPI + COO + out-of-fold LP per SD), IPI complete cases, repeat 1; descriptive",
+  "lrt_chi2": 3.2318193720623185,
+  "lrt_p": 0.07222041260064643,
+  "hr_per_sd": 1.2187057932935497,
+  "hr_ci_95": [
+    0.9840321479546533,
+    1.5093448051411669
+  ],
+  "c_ipi_coo": 0.7383104209097081,
+  "c_ipi_coo_lp": 0.7416412084181941,
+  "delta_c": 0.0033307875084860328
+}

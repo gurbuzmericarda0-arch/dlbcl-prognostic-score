@@ -1,0 +1,420 @@
+{
+  "analysis_config": {
+    "file": "results/08/analysis_config_08.json",
+    "sha256": "8e504a132c8ed98dafa6f5d1b04afc76e3191bccf6881680fe9f232d093abb02"
+  },
+  "checks": [
+    {
+      "check": "file exists: lock",
+      "detail": "results/04/plan_lock_04.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: amendments",
+      "detail": "results/04/plan_amendments.md",
+      "ok": true
+    },
+    {
+      "check": "file exists: model",
+      "detail": "results/04/model_04.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: manifest_04b",
+      "detail": "results/04/manifest_04b.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: manifest_05",
+      "detail": "results/05/manifest_05.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: manifest_06",
+      "detail": "results/06/manifest_06.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: manifest_07",
+      "detail": "results/07/manifest_07.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: first_results_07",
+      "detail": "results/07/first_results_07.json",
+      "ok": true
+    },
+    {
+      "check": "file exists: expr_train",
+      "detail": "data/processed/expr_GSE181063_train.parquet",
+      "ok": true
+    },
+    {
+      "check": "file exists: gene_table",
+      "detail": "data/processed/gene_table_common.csv",
+      "ok": true
+    },
+    {
+      "check": "file exists: qc",
+      "detail": "data/processed/qc_samples.csv",
+      "ok": true
+    },
+    {
+      "check": "file exists: clinical",
+      "detail": "data/clean/clinical_clean_all.csv",
+      "ok": true
+    },
+    {
+      "check": "file exists: stability",
+      "detail": "results/04/stability_04b.csv",
+      "ok": true
+    },
+    {
+      "check": "file exists: variance_filter",
+      "detail": "results/04/variance_filter_genes_04b.csv",
+      "ok": true
+    },
+    {
+      "check": "plan lock SHA-256",
+      "detail": "8d87cf887e2d",
+      "ok": true
+    },
+    {
+      "check": "frozen model SHA-256",
+      "detail": "661e2b80be77",
+      "ok": true
+    },
+    {
+      "check": "manifest_04b records the frozen model hash",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "manifest_06 SHA-256 prefix",
+      "detail": "0899a7594a1b",
+      "ok": true
+    },
+    {
+      "check": "lock: no changed files among named records",
+      "detail": "[]",
+      "ok": true
+    },
+    {
+      "check": "manifest_04b: no changed files among named records",
+      "detail": "[]",
+      "ok": true
+    },
+    {
+      "check": "manifest_05: no changed files among named records",
+      "detail": "[]",
+      "ok": true
+    },
+    {
+      "check": "manifest_06: no changed files among named records",
+      "detail": "[]",
+      "ok": true
+    },
+    {
+      "check": "manifest_07: no changed files among named records",
+      "detail": "[]",
+      "ok": true
+    },
+    {
+      "check": "file exists: plan_md",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "current SHA-256 of plan_md recorded in the plan lock",
+      "detail": "7bddc953f1be",
+      "ok": true
+    },
+    {
+      "check": "file exists: plan_json",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "current SHA-256 of plan_json recorded in the plan lock",
+      "detail": "e854f71c1e83",
+      "ok": true
+    },
+    {
+      "check": "file exists: expr_train",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "current SHA-256 of expr_train recorded in the plan lock",
+      "detail": "57485c2b85d7",
+      "ok": true
+    },
+    {
+      "check": "file exists: gene_table",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "current SHA-256 of gene_table recorded in the plan lock",
+      "detail": "4fcb0b07e6bd",
+      "ok": true
+    },
+    {
+      "check": "file exists: qc",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "current SHA-256 of qc recorded in the plan lock",
+      "detail": "0a893af9499f",
+      "ok": true
+    },
+    {
+      "check": "file exists: clinical",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "current SHA-256 of clinical recorded in the plan lock",
+      "detail": "06f0804687fb",
+      "ok": true
+    },
+    {
+      "check": "frozen model hash recorded in manifest_04b",
+      "detail": "661e2b80be77",
+      "ok": true
+    },
+    {
+      "check": "frozen model hash recorded in manifest_05",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "frozen model hash recorded in manifest_06",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "model has expected number of genes",
+      "detail": "44",
+      "ok": true
+    },
+    {
+      "check": "model lambda",
+      "detail": "0.08625910082886222",
+      "ok": true
+    },
+    {
+      "check": "training expression: genes x samples",
+      "detail": "(13747, 380)",
+      "ok": true
+    },
+    {
+      "check": "gene identifiers unique",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "QC table columns found",
+      "detail": "('sample_id', 380)",
+      "ok": true
+    },
+    {
+      "check": "QC exclusions in training set",
+      "detail": "7",
+      "ok": true
+    },
+    {
+      "check": "primary population size",
+      "detail": "373",
+      "ok": true
+    },
+    {
+      "check": "clinical columns found (id, coo, ipi only)",
+      "detail": "('sample_id', 'coo', 'ipi', 380)",
+      "ok": true
+    },
+    {
+      "check": "COO distribution (primary)",
+      "detail": "{'GCB': 185, 'ABC': 104, 'UNC': 61, 'MHG': 23}",
+      "ok": true
+    },
+    {
+      "check": "IPI missing (primary)",
+      "detail": "92",
+      "ok": true
+    },
+    {
+      "check": "all model genes present in expression",
+      "detail": "[]",
+      "ok": true
+    },
+    {
+      "check": "model train_mean reproduced from training data",
+      "detail": "0.0",
+      "ok": true
+    },
+    {
+      "check": "model train_sd reproduced from training data",
+      "detail": "0.0",
+      "ok": true
+    },
+    {
+      "check": "training LP median equals frozen cutoff",
+      "detail": "(np.float64(-0.004826728660740319), -0.00482672866074027)",
+      "ok": true
+    },
+    {
+      "check": "frozen cutoff matches step-5 record",
+      "detail": "-0.00482672866074027",
+      "ok": true
+    },
+    {
+      "check": "all 44 model genes inside the recomputed 5,000-gene pool",
+      "detail": "",
+      "ok": true
+    },
+    {
+      "check": "recomputed 5,000-gene pool identical to 4b file",
+      "detail": "0",
+      "ok": true
+    },
+    {
+      "check": "gene table symbol columns",
+      "detail": "['symbol', 'symbol_GPL570', 'probe_GSE181063', 'probe_GSE10846', 'probe_GSE87371', 'train_mean_GSE181063']",
+      "ok": true
+    },
+    {
+      "check": "stability table key column found",
+      "detail": "['entrez', 'symbol', 'n_selected', 'in_final_model', 'final_coef', 'selection_frequency']",
+      "ok": true
+    },
+    {
+      "check": "known stable genes mapped to Entrez",
+      "detail": "{'PXDNL': 0.84, 'JAML': 0.68, 'PLAC8L1': 0.6, 'AGBL4': 0.5}",
+      "ok": true
+    },
+    {
+      "check": "bootstrap frequency column reproduces 4b values (PXDNL 84%, JAML 68%, PLAC8L1 60%, AGBL4 50%)",
+      "detail": "['entrez', 'symbol', 'n_selected', 'in_final_model', 'final_coef', 'selection_frequency', '_entrez']",
+      "ok": true
+    },
+    {
+      "check": "Hallmark collection has 50 sets",
+      "detail": "50",
+      "ok": true
+    },
+    {
+      "check": "at least 12 of 15 Lymph2Cx genes found",
+      "detail": "[]",
+      "ok": true
+    }
+  ],
+  "code_version": "08-1.1",
+  "data_not_opened": [
+    "test-set expression",
+    "external-cohort expression",
+    "all survival columns"
+  ],
+  "data_read": {
+    "data/clean/clinical_clean_all.csv": "06f0804687fbddd5939e116830a9132fdcce0ba1ce7ac1cc6074968099a1c333",
+    "data/processed/expr_GSE181063_train.parquet": "57485c2b85d714dfa9ffacecfc7ff15ce5cae4745d8390d1bb2216772c350c13",
+    "data/processed/gene_table_common.csv": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0",
+    "data/processed/qc_samples.csv": "0a893af9499fad6d844c0d11591b0f56674c38e93f7747e4d1bb9d2d7ab52882",
+    "results/04/model_04.json": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "results/04/stability_04b.csv": "fd6e78aa3e8e3f4cb8b52bf693dd37b03c50634e4f1688f43f592130d8f2ba20",
+    "results/04/variance_filter_genes_04b.csv": "2a4fe1b60fbaa45dc8ceda5f71a5877a06dc6057c909d55dc87342908aab62b7"
+  },
+  "environment": {
+    "matplotlib": "3.10.0",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "python": "3.13.16",
+    "scipy": "1.16.3"
+  },
+  "frozen_model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+  "gene_sets": {
+    "c2.cgp.v2026.1.Hs.entrez.gmt": {
+      "n_sets": 3555,
+      "sha256": "8db69a5a0a721951f8841d060266676b03097ad2b292f05046632cf9f5e92dfc",
+      "url": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2026.1.Hs/c2.cgp.v2026.1.Hs.entrez.gmt"
+    },
+    "c2.cp.reactome.v2026.1.Hs.entrez.gmt": {
+      "n_sets": 1839,
+      "sha256": "b2fcb2f6c81a598df5a645333f7ecf52c7a07b782dc39b30ff390d431dc20695",
+      "url": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2026.1.Hs/c2.cp.reactome.v2026.1.Hs.entrez.gmt"
+    },
+    "c5.go.bp.v2026.1.Hs.entrez.gmt": {
+      "n_sets": 7538,
+      "sha256": "aa115797c880569adc5bb4ef3a572cdb66fd01ec79ed5155c9a61f447feb8eb5",
+      "url": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2026.1.Hs/c5.go.bp.v2026.1.Hs.entrez.gmt"
+    },
+    "h.all.v2026.1.Hs.entrez.gmt": {
+      "n_sets": 50,
+      "sha256": "7b3c4de012b2a3aa8f90e5452c21fc8c116a31c30dd98ec00253816152ac9072",
+      "url": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2026.1.Hs/h.all.v2026.1.Hs.entrez.gmt"
+    }
+  },
+  "outputs": {
+    "figures/08/hallmark_rank_test_08.png": "ba5c1932c74961ea75b88cf56235e56113224883143edef053f2575334e885b1",
+    "figures/08/model_genes_coefficients_08.png": "fedbd5cf53ecd18c830c358ffbaa1ac6f905899ac42519c4885e53afe9056487",
+    "figures/08/signatures_vs_score_08.png": "c036706c3982ca303fa366500f23913000d97d30c1f79e3cfd7b530d2d9be6f7",
+    "results/08/analysis_config_08.json": "8e504a132c8ed98dafa6f5d1b04afc76e3191bccf6881680fe9f232d093abb02",
+    "results/08/checks_08.csv": "21f0627ae8cb1117a0d8e62c55cf6d1263ada6e1d87fdd1f3b0bde9a702969df",
+    "results/08/gene_lp_correlation_08.csv": "cea7abe3a92400280a9002a44fcb884d7d37b607d394fb424c4a5b5d63d0698e",
+    "results/08/literature_genes_08.csv": "21f2254038230b99dd9ad7df0a07597cb50139980772940fcc58c379ccda4076",
+    "results/08/model_genes_annotated_08.csv": "bbd1a0f949929b8682f7731ce5f12e71466f5d778c44015860f81b25c562dabc",
+    "results/08/ora_08.csv": "52440dd81ec20da421b267f151fc7eedeff96b772022165e552c89da58692941",
+    "results/08/rank_test_08.csv": "e5e965c203728aca92b1049014b8e067e9765cb2aa29915f953bd391482b8da7",
+    "results/08/results_08.json": "c94020cba84652f5da261830a00c192bf6ad76680c4920c4ac48e6a5ae808fc1",
+    "results/08/signature_associations_08.csv": "d4d739eaa855caedc18569e6fc275f7b237928973e470ced8cdb6854b265e3a6",
+    "results/08/summary_08.txt": "53707886b7c4b1a2fc4e125798edbd19d0871dc39754c288276914917a10556b"
+  },
+  "plan_lock_sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+  "run_finished_utc": "2026-10-16T18:16:20+00:00",
+  "run_started_utc": "2026-10-16T18:15:09+00:00",
+  "step": "08_biological_interpretation",
+  "test_mode": false,
+  "verification": {
+    "lock": {
+      "n_hashes": 14,
+      "notebook_mismatch": [],
+      "records": 0,
+      "skipped_large": 0,
+      "unresolved": 0,
+      "verified": 0
+    },
+    "manifest_04b": {
+      "n_hashes": 31,
+      "notebook_mismatch": [],
+      "records": 28,
+      "skipped_large": 0,
+      "unresolved": 0,
+      "verified": 28
+    },
+    "manifest_05": {
+      "n_hashes": 34,
+      "notebook_mismatch": [],
+      "records": 31,
+      "skipped_large": 0,
+      "unresolved": 0,
+      "verified": 31
+    },
+    "manifest_06": {
+      "n_hashes": 31,
+      "notebook_mismatch": [],
+      "records": 28,
+      "skipped_large": 0,
+      "unresolved": 0,
+      "verified": 28
+    },
+    "manifest_07": {
+      "n_hashes": 30,
+      "notebook_mismatch": [],
+      "records": 27,
+      "skipped_large": 0,
+      "unresolved": 0,
+      "verified": 27
+    }
+  }
+}

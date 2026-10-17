@@ -1,0 +1,78 @@
+{
+  "background_primary": "top-5000 variance genes of the final 4b fit (the pool the model was selected from)",
+  "background_sensitivity": "all 13,747 common genes",
+  "code_version": "08-1.1",
+  "fdr_threshold": 0.05,
+  "msigdb_base_url": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2026.1.Hs/",
+  "msigdb_files": {
+    "C2_CGP": "c2.cgp.v2026.1.Hs.entrez.gmt",
+    "GO_BP": "c5.go.bp.v2026.1.Hs.entrez.gmt",
+    "HALLMARK": "h.all.v2026.1.Hs.entrez.gmt",
+    "REACTOME": "c2.cp.reactome.v2026.1.Hs.entrez.gmt"
+  },
+  "msigdb_release": "2026.1.Hs",
+  "ora": {
+    "collections": [
+      "HALLMARK",
+      "REACTOME",
+      "GO_BP"
+    ],
+    "gene_lists": [
+      "all_44",
+      "risk_up (coef > 0)",
+      "risk_down (coef < 0)"
+    ],
+    "multiple_testing": "Benjamini-Hochberg within each gene list x collection x background",
+    "set_size_in_background": [
+      10,
+      500
+    ],
+    "test": "one-sided hypergeometric (over-representation)"
+  },
+  "population": "GSE181063 training set, primary population (sex_mismatch_confident excluded); survival data never read",
+  "rank_test": {
+    "collections": [
+      "HALLMARK",
+      "REACTOME",
+      "GO_BP"
+    ],
+    "highlight_rule": "robust = BH FDR < 0.05 in BOTH the permutation and the gene-sampling test",
+    "multiple_testing": "Benjamini-Hochberg within collection, separately for each test",
+    "n_perm": 2000,
+    "null": "patient-label permutation of LP (preserves gene-gene correlation)",
+    "second_test": "PAGE-type gene-sampling z (Kim & Volsky 2005), normal approximation with finite-population correction",
+    "set_size_in_universe": [
+      10,
+      500
+    ],
+    "statistic": "mean Spearman rho(gene, LP) in set minus mean over universe",
+    "universe": "primary background minus the 44 model genes (removes circularity)"
+  },
+  "score": "frozen 44-gene linear predictor (model_04.json) on training expression, apparent (in-sample)",
+  "seed": 20261815,
+  "signatures": {
+    "association": "Spearman rho with LP, 1000 patient bootstraps (percentile CI)",
+    "c2_cgp_regex": "(DLBCL|DIFFUSE_LARGE|LARGE_B_CELL|LYMPHOMA|^LENZ_|^ROSENWALD_|^MONTI_|^SHIPP_|^ALIZADEH_|^SHAFFER_|^WRIGHT_)",
+    "curated_hallmark_panel": [
+      "HALLMARK_E2F_TARGETS",
+      "HALLMARK_G2M_CHECKPOINT",
+      "HALLMARK_MYC_TARGETS_V1",
+      "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION",
+      "HALLMARK_ANGIOGENESIS",
+      "HALLMARK_INTERFERON_GAMMA_RESPONSE",
+      "HALLMARK_INFLAMMATORY_RESPONSE",
+      "HALLMARK_TNFA_SIGNALING_VIA_NFKB",
+      "HALLMARK_IL6_JAK_STAT3_SIGNALING"
+    ],
+    "lymph2cx": "Scott et al. Blood 2014; COO score = mean z(ABC genes) - mean z(GCB genes)",
+    "min_genes_found": 10,
+    "model_gene_overlap": "rho also reported with the 44 model genes removed from each signature",
+    "multiple_testing": "Benjamini-Hochberg within curated panel and within the C2-CGP group separately",
+    "proxies": {
+      "HALLMARK_ANGIOGENESIS": "vascular / stromal-2 proxy (not the Lenz 2008 gene list)",
+      "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION": "ECM / stromal-1 proxy (not the Lenz 2008 gene list)"
+    },
+    "regression": "OLS of LP on standardized signature scores (model genes removed), descriptive R^2 only",
+    "score": "mean of per-gene z-scores (primary population, ddof 1) over genes found among the 13,747 common genes"
+  }
+}

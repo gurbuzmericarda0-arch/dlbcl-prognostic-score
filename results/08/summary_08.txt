@@ -1,0 +1,15 @@
+Step 8 - exploratory biological interpretation (code 08-1.1)
+Population: GSE181063 training, primary n = 373; survival data not read; test/external expression not opened.
+Model: 44 genes (26 risk-up, 18 risk-down); stable (>= 50% bootstrap): PXDNL 84%, JAML 68%, PLAC8L1 60%, AGBL4 50%
+ORA (background = 5,000-gene selection pool): sets with FDR < 0.05: 0 (13,747-gene background: 0)
+Rank test HALLMARK: robust 11/50 (FDR < 0.05 in both permutation and gene-sampling tests); top: HALLMARK_E2F_TARGETS (z +12.3); HALLMARK_G2M_CHECKPOINT (z +11.4); HALLMARK_MYC_TARGETS_V1 (z +8.1)
+Rank test REACTOME: robust 198/580 (FDR < 0.05 in both permutation and gene-sampling tests); top: REACTOME_CELL_CYCLE (z +14.6); REACTOME_CELL_CYCLE_MITOTIC (z +13.5); REACTOME_CELL_CYCLE_CHECKPOINTS (z +13.1)
+Rank test GO_BP: robust 306/2802 (FDR < 0.05 in both permutation and gene-sampling tests); top: GOBP_MITOTIC_CELL_CYCLE (z +11.5); GOBP_CHROMOSOME_ORGANIZATION (z +11.3); GOBP_DNA_METABOLIC_PROCESS (z +11.0)
+Lymph2Cx AUC (ABC vs GCB labels) 0.959; rho(LP, COO score) +0.461
+R^2 of LP: Lymph2Cx alone 0.186; six signature scores 0.352
+LP by COO Kruskal-Wallis p = 4.99e-19; Spearman(LP, IPI) = +0.356 (n = 281)
+CAVEATS: Exploratory analysis; no hypothesis test; p-values and FDRs are descriptive.
+CAVEATS: Gene selection was unstable in 4b (4/44 genes selected in >= 50% of bootstraps); interpret the score as a whole.
+CAVEATS: Training set only; LP is apparent (in-sample). No survival data used.
+CAVEATS: Stromal signatures are Hallmark proxies, not the Lenz 2008 gene lists.
+CAVEATS: COO labels come from the authors' classifier on the same arrays.

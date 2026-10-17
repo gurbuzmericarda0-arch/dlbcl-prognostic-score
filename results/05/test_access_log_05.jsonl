@@ -1,0 +1,1 @@
+{"utc": "2026-10-15T19:59:27+00:00", "event": "test set opened", "code_version": "05-1.0", "model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403", "leakage_check_mean_c": 0.499394, "null_models_fixed_utc": "2026-10-15T19:59:27+00:00"}

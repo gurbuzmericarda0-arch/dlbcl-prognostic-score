@@ -1,0 +1,95 @@
+{
+  "model_file": "results/04/model_04.json",
+  "sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+  "hash_references": {
+    "manifest_04b.json, frozen_model.sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "manifest_04b.json, outputs entry": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "progress_step4b.md": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403"
+  },
+  "content_checks": {
+    "plan JSON hash in the model file": true,
+    "number of genes (file, list, manifest)": true,
+    "penalty (file vs manifest)": true,
+    "training population (373 patients, 171 deaths)": true,
+    "every model gene is in the expression data": true
+  },
+  "recomputed_from_training_data": {
+    "gene means (training)": {
+      "max_abs_diff": 0.0,
+      "ok": true
+    },
+    "gene SDs (training)": {
+      "max_abs_diff": 0.0,
+      "ok": true
+    },
+    "risk cutoff (median training LP)": {
+      "max_abs_diff": 0.0,
+      "ok": true
+    },
+    "tertile cutoffs (training LP)": {
+      "max_abs_diff": 0.0,
+      "ok": true
+    },
+    "training LP mean": {
+      "max_abs_diff": 0.0,
+      "ok": true
+    },
+    "training LP SD": {
+      "max_abs_diff": 0.0,
+      "ok": true
+    }
+  },
+  "refit_vs_file": {
+    "same genes": true,
+    "same coefficients (rtol 1e-6, atol 1e-9)": true,
+    "same penalty (rtol 1e-9)": true,
+    "same grid position": true
+  },
+  "refit_max_abs_coef_difference": 0.0,
+  "refit_vs_manifest_04b": {
+    "number of genes": {
+      "now": 44,
+      "step4b": 44
+    },
+    "lambda_min": {
+      "now": 0.08625910082886222,
+      "step4b": 0.08625910082886222
+    },
+    "grid position of lambda_min": {
+      "now": 18,
+      "step4b": 18
+    },
+    "valid grid size": {
+      "now": 100,
+      "step4b": 100
+    },
+    "genes at lambda_1se": {
+      "now": 3,
+      "step4b": 3
+    },
+    "path events": {
+      "now": {
+        "spurious_stop_restarts": 0,
+        "genuine_early_stops": 0,
+        "numerical_failures": 0,
+        "convergence_warnings": 0,
+        "penalties_dropped": 0
+      },
+      "step4b": {
+        "spurious_stop_restarts": 0,
+        "genuine_early_stops": 0,
+        "numerical_failures": 0,
+        "convergence_warnings": 0,
+        "penalties_dropped": 0
+      }
+    }
+  },
+  "n_genes": 44,
+  "lambda": 0.08625910082886222,
+  "cutoff": -0.00482672866074027,
+  "tertile_cutoffs": [
+    -0.2358779514126806,
+    0.2446879213795422
+  ],
+  "verified": true
+}

@@ -1,0 +1,24 @@
+{
+  "notebook": "03_positive_control.ipynb",
+  "run_at": "2026-10-14T22:55:21",
+  "inputs_sha256": {
+    "clinical_clean_GSE181063.csv": "9adfd93b09eba18d379ccb4b5a4f2fcd80ee33147e7bd8b0ebf94ca5353cffa0",
+    "split_GSE181063.csv": "8997da18e62861ddc7614885dfa4ad5075d412a34cca4ba511e922e245c628f2",
+    "qc_samples.csv": "0a893af9499fad6d844c0d11591b0f56674c38e93f7747e4d1bb9d2d7ab52882",
+    "expr_GSE181063_train.parquet": "57485c2b85d714dfa9ffacecfc7ff15ce5cae4745d8390d1bb2216772c350c13",
+    "gene_table_common.csv": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0"
+  },
+  "test_set_opened": false,
+  "n_train_ABC_GCB": 295,
+  "primary": {
+    "HR": 2.205078456378292,
+    "CI": [
+      1.5704725689631556,
+      3.096119661608521
+    ],
+    "logrank_p": 2.8085352440116296e-06,
+    "PH_test_p": 0.7436222505679085
+  },
+  "success_criterion_met": true,
+  "coo_score_auc": 0.9517293233082706
+}

@@ -1,0 +1,71 @@
+{
+  "note": "Written once, at the first complete run of step 7; never overwritten (plan \u00a717).",
+  "written_utc": "2026-10-16T17:41:40+00:00",
+  "code_version": "07-1.1",
+  "model_sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+  "GSE181063_test": {
+    "complete_case_n": 126,
+    "complete_case_deaths": 54,
+    "lrt_chi2": 7.348989109346007,
+    "lrt_p": 0.0067100475328352215,
+    "adjusted_hr_per_sd": 1.6309992664661745,
+    "adjusted_hr_ci_95": [
+      1.1385922567826694,
+      2.336357542716858
+    ],
+    "c_ipi_coo": 0.7265857811834824,
+    "c_ipi_coo_lp": 0.7464878671775224,
+    "delta_c": 0.019902085994039975,
+    "delta_c_ci_95": [
+      -0.004218430611310981,
+      0.05281562753270171
+    ]
+  },
+  "GSE10846": {
+    "complete_case_n": 154,
+    "complete_case_deaths": 39,
+    "lrt_chi2": 2.2497652567320756,
+    "lrt_p": 0.13363467317843586,
+    "adjusted_hr_per_sd": 1.289570786873548,
+    "adjusted_hr_ci_95": [
+      0.9261505465357601,
+      1.7955966452517242
+    ],
+    "c_ipi_coo": 0.7646365001072271,
+    "c_ipi_coo_lp": 0.7799699764100364,
+    "delta_c": 0.015333476302809346,
+    "delta_c_ci_95": [
+      -0.006180053859499157,
+      0.0510075286954069
+    ]
+  },
+  "GSE87371": {
+    "complete_case_n": 116,
+    "complete_case_deaths": 41,
+    "lrt_chi2": 0.6122235468342865,
+    "lrt_p": 0.43395183173207497,
+    "adjusted_hr_per_sd": 1.1695421669958164,
+    "adjusted_hr_ci_95": [
+      0.790188083745307,
+      1.731016840823618
+    ],
+    "c_ipi_coo": 0.7521494218796324,
+    "c_ipi_coo_lp": 0.7601541654313667,
+    "delta_c": 0.008004743551734306,
+    "delta_c_ci_95": [
+      -0.008002618453865342,
+      0.04536093714885015
+    ]
+  },
+  "mhg_separate": {
+    "lrt_p": 0.007391437218932826,
+    "adjusted_hr_per_sd": 1.6461356978327666,
+    "delta_c": 0.017028522775649146,
+    "delta_c_ci_95": [
+      -0.005470550014748943,
+      0.050795534500872305
+    ]
+  },
+  "h3_met": true,
+  "adds_information_beyond_ipi_and_coo": true
+}

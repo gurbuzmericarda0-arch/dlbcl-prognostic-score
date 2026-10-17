@@ -1,0 +1,413 @@
+{
+  "step": "04b",
+  "notebook": "04b_training_model.ipynb",
+  "code_version": "04b-1.0",
+  "created_utc": "2026-10-15T16:26:32+00:00",
+  "plan": {
+    "version": "1.0",
+    "plan_json_sha256": "e854f71c1e83955335adf421d9eae2e81fd48bf605a11aa7611dc230ee5998c1",
+    "plan_md_sha256": "7bddc953f1bedfc2e5193a5b7cb29febff528bbefd98f9135bb113d8364bde66",
+    "lock_file_sha256": "8d87cf887e2db4770ae3273755d4901cd0d5a2a010fdc729159e007aa129bc7d",
+    "amendments": 0
+  },
+  "frozen_model": {
+    "file": "results/04/model_04.json",
+    "sha256": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "status_this_run": "already frozen, identical result; file not rewritten",
+    "n_genes": 44,
+    "lambda": 0.08625910082886222,
+    "null_model": false
+  },
+  "inputs_verified_against_lock": {
+    "clinical_all": {
+      "file": "data/clean/clinical_clean_all.csv",
+      "sha256": "06f0804687fbddd5939e116830a9132fdcce0ba1ce7ac1cc6074968099a1c333",
+      "status": "match"
+    },
+    "split": {
+      "file": "data/clean/split_GSE181063.csv",
+      "sha256": "8997da18e62861ddc7614885dfa4ad5075d412a34cca4ba511e922e245c628f2",
+      "status": "match"
+    },
+    "manifest_02a": {
+      "file": "data/clean/manifest_02a.json",
+      "sha256": "50d28deada771335efa7d2e86659ef0f7bb679d11498799e3ddfab3c0ab626fd",
+      "status": "match"
+    },
+    "expr_train": {
+      "file": "data/processed/expr_GSE181063_train.parquet",
+      "sha256": "57485c2b85d714dfa9ffacecfc7ff15ce5cae4745d8390d1bb2216772c350c13",
+      "status": "match"
+    },
+    "gene_table": {
+      "file": "data/processed/gene_table_common.csv",
+      "sha256": "4fcb0b07e6bd7a72ec76a67a710c34332cd0eb08da74545d2a2a8f399d7c75b0",
+      "status": "match"
+    },
+    "qc_samples": {
+      "file": "data/processed/qc_samples.csv",
+      "sha256": "0a893af9499fad6d844c0d11591b0f56674c38e93f7747e4d1bb9d2d7ab52882",
+      "status": "match"
+    },
+    "manifest_02b": {
+      "file": "data/processed/manifest_02b.json",
+      "sha256": "48270500185cf7db4260fb2aceef09b42c8e7d4a8ed613cf6d8b992103ab9c11",
+      "status": "match"
+    },
+    "plan_03": {
+      "file": "results/03/plan_03.json",
+      "sha256": "32facc8043d7ced962fa62fadbf2f7f688e6f2d25d305459c2fcc2ffecfec831",
+      "status": "match"
+    },
+    "manifest_03": {
+      "file": "results/03/manifest_03.json",
+      "sha256": "a76e64d35fbab8a6d9754513f91b0d62096bcaebfde97710d33c09fabdcf56b6",
+      "status": "match"
+    },
+    "expr_test": {
+      "file": "data/processed/expr_GSE181063_test.parquet",
+      "sha256": "da21983c79a389011c80c59008c88cf5b707242f094d0439ab4ecadf45add17c",
+      "status": "match"
+    },
+    "expr_GSE10846": {
+      "file": "data/processed/expr_GSE10846.parquet",
+      "sha256": "3be078dfabbc3ea3ca414f5b9d2b1df41b24905eac154c3900e7baea7fb70662",
+      "status": "match"
+    },
+    "expr_GSE87371": {
+      "file": "data/processed/expr_GSE87371.parquet",
+      "sha256": "9d064d94eb6e72e1dad4abd24d1e6ad71197bc2b65ccf442db000084e2d51a06",
+      "status": "match"
+    }
+  },
+  "data_access": {
+    "opened": {
+      "clinical_all": "data/clean/clinical_clean_all.csv",
+      "split": "data/clean/split_GSE181063.csv",
+      "expr_train": "data/processed/expr_GSE181063_train.parquet",
+      "gene_table": "data/processed/gene_table_common.csv",
+      "qc_samples": "data/processed/qc_samples.csv"
+    },
+    "opened_rows": "training rows only for clinical_all and qc_samples (other rows dropped right after loading)",
+    "hashed_only_never_opened": {
+      "manifest_02a": "data/clean/manifest_02a.json",
+      "manifest_02b": "data/processed/manifest_02b.json",
+      "plan_03": "results/03/plan_03.json",
+      "manifest_03": "results/03/manifest_03.json",
+      "expr_test": "data/processed/expr_GSE181063_test.parquet",
+      "expr_GSE10846": "data/processed/expr_GSE10846.parquet",
+      "expr_GSE87371": "data/processed/expr_GSE87371.parquet"
+    }
+  },
+  "population": {
+    "patients": 373,
+    "deaths": 171,
+    "excluded_by_primary_qc": [
+      "GSM5482781",
+      "GSM5482796",
+      "GSM5482806",
+      "GSM5482816",
+      "GSM5483107",
+      "GSM5483164",
+      "GSM5483553"
+    ],
+    "ipi_missing": 92,
+    "corr_outliers_retained": 17,
+    "os_time_ties": {
+      "tied_time_values": 13,
+      "patients_with_tied_time": 26
+    }
+  },
+  "final_fit": {
+    "lambda_min_position": 18,
+    "lambda_1se_position": 5,
+    "valid_grid_size": 100,
+    "at_grid_boundary": false,
+    "n_genes_lambda_1se": 3,
+    "path_events": {
+      "spurious_stop_restarts": 0,
+      "genuine_early_stops": 0,
+      "numerical_failures": 0,
+      "convergence_warnings": 0,
+      "penalties_dropped": 0
+    }
+  },
+  "nested_cv": {
+    "min": {
+      "mean_c": 0.6116684410035552,
+      "sd_c": 0.05094076544234931,
+      "min_c": 0.5386266094420601,
+      "max_c": 0.7260579064587973,
+      "median_genes": 19.0,
+      "empty_models": 0
+    },
+    "1se": {
+      "mean_c": 0.5389975997285181,
+      "sd_c": 0.048915121164461624,
+      "min_c": 0.5,
+      "max_c": 0.628099173553719,
+      "median_genes": 2.0,
+      "empty_models": 12
+    },
+    "repeat1_mean_c_min": 0.6147092807840254,
+    "folds_lambda_min_at_boundary": 0,
+    "units": 25
+  },
+  "nested_cv_path_events": {
+    "spurious_stop_restarts": 0,
+    "genuine_early_stops": 0,
+    "numerical_failures": 0,
+    "convergence_warnings": 0,
+    "penalties_dropped": 0
+  },
+  "cv_km_repeat1": {
+    "low": {
+      "n": 178,
+      "deaths": 57,
+      "os_5y": 0.8085205992509358,
+      "os_5y_ci": [
+        0.742544422511458,
+        0.8591877137144818
+      ],
+      "median_os_months": null
+    },
+    "high": {
+      "n": 195,
+      "deaths": 114,
+      "os_5y": 0.5417778101157552,
+      "os_5y_ci": [
+        0.4690231075130557,
+        0.6088632380763739
+      ],
+      "median_os_months": 74.38193018480484
+    }
+  },
+  "added_value_descriptive": {
+    "n": 281,
+    "deaths": 118,
+    "description": "Cox(IPI + COO) vs Cox(IPI + COO + out-of-fold LP per SD), IPI complete cases, repeat 1; descriptive",
+    "lrt_chi2": 3.2318193720623185,
+    "lrt_p": 0.07222041260064643,
+    "hr_per_sd": 1.2187057932935497,
+    "hr_ci_95": [
+      0.9840321479546533,
+      1.5093448051411669
+    ],
+    "c_ipi_coo": 0.7383104209097081,
+    "c_ipi_coo_lp": 0.7416412084181941,
+    "delta_c": 0.0033307875084860328
+  },
+  "stability": {
+    "resamples": 100,
+    "successful": 100,
+    "failed_before_lambda_min": 0,
+    "model_size_median": 58.5,
+    "model_size_iqr": [
+      54.0,
+      63.0
+    ],
+    "final_genes": 44,
+    "final_genes_selected_in_50pct_or_more": 4,
+    "path_events": {
+      "resamples_with_spurious_stop_restarts": 0,
+      "genuine_early_stops": 0,
+      "numerical_failures": 0,
+      "convergence_warnings": 0
+    }
+  },
+  "sensitivity": [
+    {
+      "analysis": "primary",
+      "description": "lambda_min, l1_ratio 0.9, top 5000 genes",
+      "patients": 373,
+      "n_genes": 44,
+      "shared_with_primary": 44,
+      "jaccard_vs_primary": 1.0,
+      "lambda": 0.08625910082886222,
+      "lambda_position": 18,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": 0.6116684410035552,
+      "nested_cv_c_sd": 0.05094076544234931,
+      "note": "nested CV 5x5; repeat 1 alone: C 0.615"
+    },
+    {
+      "analysis": "a",
+      "description": "lambda_1se (same CV as primary)",
+      "patients": 373,
+      "n_genes": 3,
+      "shared_with_primary": 3,
+      "jaccard_vs_primary": 0.06818181818181818,
+      "lambda": 0.1579178379112559,
+      "lambda_position": 5,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": 0.5389975997285181,
+      "nested_cv_c_sd": 0.048915121164461624,
+      "note": "nested CV 5x5, lambda_1se of each fold"
+    },
+    {
+      "analysis": "b",
+      "description": "pure LASSO (l1_ratio 1.0)",
+      "patients": 373,
+      "n_genes": 44,
+      "shared_with_primary": 44,
+      "jaccard_vs_primary": 1.0,
+      "lambda": 0.07763319074597601,
+      "lambda_position": 18,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": 0.6143860706934394,
+      "nested_cv_c_sd": 0.06056117554714962,
+      "note": "nested CV 5x1 on the folds of primary repeat 1"
+    },
+    {
+      "analysis": "c",
+      "description": "no variance filter (all 13,747 genes)",
+      "patients": 373,
+      "n_genes": 14,
+      "shared_with_primary": 9,
+      "jaccard_vs_primary": 0.1836734693877551,
+      "lambda": 0.12514718588969623,
+      "lambda_position": 10,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": 0.6056776842433603,
+      "nested_cv_c_sd": 0.05176222509384497,
+      "note": "nested CV 5x1 on the folds of primary repeat 1"
+    },
+    {
+      "analysis": "d",
+      "description": "correlation outliers excluded (n = 356)",
+      "patients": 356,
+      "n_genes": 20,
+      "shared_with_primary": 16,
+      "jaccard_vs_primary": 0.3333333333333333,
+      "lambda": 0.11630782208757251,
+      "lambda_position": 13,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": NaN,
+      "nested_cv_c_sd": NaN,
+      "note": ""
+    },
+    {
+      "analysis": "e1",
+      "description": "CV seed 20261016 (same full-data path)",
+      "patients": 373,
+      "n_genes": 44,
+      "shared_with_primary": 44,
+      "jaccard_vs_primary": 1.0,
+      "lambda": 0.08625910082886222,
+      "lambda_position": 18,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": NaN,
+      "nested_cv_c_sd": NaN,
+      "note": ""
+    },
+    {
+      "analysis": "e2",
+      "description": "CV seed 20261017 (same full-data path)",
+      "patients": 373,
+      "n_genes": 11,
+      "shared_with_primary": 11,
+      "jaccard_vs_primary": 0.25,
+      "lambda": 0.11945905314658119,
+      "lambda_position": 11,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": NaN,
+      "nested_cv_c_sd": NaN,
+      "note": ""
+    },
+    {
+      "analysis": "e3",
+      "description": "CV seed 20261018 (same full-data path)",
+      "patients": 373,
+      "n_genes": 35,
+      "shared_with_primary": 35,
+      "jaccard_vs_primary": 0.7954545454545454,
+      "lambda": 0.09466925667221733,
+      "lambda_position": 16,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": NaN,
+      "nested_cv_c_sd": NaN,
+      "note": ""
+    },
+    {
+      "analysis": "e4",
+      "description": "CV seed 20261019 (same full-data path)",
+      "patients": 373,
+      "n_genes": 40,
+      "shared_with_primary": 40,
+      "jaccard_vs_primary": 0.9090909090909091,
+      "lambda": 0.09036639284978809,
+      "lambda_position": 17,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": NaN,
+      "nested_cv_c_sd": NaN,
+      "note": ""
+    },
+    {
+      "analysis": "e5",
+      "description": "CV seed 20261020 (same full-data path)",
+      "patients": 373,
+      "n_genes": 40,
+      "shared_with_primary": 40,
+      "jaccard_vs_primary": 0.9090909090909091,
+      "lambda": 0.09036639284978809,
+      "lambda_position": 17,
+      "at_grid_boundary": false,
+      "nested_cv_c_mean": NaN,
+      "nested_cv_c_sd": NaN,
+      "note": ""
+    }
+  ],
+  "red_flags": [],
+  "outputs": {
+    "results/04/model_04.json": "661e2b80be774252a7fd613116ecc06673a8617ed8a2230bdae56170e3908403",
+    "results/04/model_genes_04b.csv": "9a61ef7281866b6782564ac0f41f90fc588caee41e4ac46ff0a41e9591b351f4",
+    "results/04/variance_filter_genes_04b.csv": "2a4fe1b60fbaa45dc8ceda5f71a5877a06dc6057c909d55dc87342908aab62b7",
+    "results/04/cv_deviance_04b.csv": "1911e91c66884d2ec3dc04637189b187975a64e3dcaea14b4ca86a966ae8b404",
+    "results/04/nested_cv_folds_04b.csv": "5336e3dba894ddbd2cbdca015ffacfa6644492bf857c43f4235b7ed4d66b2eaa",
+    "results/04/nested_cv_summary_04b.json": "3c60330efe7d32ea1440ecee53d62893483bb7ca3d79acc0a2c7dab92b159aae",
+    "results/04/cv_km_repeat1_04b.csv": "af4d19ef3923ff297c7c3a0f3b1f697343628dbff54dfbcb9843df5596e06dc9",
+    "results/04/added_value_04b.json": "a3a5e6c5a46fea76f37b418768d988ae4e1e44abab05b5d55bc15f219897a8ab",
+    "results/04/stability_04b.csv": "fd6e78aa3e8e3f4cb8b52bf693dd37b03c50634e4f1688f43f592130d8f2ba20",
+    "results/04/sensitivity_04b.csv": "24151c53ff571c6f1372d52ab70b9cc7a62359355457c86c63988a75a5e3722d",
+    "results/04/summary_04b.txt": "f8aa3d5c72e7a8ae48fae61af9d8e0b3903ecb68adab1433c4177839a30c8ab6",
+    "figures/04/cv_deviance_04b.png": "fb59d6e3e0caa2d9a9017abb1ffa94828c61f22f721645a04205c7fed744ff20",
+    "figures/04/coefficients_04b.png": "e49aa1095a1e063bb0cf13092cc91f68ffce1f0045f9dbf4de94ae14771eb45f",
+    "figures/04/nested_cv_c_04b.png": "401e855c11a57bbd4a6554e24e20877c8ec8002cf3286c2f261b061af37fba33",
+    "figures/04/cv_km_repeat1_04b.png": "d10e1b6566222b13a76c73223a1799b13481e5b446948429f779899706a2d993",
+    "figures/04/stability_top30_04b.png": "583ea7f75507c65858fafe70d95d73fb605f8f9556dc7145afd66f49970f758c"
+  },
+  "implementation_notes": [
+    "Penalty selection: grouped cross-validated partial-likelihood deviance as in the current glmnet source (buildPredmat.coxnetlist, cv.coxnet, cvstats, getOptcv.glmnet). Per fold: deviance of the fold model on all patients of the current fit minus its deviance on the fold training patients, divided by the fold size; fold-size-weighted mean and SE. Deviance = 2 x (saturated - model) Breslow log partial likelihood. lambda_min = largest penalty at the minimum; lambda_1se = largest penalty with mean deviance <= minimum + its SE.",
+    "Penalty grid of each current fit: scikit-survival automatic grid on the pre-processed data of that fit (100 values, alpha_min_ratio 0.01); its CV folds use the same grid.",
+    "scikit-survival ends a path when the deviance ratio changes by < 0.1% over 5 penalties. With tied survival times its null deviance ignores ties, so the ratio starts slightly below 0 and the rule can fire wrongly; such stops (ratio < 0) are continued at the next penalty. Genuine stops (ratio > 0) keep the last fitted coefficients for the remaining penalties, as glmnet does for fold paths shorter than the lambda sequence. Counts are reported for every fit.",
+    "Numerical failures: penalties at and after the first failure in any fold or in the full-data fit are dropped for all folds (plan section 5).",
+    "CV fold assignment: primary population sorted by sample_id; StratifiedKFold(shuffle=True) on the OS event with the plan seeds; repeat 1 = r = 0 (outer seed SEED + 100).",
+    "Nested CV: each outer training fold repeats the whole procedure (variance filter, z-score, grid, inner 10-fold CV); outer test patients are z-scored with the outer training statistics.",
+    "CV-KM: out-of-fold LP of repeat 1; each fold split at the median in-sample LP of its outer training fold; high = LP > cutoff; no log-rank p-value.",
+    "Added value (descriptive): out-of-fold LP of repeat 1 standardized with the LP mean and SD of its outer training fold; Cox models fitted with lifelines (Efron ties); COO coded GCB (reference), ABC, other (UNC, MHG).",
+    "Stability: bootstrap rows drawn with replacement (seed 20261315, all 100 index vectors drawn at once); in each resample the variance filter and z-score are re-estimated and the path is fitted on the final grid down to lambda_min.",
+    "Sensitivity (e): the full-data path of the primary model with the fold assignment of each alternative seed.",
+    "Solver settings: scikit-survival defaults (tol 1e-7, max_iter 100000)."
+  ],
+  "environment": {
+    "python": "3.13.16",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39",
+    "cpu_count": 2,
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.9.1",
+    "scikit-survival": "0.28.0",
+    "lifelines": "0.30.3",
+    "joblib": "1.6.0",
+    "matplotlib": "3.10.0"
+  },
+  "parallel_workers": 2,
+  "runtime_seconds_this_run": {
+    "final_model_s": 51.2,
+    "nested_cv_s": 5.3,
+    "stability_s": 3.7,
+    "sensitivity_s": 408.4,
+    "total_s": 438.3
+  }
+}

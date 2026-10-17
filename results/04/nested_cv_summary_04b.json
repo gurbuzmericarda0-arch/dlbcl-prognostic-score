@@ -1,0 +1,21 @@
+{
+  "min": {
+    "mean_c": 0.6116684410035552,
+    "sd_c": 0.05094076544234931,
+    "min_c": 0.5386266094420601,
+    "max_c": 0.7260579064587973,
+    "median_genes": 19.0,
+    "empty_models": 0
+  },
+  "1se": {
+    "mean_c": 0.5389975997285181,
+    "sd_c": 0.048915121164461624,
+    "min_c": 0.5,
+    "max_c": 0.628099173553719,
+    "median_genes": 2.0,
+    "empty_models": 12
+  },
+  "repeat1_mean_c_min": 0.6147092807840254,
+  "folds_lambda_min_at_boundary": 0,
+  "units": 25
+}
