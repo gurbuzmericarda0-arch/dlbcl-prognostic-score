@@ -879,7 +879,7 @@ function drawGenes() {
   const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
   if (!('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver(ents => {
-    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); const a = map.get(en.target.id); if (a) { a.classList.add('on'); a.scrollIntoView({block: 'nearest', inline: 'nearest'}); } } });
+    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); const a = map.get(en.target.id); if (a) { a.classList.add('on'); const bar = a.parentElement, l = a.offsetLeft, r = l + a.offsetWidth; if (l < bar.scrollLeft || r > bar.scrollLeft + bar.clientWidth) bar.scrollLeft = Math.max(0, l - 16); } } });
   }, {rootMargin: '-45% 0px -50% 0px'});
   map.forEach((a, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
 })();
