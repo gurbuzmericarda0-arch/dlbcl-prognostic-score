@@ -83,11 +83,11 @@ nav.topbar {
   font-family: var(--sans);
 }
 @media (min-width: 1100px) { nav.topbar { display: none; } }
-nav.topbar .bar {
+nav.topbar .navbar {
   display: flex; gap: 18px; overflow-x: auto; scrollbar-width: none;
   padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
 }
-nav.topbar .bar::-webkit-scrollbar { display: none; }
+nav.topbar .navbar::-webkit-scrollbar { display: none; }
 nav.topbar a { flex: none; font-size: 0.86rem; color: var(--ink-2); text-decoration: none; padding-bottom: 2px; border-bottom: 2px solid transparent; }
 nav.topbar a.on { color: var(--accent); font-weight: 600; border-bottom-color: var(--accent); }
 
@@ -178,7 +178,7 @@ footer .hash { word-break: break-all; }
 <div id="tip" hidden></div>
 
 <nav class="topbar" aria-label="Contents">
-  <div class="bar">
+  <div class="navbar">
     <a href="#abstract">Abstract</a>
     <a href="#design">1 Design</a>
     <a href="#validation">2 Validation</a>
@@ -902,7 +902,7 @@ function drawGenes() {
   links.forEach(a => { const id = a.getAttribute('href').slice(1); if (!map.has(id)) map.set(id, []); map.get(id).push(a); });
   if (!('IntersectionObserver' in window)) return;
   const io = new IntersectionObserver(ents => {
-    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); try { if (location.hash !== '#' + en.target.id) history.replaceState(null, '', '#' + en.target.id); } catch (_) {} (map.get(en.target.id) || []).forEach(a => { a.classList.add('on'); const bar = a.closest('.bar'); if (bar) { const l = a.offsetLeft, r = l + a.offsetWidth; if (l < bar.scrollLeft || r > bar.scrollLeft + bar.clientWidth) bar.scrollLeft = Math.max(0, l - 16); } }); } });
+    ents.forEach(en => { if (en.isIntersecting) { links.forEach(a => a.classList.remove('on')); try { if (location.hash !== '#' + en.target.id) history.replaceState(null, '', '#' + en.target.id); } catch (_) {} (map.get(en.target.id) || []).forEach(a => { a.classList.add('on'); const bar = a.closest('.navbar'); if (bar) { const l = a.offsetLeft, r = l + a.offsetWidth; if (l < bar.scrollLeft || r > bar.scrollLeft + bar.clientWidth) bar.scrollLeft = Math.max(0, l - 16); } }); } });
   }, {rootMargin: '-45% 0px -50% 0px'});
   map.forEach((a, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
 })();
